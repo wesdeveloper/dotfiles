@@ -56,6 +56,9 @@ alias ide="~/./ide.sh"
 alias vi="nvim"
 alias vim="nvim"
 
+alias lc='colorls -lA --sd'
+alias ls="colorls -A"           # short, multi-line
+
 export NVM_DIR="/home/weslopes/.nvm"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
