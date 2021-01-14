@@ -8,5 +8,7 @@
   cm = commit -m
   s = status -s
   d = diff
+  p = push
+  co = checkout
 [cola]
 	spellcheck = false
