@@ -26,6 +26,9 @@ To apply all settings on your root directory you need to use the **stow**.
 Example:
 > stow -vt ~ .
 
+**Obs:************************** If you want to test the stow actions without execute it. Experiment to add -n flag.
+> stow -nvt ~ .
+
 ### Other linux settings and installs
 
 * [Ulauncher](https://ulauncher.io/)
