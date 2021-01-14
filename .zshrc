@@ -50,14 +50,15 @@ prompt_dir() {
   prompt_segment blue black "${PWD##*/}"
 }
 
+#### ALIAS ###
+# ide script
 alias ide="~/./ide.sh"
-
 # Map vi and vim to nvim
 alias vi="nvim"
 alias vim="nvim"
-
 alias lc='colorls -lA --sd'
 alias ls="colorls -A"           # short, multi-line
+alias nf="neofetch"
 
 export NVM_DIR="/home/weslopes/.nvm"
 
