@@ -29,7 +29,7 @@ Example:
 **Obs:** If you want to test the stow actions without execute it. Experiment to add -n flag.
 > stow -nvt ~ .
 
-### Other linux settings and installs
+## Other linux settings and installs
 
 * [Ulauncher](https://ulauncher.io/)
 * [Tilix](https://gnunn1.github.io/tilix-web/)
