@@ -191,5 +191,7 @@ map sl <C-w>l
 noremap <Leader>y "+y
 noremap <Leader>p "+p
 
+let g:coc_disable_startup_warning = 1
+
 " background transparent
 hi Normal guibg=NONE ctermbg=NONE
