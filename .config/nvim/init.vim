@@ -19,6 +19,7 @@ set encoding=UTF-8
 set tabstop=2 shiftwidth=2 expandtab
 set foldmethod=indent
 set clipboard=unnamedplus
+set nornu
 
 " vim plug
 call plug#begin('~/.vim/plugged')
@@ -78,19 +79,19 @@ set noshowmode
 " show file path in lightline
 " https://github.com/itchyny/lightline.vim/issues/87#issuecomment-119130738
 let g:lightline = {
-\ 'colorscheme': 'monokai_tasty',
-\ 'active': {
-\   'right': [['lineinfo'], ['fileformat', 'filetype']]
-\ },
-\ 'component_function': {
-\   'filename': 'lightlinefilename'
-\ },
-\ 'component': {
-\   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
-\ }
-\ }
+      \ 'colorscheme': 'monokai_tasty',
+      \ 'active': {
+      \   'right': [['lineinfo'], ['fileformat', 'filetype']]
+      \ },
+      \ 'component_function': {
+      \   'filename': 'lightlinefilename'
+      \ },
+      \ 'component': {
+      \   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
+      \ }
+      \ }
 function! Lightlinefilename()
-return expand('%')
+  return expand('%')
 endfunction
 
 let g:highlightedyank_highlight_duration = 200
@@ -124,13 +125,13 @@ let g:javascript_plugin_flow = 1
 " vim transparent background
 let t:is_transparent = 0
 function! Toggle_transparent()
-if t:is_transparent == 0
+  if t:is_transparent == 0
     hi Normal guibg=NONE ctermbg=NONE
     let t:is_transparent = 1
-else
+  else
     set background=dark
     let t:is_tranparent = 0
-endif
+  endif
 endfunction
 nnoremap <C-T> : call Toggle_transparent()<CR>
 
