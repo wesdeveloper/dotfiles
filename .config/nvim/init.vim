@@ -170,7 +170,7 @@ let g:netrw_banner = 0
 let g:netrw_liststyle = 3
 
 
-le NERDTreeHijackNetrw=1
+let NERDTreeHijackNetrw=1
 let NERDTreeShowHidden=1
 let g:NERDSpaceDelims = 1
 let g:NERDTreeDirArrowExpandable = '▸'
@@ -188,8 +188,14 @@ map sk <C-w>k
 map sj <C-w>j
 map sl <C-w>l
 
+" Copy and paste
 noremap <Leader>y "+y
 noremap <Leader>p "+p
+
+" Ident
+map <Leader>i gg=G
+map <Tab> >>
+map <S-Tab> <<
 
 let g:coc_disable_startup_warning = 1
 
