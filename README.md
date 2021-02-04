@@ -77,6 +77,10 @@ Install zsh-autosuggestions(https://github.com/zsh-users/zsh-autosuggestions):
 Install fzf:
 > https://github.com/junegunn/fzf#installation
 
+#### ripgrep(https://snapcraft.io/install/ripgrep/ubuntu#install)
+
+> sudo snap install ripgrep --classic
+
 #### NodeJs
 
 Install nodejs, it will be necessary to correct install of the following tools:
