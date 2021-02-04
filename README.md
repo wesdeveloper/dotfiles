@@ -53,7 +53,7 @@ Install colorls(https://github.com/athityakumar/colorls) see the docs, because i
 #### Tmux
 
 Install tmux 
-> sudo apt install tmux
+> sudo apt install tmux -y
 
 Add tmux plugin manager(https://github.com/tmux-plugins/tpm):
 > git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
@@ -72,10 +72,15 @@ Install zsh-nvm(https://github.com/lukechilds/zsh-nvm):
 Install zsh-autosuggestions(https://github.com/zsh-users/zsh-autosuggestions):
 > git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
 
+#### fzf
+
+Install fzf:
+> https://github.com/junegunn/fzf#installation
+
 #### NodeJs
 
-Install nodejs, it will be necessary to correct install of the following tools(https://www.digitalocean.com/community/tutorials/how-to-install-node-js-on-ubuntu-20-04):
-> curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.35.3/install.sh | bash
+Install nodejs, it will be necessary to correct install of the following tools:
+> https://github.com/nodesource/distributions/blob/master/README.md#debinstall
 
 #### Neovim(https://neovim.io/)
 
@@ -103,7 +108,16 @@ Install from https://ulauncher.io/
 
 #### bpytop(https://github.com/aristocratos/bpytop)
 
+> sudo apt install -y python3-pip
 > pip3 install bpytop --upgrade
+
+#### docker
+
+> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
+
+#### docker compose
+
+> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
 
 ## Other linux settings and installs
 
