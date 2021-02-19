@@ -60,6 +60,8 @@ alias lc='colorls -lA --sd'
 alias ls="colorls -A"           # short, multi-line
 alias nf="neofetch"
 
+ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
+
 export NVM_DIR="/home/weslopes/.nvm"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
