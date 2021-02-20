@@ -66,6 +66,8 @@ call plug#end()
 
 filetype plugin on
 
+source $HOME/.config/nvim/vimspector.vim
+
 " colorscheme monokai
 let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
@@ -147,7 +149,7 @@ nnoremap <leader>ab :AnyJumpBack<CR>
 nnoremap <leader>al :AnyJumpLastResults<CR>
 
 noremap <leader>r :YcmRestartServer<CR>
-noremap <leader>R :source ~/.vimrc<CR>
+noremap <leader>R :source ~/.config/nvim/init.vim<CR>
 
 " indent all file
 map <F7> gg\=G<C-o><C-o>
