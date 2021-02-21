@@ -68,7 +68,8 @@ call plug#end()
 
 filetype plugin on
 
-source $HOME/.config/nvim/vimspector.vim
+source $HOME/.config/nvim/vim-plug/vimspector.vim
+source $HOME/.config/nvim/vim-plug/fzf.vim
 
 " colorscheme monokai
 let g:vim_monokai_tasty_italic = 1
@@ -104,11 +105,6 @@ let g:highlightedyank_highlight_duration = 200
 " if you don't like a particular colour choice from `vim-monokai-tasty`, you can
 " override it here. for example, to change the colour of the search hightlight:
 hi search guifg=#bada55 guibg=#000000 gui=bold ctermfg=green ctermbg=black cterm=bold
-
-" fzf plugin
-nmap // :BLines<CR>
-nmap ?? :Rg<CR>
-nmap <leader>p :Files<CR>
 
 nmap cc :Commands<CR>
 
