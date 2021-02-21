@@ -68,3 +68,4 @@ export NVM_DIR="/home/weslopes/.nvm"
 
 TranslateWheelToCursor=off
 DisableWheelToCursorByCtrl=off
+eval "$(starship init zsh)"
