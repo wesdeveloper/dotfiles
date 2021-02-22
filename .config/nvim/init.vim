@@ -64,12 +64,14 @@ Plug 'preservim/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'sebdah/vim-delve'
+Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 call plug#end()
 
 filetype plugin on
 
-source $HOME/.config/nvim/vim-plug/vimspector.vim
-source $HOME/.config/nvim/vim-plug/fzf.vim
+source $HOME/.config/nvim/plug-config/vimspector.vim
+source $HOME/.config/nvim/plug-config/fzf.vim
+source $HOME/.config/nvim/plug-config/rnvimr.vim
 
 " colorscheme monokai
 let g:vim_monokai_tasty_italic = 1
