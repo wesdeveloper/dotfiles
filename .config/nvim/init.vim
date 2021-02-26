@@ -30,8 +30,6 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'ervandew/supertab'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
 Plug 'itchyny/lightline.vim'
 Plug 'prettier/vim-prettier'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
@@ -65,14 +63,18 @@ Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
+Plug 'davidhalter/jedi-vim'
 call plug#end()
 
 filetype plugin on
 
+" import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
 source $HOME/.config/nvim/plug-config/rnvimr.vim
 source $HOME/.config/nvim/plug-config/airline.vim
+source $HOME/.config/nvim/plug-config/nerdtree.vim
+source $HOME/.config/nvim/plug-config/coc.vim
 
 colorscheme vim-monokai-tasty
 
@@ -85,7 +87,6 @@ nmap cc :Commands<CR>
 " nerdcommenter plugin settings
 " Add spaces after comment delimiters by default
 let g:NERDSpaceDelims = 1
-
 " Use compact syntax for prettified multi-line comments
 let g:NERDCompactSexyComs = 1
 
@@ -132,24 +133,6 @@ nmap sv :vsplit<Return><C-w>w
 
 " disable go_fmt_autosave
 let g:go_fmt_autosave = 0
-
-" Better tab experience - from https://webdevetc.com/
-nmap tn :tabnew<cr>
-nmap t :tabnext<cr>
-nmap tm :tabmove
-nmap tc :tabclose<cr>
-nmap to :tabonly<cr>
-
-let g:netrw_liststyle = 3
-let g:netrw_banner = 0
-let g:netrw_liststyle = 3
-
-
-let NERDTreeHijackNetrw=1
-let NERDTreeShowHidden=1
-let g:NERDSpaceDelims = 1
-let g:NERDTreeDirArrowExpandable = '▸'
-let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:airline_powerline_fonts = 1
 
