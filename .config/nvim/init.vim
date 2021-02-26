@@ -30,6 +30,8 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'scrooloose/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'ervandew/supertab'
+Plug 'pangloss/vim-javascript'
+Plug 'maxmellon/vim-jsx-pretty'
 Plug 'itchyny/lightline.vim'
 Plug 'prettier/vim-prettier'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
