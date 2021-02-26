@@ -72,37 +72,9 @@ filetype plugin on
 source $HOME/.config/nvim/plug-config/vimspector.vim
 source $HOME/.config/nvim/plug-config/fzf.vim
 source $HOME/.config/nvim/plug-config/rnvimr.vim
+source $HOME/.config/nvim/plug-config/airline.vim
 
-" colorscheme monokai
-let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
-let g:airline_theme='monokai_tasty'
-let g:airline#extensions#hunks#enabled=0
-let g:airline#extensions#branch#enabled=1
-
-" this is handled by lightline
-set noshowmode
-
-" show file path in lightline
-" https://github.com/itchyny/lightline.vim/issues/87#issuecomment-119130738
-let g:lightline = {
-      \ 'colorscheme': 'monokai_tasty',
-      \ 'active': {
-      \   'right': [['lineinfo'], ['fileformat', 'filetype']]
-      \ },
-      \ 'component_function': {
-      \   'filename': 'lightlinefilename'
-      \ },
-      \ 'component': {
-      \   'lineinfo': "[%l:%-v] [%{printf('%03d/%03d',line('.'),line('$'))}]",
-      \ }
-      \ }
-function! Lightlinefilename()
-  return expand('%')
-endfunction
-
-let g:highlightedyank_highlight_duration = 200
-
 
 " if you don't like a particular colour choice from `vim-monokai-tasty`, you can
 " override it here. for example, to change the colour of the search hightlight:
@@ -181,9 +153,8 @@ let g:NERDTreeDirArrowCollapsible = '▾'
 
 let g:airline_powerline_fonts = 1
 
-
-map <C-\> :NERDTreeToggle<CR>
-
+" Open close tab and refresh airline settings
+map <C-\> :NERDTreeToggle \| AirlineRefresh<CR>
 
 " Move window
 map sh <C-w>h
