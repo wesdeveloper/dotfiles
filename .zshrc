@@ -66,6 +66,11 @@ export NVM_DIR="/home/weslopes/.nvm"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
+# auto load tmux in a session
+if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
+    tmux attach -t default || tmux new -s default
+fi
+
 TranslateWheelToCursor=off
 DisableWheelToCursorByCtrl=off
 eval "$(starship init zsh)"
