@@ -1,27 +1,5 @@
-syntax enable
-set number
-set relativenumber
-set mouse=a
-set hlsearch
-set incsearch
-set autoindent
-set smartcase
-set autoread
-" allow buffer switcing without saving
-set hidden
-set ic
-set noerrorbells
-set nobackup
-set nowritebackup
-set noswapfile
-set laststatus=2
-set encoding=UTF-8
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set foldmethod=indent
-set clipboard=unnamedplus
-set nornu
-set smartindent
-set nohlsearch
+syntax on
+filetype plugin on
 
 " vim plug
 call plug#begin('~/.vim/plugged')
@@ -66,9 +44,34 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
+
 call plug#end()
 
-filetype plugin on
+set number
+set relativenumber
+set mouse=a
+set hlsearch
+set incsearch
+set autoindent
+set smartcase
+set autoread
+" allow buffer switcing without saving
+set hidden
+set ic
+set noerrorbells
+set nobackup
+set nowritebackup
+set noswapfile
+set laststatus=2
+set encoding=UTF-8
+set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+set foldmethod=indent
+set clipboard=unnamedplus
+set nornu
+set smartindent
+set nohlsearch
+set nowrap       "Don't wrap lines
+
 
 " import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
