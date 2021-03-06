@@ -65,7 +65,6 @@ set noswapfile
 set laststatus=2
 set encoding=UTF-8
 set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set foldmethod=indent
 set clipboard=unnamedplus
 set nornu
 set smartindent
