@@ -102,19 +102,6 @@ let g:javascript_plugin_ngdoc = 1
 let g:javascript_plugin_flow = 1
 
 
-" vim transparent background
-let t:is_transparent = 0
-function! Toggle_transparent()
-  if t:is_transparent == 0
-    hi Normal guibg=NONE ctermbg=NONE
-    let t:is_transparent = 1
-  else
-    set background=dark
-    let t:is_tranparent = 0
-  endif
-endfunction
-nnoremap <C-T> : call Toggle_transparent()<CR>
-
 let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
 " vim-node
@@ -129,13 +116,6 @@ nnoremap <leader>al :AnyJumpLastResults<CR>
 noremap <leader>r :YcmRestartServer<CR>
 noremap <leader>R :source ~/.config/nvim/init.vim<CR>
 
-" indent all file
-map <F7> gg\=G<C-o><C-o>
-
-" Split window
-nmap ss :split<Return><C-w>w
-nmap sv :vsplit<Return><C-w>w
-
 " disable go_fmt_autosave
 let g:go_fmt_autosave = 0
 
@@ -143,6 +123,10 @@ let g:airline_powerline_fonts = 1
 
 " Open close tab and refresh airline settings
 map <C-\> :NERDTreeToggle \| AirlineRefresh<CR>
+
+" Split window
+nmap ss :split<Return><C-w>w
+nmap sv :vsplit<Return><C-w>w
 
 " Move window
 map sh <C-w>h
