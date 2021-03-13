@@ -141,6 +141,10 @@ map <Leader>i gg=G
 map <Tab> >>
 map <S-Tab> <<
 
+" switch between buffers
+map bp :bp<CR>
+map bn :bn<CR>
+
 let g:coc_disable_startup_warning = 1
 
 " background transparent
