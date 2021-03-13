@@ -13,7 +13,7 @@ show_marks = "visible"
 
 [[block]]
 block = "music"
-buttons = ["play", "next"]
+buttons = ["prev", "play", "next"]
 interface_name_exclude = [".*kdeconnect.*", "mpd"]
 
 [[block]]
@@ -33,6 +33,7 @@ format_swap = "{SUp}%"
 [[block]]
 block = "cpu"
 interval = 1
+format = "{utilization} {frequency}"
 
 [[block]]
 block = "load"
@@ -53,7 +54,7 @@ block = "sound"
 
 [[block]]
 block = "networkmanager"
-on_click = "alacritty -e nmtui"
+on_click = "tilix -e nmtui"
 interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
 interface_name_include = []
 

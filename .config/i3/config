@@ -4,6 +4,8 @@ for_window [class=".*"] border pixel 0
 smart_gaps on
 gaps inner 10
 gaps outer 4
+# Activate smart borders (always)
+smart_borders on
 
 # Set wallpaper
 exec feh --bg-fill ~/Pictures/wallpapers/4.jpg

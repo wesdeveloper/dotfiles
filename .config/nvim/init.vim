@@ -26,7 +26,6 @@ Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
-Plug 'ryanoasis/vim-devicons'
 Plug 'ayu-theme/ayu-vim'
 Plug 'sickill/vim-monokai'
 Plug 'fatih/vim-go', { 'do': ':goupdatebinaries' }
@@ -43,6 +42,7 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
+Plug 'ryanoasis/vim-devicons'
 
 call plug#end()
 
@@ -69,7 +69,7 @@ set nornu
 set smartindent
 set nohlsearch
 set nowrap       "Don't wrap lines
-
+set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 " import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
