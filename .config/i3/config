@@ -207,5 +207,6 @@ bar {
     }
 }
 
-
-
+# auto start programs
+exec flameshot
+exec albert
