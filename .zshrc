@@ -10,6 +10,8 @@ plugins=(
   tmux
   zsh-nvm
   dotenv
+  docker
+  docker-compose
   zsh-autosuggestions
   kubectl
 )

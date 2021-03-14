@@ -43,6 +43,7 @@ Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ryanoasis/vim-devicons'
+Plug 'zivyangll/git-blame.vim'
 
 call plug#end()
 
@@ -144,6 +145,9 @@ map <S-Tab> <<
 " switch between buffers
 map bp :bp<CR>
 map bn :bn<CR>
+
+" git blame shortcut
+nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
 
 let g:coc_disable_startup_warning = 1
 
