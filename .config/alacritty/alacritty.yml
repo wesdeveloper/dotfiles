@@ -3,15 +3,6 @@ background_opacity: 0.7
 # Font configuration
 font:
   normal:
-    family: Victor Mono
-    style: Medium
-  bold:
-    family: Victor Mono
-    style: Bold
-  italic:
-    family: Victor Mono
-    style: Medium Italic
-  bold_italic:
-    family: Victor Mono
-    style: Bold Italic
-  size: 9
+    family: VictorMono Nerd Font Mono
+    style: Bold Oblique
+  size: 14
