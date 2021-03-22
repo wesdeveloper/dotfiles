@@ -51,17 +51,13 @@ interval = 60
 format = "%a %d/%m %R"
 
 [[block]]
-block = "backlight"
-device = "intel_backlight"
+block = "xrandr"
+icons = true
+resolution = true
+interval = 2
 
 [[block]]
 block = "sound"
-
-# [[block]]
-# block = "networkmanager"
-# on_click = "tilix -e nmtui"
-# interface_name_exclude = ["br\\-[0-9a-f]{12}", "docker\\d+"]
-# interface_name_include = []
 
 [[block]]
 block = "battery"
