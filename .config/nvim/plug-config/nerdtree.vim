@@ -15,3 +15,4 @@ let NERDTreeShowHidden=1
 let g:NERDSpaceDelims = 1
 let g:NERDTreeDirArrowExpandable = '▸'
 let g:NERDTreeDirArrowCollapsible = '▾'
+let g:NERDTreeChDirMode = 0

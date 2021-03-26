@@ -69,7 +69,7 @@ set clipboard=unnamedplus
 set nornu
 set smartindent
 set nohlsearch
-set nowrap       "Don't wrap lines
+" set nowrap       "Don't wrap lines
 set guifont=DroidSansMono\ Nerd\ Font\ 11
 
 " import plugins settings
@@ -79,6 +79,9 @@ source $HOME/.config/nvim/plug-config/rnvimr.vim
 source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/coc.vim
+
+" show quotes on json files
+let g:indentLine_setConceal = 0
 
 colorscheme vim-monokai-tasty
 
