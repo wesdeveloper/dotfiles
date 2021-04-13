@@ -4,3 +4,4 @@ nmap <silent> gy <Plug>(coc-type-definition)
 nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> sd :call CocAction('doHover')<CR>
+map <Leader>f :CocCommand eslint.executeAutofix \| AirlineRefresh<CR>

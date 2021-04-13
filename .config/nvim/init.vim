@@ -71,6 +71,8 @@ set smartindent
 set nohlsearch
 " set nowrap       "Don't wrap lines
 set guifont=DroidSansMono\ Nerd\ Font\ 11
+set foldmethod=syntax
+set foldlevel=99
 
 " import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
