@@ -44,6 +44,7 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'zivyangll/git-blame.vim'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 
 call plug#end()
 
