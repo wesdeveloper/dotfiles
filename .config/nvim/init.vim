@@ -1,6 +1,3 @@
-syntax on
-filetype plugin on
-
 " vim plug
 call plug#begin('~/.vim/plugged')
 
@@ -45,8 +42,18 @@ Plug 'davidhalter/jedi-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'zivyangll/git-blame.vim'
 Plug 'vwxyutarooo/nerdtree-devicons-syntax'
+Plug 'preservim/nerdtree' |
+            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
+            \ Plug 'ryanoasis/vim-devicons'
+
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'kyazdani42/nvim-web-devicons'
+Plug 'romgrk/barbar.nvim'
 
 call plug#end()
+
+syntax on
+filetype plugin on
 
 set number
 set relativenumber
@@ -82,6 +89,18 @@ source $HOME/.config/nvim/plug-config/rnvimr.vim
 source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/coc.vim
+source $HOME/.config/nvim/plug-config/barbar.vim
+
+" Can be enabled or disabled
+let g:webdevicons_enable_nerdtree = 1
+let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
+let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
+let g:NERDTreeFileExtensionHighlightFullName = 1
+let g:NERDTreeExactMatchHighlightFullName = 1
+let g:NERDTreePatternMatchHighlightFullName = 1
+let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
+let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+
 
 " show quotes on json files
 let g:indentLine_setConceal = 0
@@ -149,8 +168,8 @@ map <Tab> >>
 map <S-Tab> <<
 
 " switch between buffers
-map bp :bp<CR>
-map bn :bn<CR>
+nmap bp :bp<CR>
+nmap bn :bn<CR>
 
 " git blame shortcut
 nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
@@ -159,3 +178,7 @@ let g:coc_disable_startup_warning = 1
 
 " background transparent
 hi Normal guibg=NONE ctermbg=NONE
+
+if exists("g:loaded_webdevicons")
+  call webdevicons#refresh()
+endif
