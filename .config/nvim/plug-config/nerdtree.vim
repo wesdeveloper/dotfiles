@@ -1,5 +1,4 @@
 " Better tab experience - from https://webdevetc.com/
-nmap tn :tabnew<cr>
 nmap t :BufferNext<cr>
 nmap tp :BufferPrevious<cr>
 nmap tc :BufferClose<cr>
