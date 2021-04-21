@@ -2,12 +2,10 @@
 call plug#begin('~/.vim/plugged')
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'scrooloose/vim-fugitive'
 Plug 'ap/vim-css-color'
 Plug 'ervandew/supertab'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
-Plug 'itchyny/lightline.vim'
 Plug 'prettier/vim-prettier'
 Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
@@ -23,6 +21,8 @@ Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'preservim/nerdtree'
+Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
+Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'ayu-theme/ayu-vim'
 Plug 'sickill/vim-monokai'
 Plug 'fatih/vim-go', { 'do': ':goupdatebinaries' }
@@ -41,15 +41,12 @@ Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
 Plug 'ryanoasis/vim-devicons'
 Plug 'zivyangll/git-blame.vim'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
 Plug 'preservim/nerdtree' |
             \ Plug 'Xuyuanp/nerdtree-git-plugin' |
             \ Plug 'ryanoasis/vim-devicons'
 
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
-
 call plug#end()
 
 syntax on
@@ -77,8 +74,6 @@ set clipboard=unnamedplus
 set nornu
 set smartindent
 set nohlsearch
-" set nowrap       "Don't wrap lines
-set guifont=DroidSansMono\ Nerd\ Font\ 11
 set foldmethod=syntax
 set foldlevel=99
 
@@ -101,6 +96,8 @@ let g:NERDTreePatternMatchHighlightFullName = 1
 let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
 let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
 
+" always show signcolumns
+set signcolumn=yes
 
 " show quotes on json files
 let g:indentLine_setConceal = 0

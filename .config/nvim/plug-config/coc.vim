@@ -5,3 +5,5 @@ nmap <silent> gi <Plug>(coc-implementation)
 nmap <silent> gr <Plug>(coc-references)
 nmap <silent> sd :call CocAction('doHover')<CR>
 map <Leader>f :CocCommand eslint.executeAutofix \| AirlineRefresh<CR>
+" Remap for rename current word
+nmap <F2> <Plug>(coc-rename)
