@@ -1,14 +1,25 @@
 " vim plug
 call plug#begin('~/.vim/plugged')
 
+" colorscheme
+Plug 'patstockwell/vim-monokai-tasty'
+
+" nvim-tree
+Plug 'ryanoasis/vim-devicons'
+Plug 'kyazdani42/nvim-web-devicons' " for file icons
+Plug 'kyazdani42/nvim-tree.lua'
+
+" telescope
+Plug 'nvim-lua/popup.nvim'
+Plug 'nvim-lua/plenary.nvim'
+Plug 'nvim-telescope/telescope.nvim'
+
 Plug 'scrooloose/nerdcommenter'
 Plug 'ap/vim-css-color'
 Plug 'ervandew/supertab'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier'
-Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
-Plug 'junegunn/fzf.vim'
 Plug 'shime/vim-livedown', { 'do': 'npm i -g livedown' }
 Plug 'editorconfig/editorconfig-vim'
 Plug 'moll/vim-node'
@@ -20,16 +31,9 @@ Plug 'puremourning/vimspector'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'preservim/nerdtree'
-Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
-Plug 'vwxyutarooo/nerdtree-devicons-syntax'
-Plug 'ayu-theme/ayu-vim'
-Plug 'sickill/vim-monokai'
-Plug 'fatih/vim-go', { 'do': ':goupdatebinaries' }
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'patstockwell/vim-monokai-tasty'
 Plug 'powerline/powerline-fonts'
 Plug 'yggdroot/indentline'
 Plug 'HendrikPetertje/vimify'
@@ -39,15 +43,14 @@ Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': 
 Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
 Plug 'davidhalter/jedi-vim'
-Plug 'ryanoasis/vim-devicons'
 Plug 'zivyangll/git-blame.vim'
-Plug 'preservim/nerdtree' |
-            \ Plug 'Xuyuanp/nerdtree-git-plugin' |
-            \ Plug 'ryanoasis/vim-devicons'
 
-Plug 'kyazdani42/nvim-web-devicons'
 Plug 'romgrk/barbar.nvim'
+
+
 call plug#end()
+
+let g:nvcode_termcolors=256
 
 syntax on
 filetype plugin on
@@ -79,22 +82,12 @@ set foldlevel=99
 
 " import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
-source $HOME/.config/nvim/plug-config/fzf.vim
 source $HOME/.config/nvim/plug-config/rnvimr.vim
 source $HOME/.config/nvim/plug-config/airline.vim
-source $HOME/.config/nvim/plug-config/nerdtree.vim
 source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/barbar.vim
-
-" Can be enabled or disabled
-let g:webdevicons_enable_nerdtree = 1
-let g:WebDevIconsDisableDefaultFolderSymbolColorFromNERDTreeDir = 1
-let g:WebDevIconsDisableDefaultFileSymbolColorFromNERDTreeFile = 1
-let g:NERDTreeFileExtensionHighlightFullName = 1
-let g:NERDTreeExactMatchHighlightFullName = 1
-let g:NERDTreePatternMatchHighlightFullName = 1
-let g:NERDTreeHighlightFolders = 1 " enables folder icon highlighting using exact match
-let g:NERDTreeHighlightFoldersFullName = 1 " highlights the folder name
+source $HOME/.config/nvim/plug-config/telescope.vim
+source $HOME/.config/nvim/plug-config/nvimtree.vim
 
 " always show signcolumns
 set signcolumn=yes
@@ -102,13 +95,15 @@ set signcolumn=yes
 " show quotes on json files
 let g:indentLine_setConceal = 0
 
+let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
+let g:lightline = {
+      \ 'colorscheme': 'monokai_tasty',
+      \ }
 
 " if you don't like a particular colour choice from `vim-monokai-tasty`, you can
 " override it here. for example, to change the colour of the search hightlight:
 hi search guifg=#bada55 guibg=#000000 gui=bold ctermfg=green ctermbg=black cterm=bold
-
-nmap cc :Commands<CR>
 
 " nerdcommenter plugin settings
 " Add spaces after comment delimiters by default
@@ -134,8 +129,7 @@ xnoremap <leader>j :AnyJumpVisual<CR>
 nnoremap <leader>ab :AnyJumpBack<CR>
 nnoremap <leader>al :AnyJumpLastResults<CR>
 
-noremap <leader>r :YcmRestartServer<CR>
-noremap <leader>R :source ~/.config/nvim/init.vim<CR>
+noremap <leader>r :source ~/.config/nvim/init.vim<CR>
 
 " disable go_fmt_autosave
 let g:go_fmt_autosave = 0
@@ -143,7 +137,7 @@ let g:go_fmt_autosave = 0
 let g:airline_powerline_fonts = 1
 
 " Open close tab and refresh airline settings
-map <C-\> :NERDTreeToggle \| AirlineRefresh<CR>
+map <C-\> :NvimTreeToggle<CR>
 
 " Split window
 nmap ss :split<Return><C-w>w

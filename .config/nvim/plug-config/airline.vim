@@ -10,9 +10,8 @@ let g:airline_powerline_fonts = 1
 let g:airline_left_sep = ''
 let g:airline_right_sep = ''
 
-let g:vim_monokai_tasty_italic = 1
-let g:airline_theme='monokai_tasty'
-let g:airline#extensions#tabline#formatter = 'syntastic'
+let g:airline_theme='angr'
+let g:airline#extensions#tabline#formatter = 'default'
 " Always show tabs
 set showtabline=2
 
