@@ -34,7 +34,6 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'powerline/powerline-fonts'
 Plug 'yggdroot/indentline'
 Plug 'HendrikPetertje/vimify'
 Plug 'preservim/tagbar'
@@ -46,8 +45,6 @@ Plug 'davidhalter/jedi-vim'
 Plug 'zivyangll/git-blame.vim'
 
 Plug 'romgrk/barbar.nvim'
-
-
 call plug#end()
 
 let g:nvcode_termcolors=256
@@ -83,7 +80,6 @@ set foldlevel=99
 " import plugins settings
 source $HOME/.config/nvim/plug-config/vimspector.vim
 source $HOME/.config/nvim/plug-config/rnvimr.vim
-source $HOME/.config/nvim/plug-config/airline.vim
 source $HOME/.config/nvim/plug-config/coc.vim
 source $HOME/.config/nvim/plug-config/barbar.vim
 source $HOME/.config/nvim/plug-config/telescope.vim
@@ -97,9 +93,6 @@ let g:indentLine_setConceal = 0
 
 let g:vim_monokai_tasty_italic = 1
 colorscheme vim-monokai-tasty
-let g:lightline = {
-      \ 'colorscheme': 'monokai_tasty',
-      \ }
 
 " if you don't like a particular colour choice from `vim-monokai-tasty`, you can
 " override it here. for example, to change the colour of the search hightlight:
@@ -134,9 +127,7 @@ noremap <leader>r :source ~/.config/nvim/init.vim<CR>
 " disable go_fmt_autosave
 let g:go_fmt_autosave = 0
 
-let g:airline_powerline_fonts = 1
-
-" Open close tab and refresh airline settings
+" Open close tab
 map <C-\> :NvimTreeToggle<CR>
 
 " Split window
