@@ -2,6 +2,7 @@
 call plug#begin('~/.vim/plugged')
 
 " colorscheme
+Plug 'nathanaelkane/vim-indent-guides'
 Plug 'patstockwell/vim-monokai-tasty'
 
 " nvim-tree
@@ -15,8 +16,6 @@ Plug 'nvim-lua/plenary.nvim'
 Plug 'nvim-telescope/telescope.nvim'
 
 Plug 'scrooloose/nerdcommenter'
-Plug 'ap/vim-css-color'
-Plug 'ervandew/supertab'
 Plug 'pangloss/vim-javascript'
 Plug 'maxmellon/vim-jsx-pretty'
 Plug 'prettier/vim-prettier'
@@ -26,7 +25,6 @@ Plug 'moll/vim-node'
 Plug 'mhinz/vim-startify'
 Plug 'machakann/vim-highlightedyank'
 Plug 'ntpeters/vim-better-whitespace'
-Plug 'pechorin/any-jump.vim'
 Plug 'puremourning/vimspector'
 Plug 'mhinz/vim-signify'
 Plug 'airblade/vim-gitgutter'
@@ -34,19 +32,18 @@ Plug 'neoclide/coc.nvim', {'branch': 'release'}
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 Plug 'terryma/vim-multiple-cursors'
-Plug 'yggdroot/indentline'
 Plug 'HendrikPetertje/vimify'
 Plug 'preservim/tagbar'
 Plug 'tpope/vim-fugitive'
 Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
 Plug 'sebdah/vim-delve'
 Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-Plug 'davidhalter/jedi-vim'
 Plug 'zivyangll/git-blame.vim'
 
 Plug 'romgrk/barbar.nvim'
 call plug#end()
 
+let g:indent_guides_enable_on_vim_startup = 1
 let g:nvcode_termcolors=256
 
 syntax on
@@ -116,23 +113,10 @@ let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 " vim-node
 autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
 
-" anyjump
-nnoremap <leader>j :AnyJump<CR>
-xnoremap <leader>j :AnyJumpVisual<CR>
-nnoremap <leader>ab :AnyJumpBack<CR>
-nnoremap <leader>al :AnyJumpLastResults<CR>
-
 noremap <leader>r :source ~/.config/nvim/init.vim<CR>
-
-" disable go_fmt_autosave
-let g:go_fmt_autosave = 0
 
 " Open close tab
 map <C-\> :NvimTreeToggle<CR>
-
-" Split window
-nmap ss :split<Return><C-w>w
-nmap sv :vsplit<Return><C-w>w
 
 " Move window
 map sh <C-w>h
@@ -148,10 +132,6 @@ noremap <Leader>p "+p
 map <Leader>i gg=G
 map <Tab> >>
 map <S-Tab> <<
-
-" switch between buffers
-nmap bp :bp<CR>
-nmap bn :bn<CR>
 
 " git blame shortcut
 nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
