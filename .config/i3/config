@@ -214,7 +214,7 @@ bindsym $mod+Control+l exec i3lock -i ~/dotfiles/Pictures/wallpapers/11.png -t -
 bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 
 # screen output management
-bindsym $mod+a exec arandr
+bindsym $mod+Control+a exec arandr
 
 # auto start programs
 exec flameshot
