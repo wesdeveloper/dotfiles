@@ -1,128 +1,96 @@
+lua require 'init'
+
 " vim plug
-call plug#begin('~/.vim/plugged')
+" call plug#begin('~/.vim/plugged')
 
-" colorscheme
-Plug 'nathanaelkane/vim-indent-guides'
-Plug 'patstockwell/vim-monokai-tasty'
+" " telescope
+" Plug 'nvim-lua/popup.nvim'
+" Plug 'nvim-lua/plenary.nvim'
+" Plug 'nvim-telescope/telescope.nvim'
 
-" nvim-tree
-Plug 'ryanoasis/vim-devicons'
-Plug 'kyazdani42/nvim-web-devicons' " for file icons
-Plug 'kyazdani42/nvim-tree.lua'
+" Plug 'pangloss/vim-javascript'
+" Plug 'maxmellon/vim-jsx-pretty'
+" Plug 'prettier/vim-prettier'
+" Plug 'shime/vim-livedown', { 'do': 'npm i -g livedown' }
+" Plug 'moll/vim-node'
+" Plug 'machakann/vim-highlightedyank'
+" Plug 'ntpeters/vim-better-whitespace'
+" Plug 'puremourning/vimspector'
+" Plug 'mhinz/vim-signify'
+" Plug 'airblade/vim-gitgutter'
+" Plug 'neoclide/coc.nvim', {'branch': 'release'}
+" Plug 'vim-airline/vim-airline'
+" Plug 'vim-airline/vim-airline-themes'
+" Plug 'terryma/vim-multiple-cursors'
+" Plug 'HendrikPetertje/vimify'
+" Plug 'preservim/tagbar'
+" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
+" Plug 'sebdah/vim-delve'
 
-" telescope
-Plug 'nvim-lua/popup.nvim'
-Plug 'nvim-lua/plenary.nvim'
-Plug 'nvim-telescope/telescope.nvim'
+" call plug#end()
 
-Plug 'scrooloose/nerdcommenter'
-Plug 'pangloss/vim-javascript'
-Plug 'maxmellon/vim-jsx-pretty'
-Plug 'prettier/vim-prettier'
-Plug 'shime/vim-livedown', { 'do': 'npm i -g livedown' }
-Plug 'editorconfig/editorconfig-vim'
-Plug 'moll/vim-node'
-Plug 'mhinz/vim-startify'
-Plug 'machakann/vim-highlightedyank'
-Plug 'ntpeters/vim-better-whitespace'
-Plug 'puremourning/vimspector'
-Plug 'mhinz/vim-signify'
-Plug 'airblade/vim-gitgutter'
-Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'vim-airline/vim-airline'
-Plug 'vim-airline/vim-airline-themes'
-Plug 'terryma/vim-multiple-cursors'
-Plug 'HendrikPetertje/vimify'
-Plug 'preservim/tagbar'
-Plug 'tpope/vim-fugitive'
-Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-Plug 'sebdah/vim-delve'
-Plug 'kevinhwang91/rnvimr', {'do': 'make sync'}
-Plug 'zivyangll/git-blame.vim'
+" set hlsearch
+" set incsearch
+" set autoindent
+" set smartcase
+" set autoread
+" " allow buffer switcing without saving
+" set ic
+" set noerrorbells
+" set nobackup
+" set nowritebackup
+" set noswapfile
+" set laststatus=2
+" set encoding=UTF-8
+" set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
+" set clipboard=unnamedplus
+" set nornu
+" set smartindent
+" set nohlsearch
+" set foldmethod=syntax
+" set foldlevel=99
 
-Plug 'romgrk/barbar.nvim'
-call plug#end()
+" " import plugins settings
+" source $HOME/.config/nvim/plug-config/vimspector.vim
+" source $HOME/.config/nvim/plug-config/rnvimr.vim
+" source $HOME/.config/nvim/plug-config/coc.vim
+" source $HOME/.config/nvim/plug-config/barbar.vim
+" source $HOME/.config/nvim/plug-config/telescope.vim
 
-let g:indent_guides_enable_on_vim_startup = 1
-let g:nvcode_termcolors=256
+ " show quotes on json files
+ let g:indentLine_setConceal = 0
 
-syntax on
-filetype plugin on
-
-set number
-set relativenumber
-set mouse=a
-set hlsearch
-set incsearch
-set autoindent
-set smartcase
-set autoread
-" allow buffer switcing without saving
-set hidden
-set ic
-set noerrorbells
-set nobackup
-set nowritebackup
-set noswapfile
-set laststatus=2
-set encoding=UTF-8
-set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-set clipboard=unnamedplus
-set nornu
-set smartindent
-set nohlsearch
-set foldmethod=syntax
-set foldlevel=99
-
-" import plugins settings
-source $HOME/.config/nvim/plug-config/vimspector.vim
-source $HOME/.config/nvim/plug-config/rnvimr.vim
-source $HOME/.config/nvim/plug-config/coc.vim
-source $HOME/.config/nvim/plug-config/barbar.vim
-source $HOME/.config/nvim/plug-config/telescope.vim
-source $HOME/.config/nvim/plug-config/nvimtree.vim
-
-" always show signcolumns
-set signcolumn=yes
-
-" show quotes on json files
-let g:indentLine_setConceal = 0
-
-let g:vim_monokai_tasty_italic = 1
-colorscheme vim-monokai-tasty
-
-" if you don't like a particular colour choice from `vim-monokai-tasty`, you can
-" override it here. for example, to change the colour of the search hightlight:
-hi search guifg=#bada55 guibg=#000000 gui=bold ctermfg=green ctermbg=black cterm=bold
-
-" nerdcommenter plugin settings
-" Add spaces after comment delimiters by default
-let g:NERDSpaceDelims = 1
-" Use compact syntax for prettified multi-line comments
-let g:NERDCompactSexyComs = 1
+ " nerdcommenter plugin settings
+ " Add spaces after comment delimiters by default
+ let g:NERDSpaceDelims = 1
+ " Use compact syntax for prettified multi-line comments
+ let g:NERDCompactSexyComs = 1
 
 
-" vim-javascript plugin
-let g:javascript_plugin_jsdoc = 1
-let g:javascript_plugin_ngdoc = 1
-let g:javascript_plugin_flow = 1
+" " vim-javascript plugin
+" let g:javascript_plugin_jsdoc = 1
+" let g:javascript_plugin_ngdoc = 1
+" let g:javascript_plugin_flow = 1
 
 
-let g:EditorConfig_exclude_patterns = ['fugitive://.*']
+" let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" vim-node
-autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
+" " vim-node
+" autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
 
-noremap <leader>r :source ~/.config/nvim/init.vim<CR>
+noremap <leader>s :source ~/.config/nvim/init.vim<CR>
 
-" Open close tab
-map <C-\> :NvimTreeToggle<CR>
+" Make Ranger replace netrw and be the file explorer
+let g:rnvimr_ex_enable = 1
 
-" Move window
-map sh <C-w>h
-map sk <C-w>k
-map sj <C-w>j
-map sl <C-w>l
+nmap <space>r :RnvimrToggle<CR>
+
+
+ " Move window
+ map sh <C-w>h
+ map sk <C-w>k
+ map sj <C-w>j
+ map sl <C-w>l
 
 " Copy and paste
 noremap <Leader>y "+y
@@ -133,13 +101,15 @@ map <Leader>i gg=G
 map <Tab> >>
 map <S-Tab> <<
 
-" git blame shortcut
-nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
+ " git blame shortcut
+ nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
 
-let g:coc_disable_startup_warning = 1
+" let g:coc_disable_startup_warning = 1
 
-" background transparent
-hi Normal guibg=NONE ctermbg=NONE
+" Better tab experience - from https://webdevetc.com/
+nmap t :BufferNext<cr>
+nmap tp :BufferPrevious<cr>
+nmap tc :BufferClose<cr>
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
