@@ -18,11 +18,20 @@ vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true
 vim.cmd('set noswapfile')
 
+vim.cmd('set incsearch')
+-- " set autoindent
+-- " set smartcase
+-- " set autoread
+-- " set ic
+-- " set noerrorbells
+-- " set laststatus=2
+-- " set foldmethod=syntax
+-- " set foldlevel=99
+
 vim.o.ruler = false
 vim.o.splitright = true
-vim.o.splitbelow = true
 vim.o.ignorecase = true
-vim.o.hlsearch = true
+vim.o.hlsearch = false
 vim.o.background = 'dark'
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
@@ -56,7 +65,6 @@ vim.g.termbufm_direction_cmd = 'new'
 -- colorscheme
 vim.cmd('let g:vim_monokai_tasty_italic = 1')
 vim.cmd('colorscheme vim-monokai-tasty')
-
 
 -- background transparent
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')

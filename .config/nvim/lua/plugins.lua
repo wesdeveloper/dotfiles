@@ -44,6 +44,13 @@ return require('packer').startup(
 
     use 'neoclide/coc.nvim'
     use 'romgrk/barbar.nvim'
+    use 'machakann/vim-highlightedyank'
+    use 'mhinz/vim-signify'
+    use 'airblade/vim-gitgutter'
+    use 'HendrikPetertje/vimify'
+    use 'iamcco/markdown-preview.nvim'
+    use 'terryma/vim-multiple-cursors'
+
   end
 )
 

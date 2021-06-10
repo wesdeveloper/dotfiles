@@ -1,25 +1,5 @@
 lua require 'init'
 
-" vim plug
-" call plug#begin('~/.vim/plugged')
-
-" Plug 'pangloss/vim-javascript'
-" Plug 'maxmellon/vim-jsx-pretty'
-" Plug 'prettier/vim-prettier'
-" Plug 'shime/vim-livedown', { 'do': 'npm i -g livedown' }
-" Plug 'moll/vim-node'
-" Plug 'machakann/vim-highlightedyank'
-" Plug 'ntpeters/vim-better-whitespace'
-" Plug 'puremourning/vimspector'
-" Plug 'mhinz/vim-signify'
-" Plug 'airblade/vim-gitgutter'
-" Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'terryma/vim-multiple-cursors'
-" Plug 'HendrikPetertje/vimify'
-" Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-
-" call plug#end()
-
 " set hlsearch
 " set incsearch
 " set autoindent
@@ -34,9 +14,10 @@ lua require 'init'
 " set foldmethod=syntax
 " set foldlevel=99
 
-" " import plugins settings
-" source $HOME/.config/nvim/plug-config/vimspector.vim
+" import plugins settings
 source $HOME/.config/nvim/plug-config/coc.vim
+
+let g:highlightedyank_highlight_duration = 1000
 
  " show quotes on json files
  let g:indentLine_setConceal = 0
@@ -47,19 +28,13 @@ source $HOME/.config/nvim/plug-config/coc.vim
  " Use compact syntax for prettified multi-line comments
  let g:NERDCompactSexyComs = 1
 
+let g:EditorConfig_exclude_patterns = ['fugitive://.*']
 
-" " vim-javascript plugin
-" let g:javascript_plugin_jsdoc = 1
-" let g:javascript_plugin_ngdoc = 1
-" let g:javascript_plugin_flow = 1
-
-
-" let g:EditorConfig_exclude_patterns = ['fugitive://.*']
-
-" " vim-node
-" autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
+" vim-node
+autocmd User Node if &filetype == "javascript" | setlocal expandtab | endif
 
 noremap <leader>s :source ~/.config/nvim/init.vim<CR>
+
 
 " Make Ranger replace netrw and be the file explorer
 let g:rnvimr_ex_enable = 1
@@ -89,8 +64,6 @@ map <S-Tab> <<
 
  " git blame shortcut
  nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
-
-" let g:coc_disable_startup_warning = 1
 
 " Better tab experience - from https://webdevetc.com/
 nmap t :BufferNext<cr>
