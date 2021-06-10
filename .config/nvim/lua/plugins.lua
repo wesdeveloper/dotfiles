@@ -13,6 +13,7 @@ return require('packer').startup(
     -- Packer can manage itself as an optional plugin
     use "wbthomason/packer.nvim"
 
+    -- initial screen
     use 'mhinz/vim-startify'
 
     -- colorscheme
@@ -23,6 +24,12 @@ return require('packer').startup(
     use 'ryanoasis/vim-devicons'
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
+
+    use 'scrooloose/nerdcommenter'
+    use 'zivyangll/git-blame.vim'
+    use 'tpope/vim-fugitive'
+    use 'editorconfig/editorconfig-vim'
+    use 'kevinhwang91/rnvimr'
 
     use 'romgrk/barbar.nvim'
   end

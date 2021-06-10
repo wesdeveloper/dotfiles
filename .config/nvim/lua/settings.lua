@@ -16,7 +16,7 @@ vim.o.updatetime = 300 -- Faster completion
 vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true
-
+vim.cmd('set noswapfile')
 
 vim.o.ruler = false
 vim.o.splitright = true
