@@ -35,7 +35,6 @@ vim.o.hlsearch = false
 vim.o.background = 'dark'
 vim.o.scrolloff = 5
 vim.o.sidescrolloff = 5
-vim.o.completeopt = 'menuone,noinsert,noselect'
 
 vim.wo.number = true
 vim.wo.wrap = false

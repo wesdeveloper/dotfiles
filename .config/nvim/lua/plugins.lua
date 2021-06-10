@@ -30,6 +30,10 @@ return require('packer').startup(
     use 'nvim-lua/plenary.nvim'
     use 'nvim-telescope/telescope.nvim'
 
+    -- lsp
+    use 'neovim/nvim-lspconfig'
+    use 'hrsh7th/nvim-compe'
+
     use 'scrooloose/nerdcommenter'
     use 'zivyangll/git-blame.vim'
     use 'tpope/vim-fugitive'
