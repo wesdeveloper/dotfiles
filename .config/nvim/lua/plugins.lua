@@ -25,12 +25,24 @@ return require('packer').startup(
     use 'kyazdani42/nvim-web-devicons'
     use 'kyazdani42/nvim-tree.lua'
 
+    -- telescope
+    use 'nvim-lua/popup.nvim'
+    use 'nvim-lua/plenary.nvim'
+    use 'nvim-telescope/telescope.nvim'
+
     use 'scrooloose/nerdcommenter'
     use 'zivyangll/git-blame.vim'
     use 'tpope/vim-fugitive'
     use 'editorconfig/editorconfig-vim'
     use 'kevinhwang91/rnvimr'
+    use 'preservim/tagbar'
 
+    -- airline
+    use 'vim-airline/vim-airline'
+    use 'vim-airline/vim-airline-themes'
+
+
+    use 'neoclide/coc.nvim'
     use 'romgrk/barbar.nvim'
   end
 )

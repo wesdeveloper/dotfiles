@@ -3,11 +3,6 @@ lua require 'init'
 " vim plug
 " call plug#begin('~/.vim/plugged')
 
-" " telescope
-" Plug 'nvim-lua/popup.nvim'
-" Plug 'nvim-lua/plenary.nvim'
-" Plug 'nvim-telescope/telescope.nvim'
-
 " Plug 'pangloss/vim-javascript'
 " Plug 'maxmellon/vim-jsx-pretty'
 " Plug 'prettier/vim-prettier'
@@ -19,13 +14,9 @@ lua require 'init'
 " Plug 'mhinz/vim-signify'
 " Plug 'airblade/vim-gitgutter'
 " Plug 'neoclide/coc.nvim', {'branch': 'release'}
-" Plug 'vim-airline/vim-airline'
-" Plug 'vim-airline/vim-airline-themes'
 " Plug 'terryma/vim-multiple-cursors'
 " Plug 'HendrikPetertje/vimify'
-" Plug 'preservim/tagbar'
 " Plug 'iamcco/markdown-preview.nvim', { 'do': { -> mkdp#util#install() }, 'for': ['markdown', 'vim-plug']}
-" Plug 'sebdah/vim-delve'
 
 " call plug#end()
 
@@ -37,25 +28,15 @@ lua require 'init'
 " " allow buffer switcing without saving
 " set ic
 " set noerrorbells
-" set nobackup
-" set nowritebackup
-" set noswapfile
 " set laststatus=2
-" set encoding=UTF-8
 " set tabstop=2 shiftwidth=2 softtabstop=2 expandtab
-" set clipboard=unnamedplus
-" set nornu
-" set smartindent
 " set nohlsearch
 " set foldmethod=syntax
 " set foldlevel=99
 
 " " import plugins settings
 " source $HOME/.config/nvim/plug-config/vimspector.vim
-" source $HOME/.config/nvim/plug-config/rnvimr.vim
-" source $HOME/.config/nvim/plug-config/coc.vim
-" source $HOME/.config/nvim/plug-config/barbar.vim
-" source $HOME/.config/nvim/plug-config/telescope.vim
+source $HOME/.config/nvim/plug-config/coc.vim
 
  " show quotes on json files
  let g:indentLine_setConceal = 0
@@ -85,6 +66,11 @@ let g:rnvimr_ex_enable = 1
 
 nmap <space>r :RnvimrToggle<CR>
 
+" Find files using Telescope command-line sugar.
+nnoremap <leader>ff <cmd>Telescope find_files<cr>
+nnoremap <leader>fg <cmd>Telescope live_grep<cr>
+nnoremap <leader>fb <cmd>Telescope buffers<cr>
+nnoremap <leader>fh <cmd>Telescope help_tags<cr>
 
  " Move window
  map sh <C-w>h
