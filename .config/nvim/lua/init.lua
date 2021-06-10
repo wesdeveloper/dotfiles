@@ -4,6 +4,7 @@ require('keymappings')
 
 
 require('plugins-config/nvim-tree')
+require('plugins-config/compe')
 
 local nvim_lsp = require('lspconfig')
 
@@ -46,50 +47,68 @@ for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
 
+DATA_PATH = vim.fn.stdpath('data')
+nvim_lsp.tsserver.setup {
+  -- cmd = {DATA_PATH .. "/lspinstall/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
+  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  -- on_attach = require'lsp'.tsserver_on_attach,
+  -- This makes sure tsserver is not used for formatting (I prefer prettier)
+  -- on_attach = require'lsp'.common_on_attach,
+  root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  settings = {documentFormatting = false},
+  handlers = {
+    ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {
+      virtual_text = {
+        prefix = "",
+        spacing = 0,
+      },
+      signs = true,
+      underline = true,
+      update_in_insert = true
+    })
+  }
+}
 
--- -- vim.o.completeopt = "menuone,noselect"
 
--- require'compe'.setup {
-  -- enabled = true;
-  -- autocomplete = true;
-  -- debug = false;
-  -- min_length = 1;
-  -- preselect = 'enable';
-  -- throttle_time = 80;
-  -- source_timeout = 200;
-  -- incomplete_delay = 400;
-  -- max_abbr_width = 100;
-  -- max_kind_width = 100;
-  -- max_menu_width = 100;
-  -- documentation = false;
+-- lsp saga
 
-  -- source = {
-    -- path = true;
-    -- buffer = true;
-    -- calc = true;
-    -- vsnip = true;
-    -- nvim_lsp = true;
-    -- nvim_lua = true;
-    -- spell = true;
-    -- tags = true;
-    -- snippets_nvim = true;
-    -- treesitter = true;
-  -- };
--- }
+local saga = require 'lspsaga'
 
--- local t = function(str)
-  -- return vim.api.nvim_replace_termcodes(str, true, true, true)
--- end
--- _G.s_tab_complete = function()
-  -- if vim.fn.pumvisible() == 1 then
-    -- return t "<C-p>"
-  -- elseif vim.fn.call("vsnip#jumpable", {-1}) == 1 then
-    -- return t "<Plug>(vsnip-jump-prev)"
-  -- else
-    -- return t "<S-Tab>"
-  -- end
--- end
 
--- vim.api.nvim_set_keymap("s", "<Tab>", "v:lua.tab_complete()", {expr = true})
--- vim.api.nvim_set_keymap("i", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
--- vim.api.nvim_set_keymap("s", "<S-Tab>", "v:lua.s_tab_complete()", {expr = true})
+saga.init_lsp_saga {
+  -- add your config value here
+  -- default value
+  use_saga_diagnostic_sign = true,
+  error_sign = '',
+  warn_sign = '',
+  hint_sign = '',
+  infor_sign = '',
+  dianostic_header_icon = '   ',
+  code_action_icon = ' ',
+  code_action_prompt = {
+    enable = true,
+    sign = true,
+    sign_priority = 20,
+    virtual_text = true,
+  },
+  finder_definition_icon = '  ',
+  finder_reference_icon = '  ',
+  max_preview_lines = 10, -- preview lines of lsp_finder and definition preview
+  finder_action_keys = {
+    open = 'o', vsplit = 's',split = 'i',quit = 'q',scroll_down = '<C-f>', scroll_up = '<C-b>' -- quit can be a table
+  },
+  code_action_keys = {
+    quit = 'q',exec = '<CR>'
+  },
+  rename_action_keys = {
+    quit = '<C-c>',exec = '<CR>'  -- quit can be a table
+  },
+  definition_preview_icon = '  ',
+  -- "single" "double" "round" "plus"
+  border_style = "double",
+  rename_prompt_prefix = '➤'
+  -- if you don't use nvim-lspconfig you must pass your server name and
+  -- the related filetypes into this table
+  -- like server_filetype_map = {metals = {'sbt', 'scala'}}
+  -- server_filetype_map = {}
+}

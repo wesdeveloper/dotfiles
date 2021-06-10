@@ -32,7 +32,12 @@ return require('packer').startup(
 
     -- lsp
     use 'neovim/nvim-lspconfig'
+    use 'kabouzeid/nvim-lspinstall'
+    use 'glepnir/lspsaga.nvim'
+
+    -- Autocomplete
     use 'hrsh7th/nvim-compe'
+    use {"hrsh7th/vim-vsnip"}
 
     use 'scrooloose/nerdcommenter'
     use 'zivyangll/git-blame.vim'
@@ -46,7 +51,6 @@ return require('packer').startup(
     use 'vim-airline/vim-airline-themes'
 
 
-    use 'neoclide/coc.nvim'
     use 'romgrk/barbar.nvim'
     use 'machakann/vim-highlightedyank'
     use 'mhinz/vim-signify'
@@ -54,6 +58,7 @@ return require('packer').startup(
     use 'HendrikPetertje/vimify'
     use 'iamcco/markdown-preview.nvim'
     use 'terryma/vim-multiple-cursors'
+    use 'dense-analysis/ale'
 
   end
 )
