@@ -17,6 +17,8 @@ vim.o.clipboard = "unnamedplus" -- Copy paste between vim and everything else
 vim.o.hidden = true -- Required to keep multiple buffers open multiple buffers
 vim.o.title = true
 vim.cmd('set noswapfile')
+vim.cmd('set foldmethod=indent')
+vim.cmd('set foldlevel=99')
 
 vim.cmd('set incsearch')
 -- " set autoindent
