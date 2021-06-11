@@ -7,7 +7,6 @@ if fn.empty(fn.glob(install_path)) > 0 then
   fn.system({'git', 'clone', 'https://github.com/wbthomason/packer.nvim', install_path})
   execute 'packadd packer.nvim'
 end
-
 return require('packer').startup(
 function()
   -- Packer can manage itself as an optional plugin
@@ -59,11 +58,9 @@ function()
   use 'HendrikPetertje/vimify'
   use 'iamcco/markdown-preview.nvim'
   use 'terryma/vim-multiple-cursors'
-  -- use 'dense-analysis/ale'
   use {"folke/which-key.nvim", opt = true}
   use 'davidgranstrom/nvim-markdown-preview'
   use 'ray-x/lsp_signature.nvim'
-  
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",

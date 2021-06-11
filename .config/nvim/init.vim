@@ -91,6 +91,5 @@ nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 
 " Bind F8 to fixing problems with ALE
-nmap <F8> <Plug>(ale_fix)
-nmap <F8> :ALEFix eslint<cr>
+nmap <F8> :!eslint_d % --fix<cr>
 
