@@ -70,7 +70,7 @@ export NVM_DIR="/home/weslopes/.nvm"
 
 # auto load tmux in a session
 if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
-    tmux attach || tmux new
+    tmux at -t default || tmux new -s default
 fi
 
 TranslateWheelToCursor=off
