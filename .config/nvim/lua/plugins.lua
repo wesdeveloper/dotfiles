@@ -62,6 +62,8 @@ function()
   -- use 'dense-analysis/ale'
   use {"folke/which-key.nvim", opt = true}
   use 'davidgranstrom/nvim-markdown-preview'
+  use 'ray-x/lsp_signature.nvim'
+  
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",

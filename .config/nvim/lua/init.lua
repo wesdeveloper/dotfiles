@@ -50,7 +50,7 @@ end
 
 DATA_PATH = vim.fn.stdpath('data')
 nvim_lsp.tsserver.setup {
-  cmd = {DATA_PATH .. "/lspinstall/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
+  -- cmd = {DATA_PATH .. "/lspinstall/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
   filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
@@ -119,9 +119,7 @@ nvim_lsp.diagnosticls.setup {
 
 
 -- lsp saga
-
 local saga = require 'lspsaga'
-
 
 saga.init_lsp_saga {
   -- add your config value here
@@ -155,8 +153,23 @@ saga.init_lsp_saga {
   -- "single" "double" "round" "plus"
   border_style = "double",
   rename_prompt_prefix = '➤'
-  -- if you don't use nvim-lspconfig you must pass your server name and
-  -- the related filetypes into this table
-  -- like server_filetype_map = {metals = {'sbt', 'scala'}}
-  -- server_filetype_map = {}
 }
+
+
+local cfg = {
+  bind = true, -- This is mandatory, otherwise border config won't get registered.
+  floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
+  hint_enable = true, -- virtual hint enable
+  hint_prefix = "🐼 ",  -- Panda for parameter
+  hint_scheme = "String",
+  use_lspsaga = false,  -- set to true if you want to use lspsaga popup
+  hi_parameter = "Search", -- how your parameter will be highlight
+  max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
+  max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
+  handler_opts = {
+    border = "shadow"   -- double, single, shadow, none
+  },
+  extra_trigger_chars = {} -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
+}
+
+require'lsp_signature'.on_attach(cfg)
