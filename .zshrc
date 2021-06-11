@@ -61,6 +61,7 @@ alias vim="nvim"
 alias lc='colorls -lA --sd'
 alias ls="colorls -A"           # short, multi-line
 alias nf="neofetch"
+alias lg="lazygit"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
