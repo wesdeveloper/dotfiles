@@ -82,22 +82,13 @@ nnoremap <silent>ca :Lspsaga code_action<CR>
 vnoremap <silent>ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent>sd :Lspsaga hover_doc<CR>
 nnoremap <silent>gr :Lspsaga rename<CR>
-nnoremap <silent>gd :ALEGoToDefinition<CR>
-nnoremap <silent><leader>gd :Lspsaga preview_definition<CR>
+nnoremap <silent>gd :Lspsaga preview_definition<CR>
 
 nnoremap <silent>gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
 nnoremap <silent>gs :Lspsaga signature_help<CR>
 
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-
-let b:ale_fixers = [
-      \   'DoSomething',
-      \   'eslint',
-      \   {buffer, lines -> filter(lines, 'v:val !=~ ''^\s*//''')},
-      \]
-
-let g:ale_hover_cursor = 0
 
 " Bind F8 to fixing problems with ALE
 nmap <F8> <Plug>(ale_fix)
