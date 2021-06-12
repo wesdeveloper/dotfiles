@@ -63,7 +63,6 @@ function()
   use 'iamcco/markdown-preview.nvim'
   use 'terryma/vim-multiple-cursors'
   -- use {"folke/which-key.nvim", opt = true}
-  use 'davidgranstrom/nvim-markdown-preview'
   use 'ray-x/lsp_signature.nvim'
   use {
     "folke/trouble.nvim",
