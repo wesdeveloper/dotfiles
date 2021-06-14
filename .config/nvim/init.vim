@@ -81,11 +81,11 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 nnoremap <silent>ca :Lspsaga code_action<CR>
 vnoremap <silent>ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent>sd :Lspsaga hover_doc<CR>
-nnoremap <silent>gr :Lspsaga rename<CR>
-nnoremap <silent>gd :Lspsaga preview_definition<CR>
+nnoremap <silent>rr :Lspsaga rename<CR>
+nnoremap <silent>dp :Lspsaga preview_definition<CR>
 
 nnoremap <silent>gh <cmd>lua require'lspsaga.provider'.lsp_finder()<CR>
-nnoremap <silent>gs :Lspsaga signature_help<CR>
+nnoremap <silent>sp :Lspsaga signature_help<CR>
 
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
@@ -94,3 +94,12 @@ nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_sag
 nmap <F8> :!eslint_d % --fix<CR>
 
 nnoremap <silent>mr :lua require('rest-nvim').run()<CR>
+
+nnoremap <silent><F4> :NodeInspectStart<cr>
+nnoremap <silent><F5> :NodeInspectRun<cr>
+nnoremap <silent><F6> :NodeInspectConnect("127.0.0.1:9229")<cr>
+nnoremap <silent><F7> :NodeInspectStepInto<cr>
+" nnoremap <silent><F8> :NodeInspectStepOver<cr>
+nnoremap <silent><F9> :NodeInspectToggleBreakpoint<cr>
+nnoremap <silent><F10> :NodeInspectStop<cr>
+

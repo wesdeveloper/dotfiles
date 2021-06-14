@@ -196,6 +196,16 @@ use {
   requires = { 'nvim-lua/plenary.nvim' }
 }
 
+use 'eliba2/vim-node-inspect'
+use {
+  'glepnir/galaxyline.nvim',
+    branch = 'main',
+    -- your statusline
+    config = function() require'my_statusline' end,
+    -- some optional icons
+    requires = {'kyazdani42/nvim-web-devicons', opt = true}
+}
+
 end
 )
 
