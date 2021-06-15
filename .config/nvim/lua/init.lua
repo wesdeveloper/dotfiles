@@ -10,6 +10,7 @@ require('plugins-config/lsp-saga')
 require('plugins-config/diagnostics')
 require('plugins-config/nvim-treesitter')
 require('plugins-config/lspsignature')
+require('plugins-config/nvim-dap')
 
 
 local vim = vim
