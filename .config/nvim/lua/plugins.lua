@@ -197,18 +197,10 @@ use {
 }
 
 use 'eliba2/vim-node-inspect'
-use {
-  'glepnir/galaxyline.nvim',
-    branch = 'main',
-    -- your statusline
-    config = function() require'my_statusline' end,
-    -- some optional icons
-    requires = {'kyazdani42/nvim-web-devicons', opt = true}
-}
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
--- use 'mfussenegger/nvim-dap'
 use 'nvim-telescope/telescope-dap.nvim'
 use 'theHamsta/nvim-dap-virtual-text'
+use 'vim-syntastic/syntastic'
 end
 )
 
