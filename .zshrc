@@ -9,7 +9,6 @@ plugins=(
   git
   tmux
   zsh-nvm
-  dotenv
   docker
   docker-compose
   zsh-autosuggestions
