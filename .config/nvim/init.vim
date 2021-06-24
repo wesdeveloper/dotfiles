@@ -160,4 +160,5 @@ nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
 
 nnoremap <leader>di :lua require'dap.ui.widgets'.hover()<CR>
 nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
+highlight link CompeDocumentation NormalFloat
 
