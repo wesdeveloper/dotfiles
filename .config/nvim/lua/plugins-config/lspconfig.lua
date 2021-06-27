@@ -1,3 +1,4 @@
+local util = require 'lspconfig/util'
 local nvim_lsp = require('lspconfig')
 -- Use an on_attach function to only map the following keys 
 -- after the language server attaches to the current buffer
@@ -33,7 +34,7 @@ end
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { "pyright", "rust_analyzer", "tsserver", "intelephense" }
+local servers = { "pyright", "rust_analyzer", "tsserver", "intelephense", "jdtls" }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup { on_attach = on_attach }
 end
@@ -63,3 +64,30 @@ nvim_lsp.tsserver.setup {
   }
 }
 
+local on_attach = function(client, bufr)
+    -- require('jdtls').setup_dap()
+    if client.resolved_capabilities.document_highlight then
+        vim.api.nvim_exec(
+            [[
+      hi LspReferenceRead cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceText cterm=bold ctermbg=red guibg=#464646
+      hi LspReferenceWrite cterm=bold ctermbg=red guibg=#464646
+      augroup lsp_document_highlight
+        autocmd! * <buffer>
+        autocmd CursorHold <buffer> lua vim.lsp.buf.document_highlight()
+        autocmd CursorMoved <buffer> lua vim.lsp.buf.clear_references()
+      augroup END
+    ]],
+            false
+        )
+    end
+end
+
+require'lspconfig'.jdtls.setup {
+    on_attach = on_attach,
+    cmd = {"/home/weslopes/.local/share/nvim/lspinstall/java/jdtls.sh"},
+    filetypes = { "java" },
+    root_dir = util.root_pattern({'.git', 'build.gradle', 'pom.xml'}),
+    -- init_options = {bundles = bundles}
+    -- on_attach = require'lsp'.common_on_attach
+}

@@ -161,10 +161,5 @@ nnoremap <leader>dA :lua require'debugHelper'.attachToRemote()<CR>
 nnoremap <leader>di :lua require'dap.ui.widgets'.hover()<CR>
 nnoremap <leader>d? :lua local widgets=require'dap.ui.widgets';widgets.centered_float(widgets.scopes)<CR>
 
-if has('nvim-0.5')
-augroup jdtls_lsp
-    autocmd!
-    autocmd FileType java lua require'jdtls_setup'.setup()
-augroup end
-endif
+autocmd FileType java nnoremap ca <Cmd>lua require('jdtls').code_action()<CR>
 
