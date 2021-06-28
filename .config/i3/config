@@ -8,7 +8,7 @@ gaps outer 4
 smart_borders on
 
 # Set wallpaper
-exec feh --bg-fill ~/Pictures/wallpapers/6.jpg
+exec feh --bg-fill ~/Pictures/wallpapers/5.png
 
 # for transparency
 exec --no-startup-id compton
@@ -209,7 +209,7 @@ bar {
     }
 }
 
-bindsym $mod+Control+l exec i3lock -i ~/dotfiles/Pictures/wallpapers/11.png -t -p win -e -f
+bindsym $mod+Control+l exec i3lock -i ~/dotfiles/Pictures/wallpapers/lockscreen.png -t -p win -e -f
 
 bindsym $mod+Control+s exec --no-startup-id systemctl suspend
 
