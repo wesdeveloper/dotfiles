@@ -83,7 +83,7 @@ local on_attach = function(client, bufr)
     end
 end
 
-require'lspconfig'.jdtls.setup {
+nvim_lsp.jdtls.setup {
     on_attach = on_attach,
     cmd = {"/home/weslopes/.local/share/nvim/lspinstall/java/jdtls.sh"},
     filetypes = { "java" },

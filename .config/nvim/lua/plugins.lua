@@ -36,6 +36,7 @@ function()
   use 'kabouzeid/nvim-lspinstall'
   use 'glepnir/lspsaga.nvim'
   use 'mattn/vim-lsp-icons'
+  use 'onsails/lspkind-nvim'
 
   -- Autocomplete
   use 'hrsh7th/nvim-compe'

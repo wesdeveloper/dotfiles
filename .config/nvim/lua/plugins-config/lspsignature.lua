@@ -9,7 +9,7 @@ local cfg = {
   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
   max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
   handler_opts = {
-    border = "shadow"   -- double, single, shadow, none
+    border = "double"   -- double, single, shadow, none
   },
   extra_trigger_chars = {} -- Array of extra characters that will trigger signature completion, e.g., {"(", ","}
 }

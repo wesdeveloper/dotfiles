@@ -4,7 +4,7 @@ icons = "awesome"
 name = "space-villain"
 [theme.overrides]
 idle_bg = "#123456"
-idle_fg = "#abcdef"
+# idle_fg = "#abcdef"
 
 [[block]]
 block = "focused_window"
@@ -19,9 +19,7 @@ interface_name_exclude = [".*kdeconnect.*", "mpd"]
 [[block]]
 block = "disk_space"
 path = "/"
-alias = "/"
 info_type = "used"
-unit = "GiB"
 format = "{icon}{used}/{total} {unit}"
 
 [[block]]
@@ -35,26 +33,17 @@ block = "cpu"
 interval = 1
 format = "{utilization}"
 
-[[block]]
-block = "load"
-interval = 1
-format = "{1m}"
-
-[[block]]
-block = "docker"
-interval = 2
-format = "{running}/{total}"
 
 [[block]]
 block = "time"
 interval = 60
 format = "%a %d/%m %R"
 
-[[block]]
-block = "xrandr"
-icons = true
-resolution = true
-interval = 2
+# [[block]]
+# block = "xrandr"
+# icons = true
+# resolution = true
+# interval = 2
 
 [[block]]
 block = "sound"
