@@ -50,12 +50,16 @@ function()
   use 'kevinhwang91/rnvimr'
   use 'preservim/tagbar'
 
-  -- airline
-  use 'vim-airline/vim-airline'
-  use 'vim-airline/vim-airline-themes'
+  use {"glepnir/galaxyline.nvim"}
 
-  use 'norcalli/nvim-colorizer.lua'
-
+  use {
+        "norcalli/nvim-colorizer.lua",
+        event = "BufRead",
+        config = function()
+            require("colorizer").setup()
+            vim.cmd("ColorizerReloadAllBuffers")
+        end
+    }
 
   use 'romgrk/barbar.nvim'
   use 'machakann/vim-highlightedyank'
@@ -76,7 +80,7 @@ function()
           height = 10, -- height of the trouble list when position is top or bottom
           width = 50, -- width of the list when position is left or right
           icons = true, -- use devicons for filenames
-          mode = "lsp_workspace_diagnostics", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
+          mode = "lsp_references", -- "lsp_workspace_diagnostics", "lsp_document_diagnostics", "quickfix", "lsp_references", "loclist"
           fold_open = "", -- icon used for open folds
           fold_closed = "", -- icon used for closed folds
           action_keys = { -- key mappings for actions in the trouble list
@@ -113,7 +117,7 @@ function()
           information = "",
           other = "﫠"
         },
-        use_lsp_diagnostic_signs = false -- enabling this will use the signs defined in your lsp client
+        use_lsp_diagnostic_signs = true -- enabling this will use the signs defined in your lsp client
       }
     }
   end
@@ -192,18 +196,19 @@ use {
   end
 }
 
-
 use {
   'NTBBloodbath/rest.nvim',
   requires = { 'nvim-lua/plenary.nvim' }
 }
-
 use 'eliba2/vim-node-inspect'
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 use 'nvim-telescope/telescope-dap.nvim'
 use 'theHamsta/nvim-dap-virtual-text'
 use 'vim-syntastic/syntastic'
 use 'mfussenegger/nvim-jdtls'
+use 'sbdchd/neoformat'
+use 'folke/lsp-colors.nvim'
+use 'f-person/git-blame.nvim'
 end
 )
 

@@ -2,6 +2,7 @@ require('plugins')
 require('settings')
 require('keymappings')
 
+require('plugins-config/galaxyline')
 require('plugins-config/lspconfig')
 require('plugins-config/nvim-tree')
 require('plugins-config/compe')
@@ -50,5 +51,13 @@ require('lspkind').init({
       Constant = '',
       Struct = ''
     },
+})
+
+-- Lua
+require("lsp-colors").setup({
+  Error = "#db4b4b",
+  Warning = "#e0af68",
+  Information = "#0db9d7",
+  Hint = "#10B981"
 })
 
