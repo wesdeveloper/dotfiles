@@ -69,3 +69,6 @@ vim.cmd('colorscheme vim-monokai-tasty')
 
 -- background transparent
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
+
+vim.cmd('let g:autoload_last_session = v:false')
+

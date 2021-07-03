@@ -51,4 +51,3 @@ require('lspkind').init({
       Struct = ''
     },
 })
-
