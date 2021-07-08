@@ -24,12 +24,15 @@ function()
   use 'kyazdani42/nvim-web-devicons'
   use 'kyazdani42/nvim-tree.lua'
 
-  use 'nvim-treesitter/nvim-treesitter'
+  -- Treesitter
+  use { "nvim-treesitter/nvim-treesitter", run = ":TSUpdate" }
 
   -- telescope
   use 'nvim-lua/popup.nvim'
   use 'nvim-lua/plenary.nvim'
   use 'nvim-telescope/telescope.nvim'
+
+  use 'sindrets/diffview.nvim'
 
   -- lsp
   use 'neovim/nvim-lspconfig'
@@ -44,7 +47,7 @@ function()
   use {"rafamadriz/friendly-snippets", opt = true}
 
   use 'scrooloose/nerdcommenter'
-  use 'zivyangll/git-blame.vim'
+    use 'zivyangll/git-blame.vim'
   use 'tpope/vim-fugitive'
   use 'editorconfig/editorconfig-vim'
   use 'kevinhwang91/rnvimr'
@@ -64,7 +67,6 @@ function()
   use 'romgrk/barbar.nvim'
   use 'machakann/vim-highlightedyank'
   use 'mhinz/vim-signify'
-  use 'airblade/vim-gitgutter'
   use 'HendrikPetertje/vimify'
   use 'iamcco/markdown-preview.nvim'
   use 'terryma/vim-multiple-cursors'
