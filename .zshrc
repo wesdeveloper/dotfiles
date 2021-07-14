@@ -16,18 +16,8 @@ plugins=(
 )
 source $ZSH/oh-my-zsh.sh
 
-alias awsauth="source ~/codebase/aws-sts-assumerole/assumerole"
-
-alias vpn="sudo openvpn --config ~/openvpn-client/client.ovpn --setenv PATH '/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin' --script-security 2 --up ~/openvpn-client/update-resolv-conf --down ~/openvpn-client/update-resolv-conf --down-pre"
-export DENO_INSTALL="/home/weslopes/.deno"
-export PATH="$DENO_INSTALL/bin:$PATH"
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIRnvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
-
-export PROJECTS_DIR="/home/weslopes/codebase"
-export GOROOT=/usr/local/go
-export GOPATH=$HOME/codebase
-export PATH=$GOPATH/bin:$GOROOT/bin:$PATH
 
 # tabtab source for serverless package
 # uninstall by removing these lines or running `tabtab uninstall serverless`
