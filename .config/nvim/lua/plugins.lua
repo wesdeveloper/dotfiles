@@ -203,6 +203,7 @@ use {
   requires = { 'nvim-lua/plenary.nvim' }
 }
 use 'eliba2/vim-node-inspect'
+use "Pocco81/DAPInstall.nvim"
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
 use 'nvim-telescope/telescope-dap.nvim'
 use 'theHamsta/nvim-dap-virtual-text'
@@ -211,6 +212,7 @@ use 'mfussenegger/nvim-jdtls'
 use 'sbdchd/neoformat'
 use 'folke/lsp-colors.nvim'
 use 'f-person/git-blame.nvim'
+use 'puremourning/vimspector'
 end
 )
 
