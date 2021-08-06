@@ -19,13 +19,6 @@ source $ZSH/oh-my-zsh.sh
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIRnvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
 
-# tabtab source for serverless package
-# uninstall by removing these lines or running `tabtab uninstall serverless`
-[[ -f /home/weslopes/codebase/edu-ai-notifier/node_modules/tabtab/.completions/serverless.zsh ]] && . /home/weslopes/codebase/edu-ai-notifier/node_modules/tabtab/.completions/serverless.zsh
-# tabtab source for sls package
-# uninstall by removing these lines or running `tabtab uninstall sls`
-[[ -f /home/weslopes/codebase/edu-ai-notifier/node_modules/tabtab/.completions/sls.zsh ]] && . /home/weslopes/codebase/edu-ai-notifier/node_modules/tabtab/.completions/sls.zsh
-
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 
 if type rg &> /dev/null; then
