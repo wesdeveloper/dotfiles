@@ -2,7 +2,7 @@
 	email = wesleyalopes2010@gmail.com
 	name = wesdeveloper
 [core]
-	editor = vim
+	editor = nvim
 [alias]
   ll = log --graph -p
   cm = commit -m
