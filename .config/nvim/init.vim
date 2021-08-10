@@ -76,6 +76,7 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
+nnoremap <silent>qq :q<CR>
 
 " lsp saga
 nnoremap <silent>ca :Lspsaga code_action<CR>

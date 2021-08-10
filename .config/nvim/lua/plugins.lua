@@ -205,6 +205,7 @@ use {
 use 'eliba2/vim-node-inspect'
 use "Pocco81/DAPInstall.nvim"
 use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+use { 'francoiscabrol/ranger.vim', requires = {'rbgrouleff/bclose.vim'} }
 use 'nvim-telescope/telescope-dap.nvim'
 use 'theHamsta/nvim-dap-virtual-text'
 use 'vim-syntastic/syntastic'
