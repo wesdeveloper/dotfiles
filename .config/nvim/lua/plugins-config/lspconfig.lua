@@ -49,7 +49,7 @@ nvim_lsp.tsserver.setup {
     require'lsp_signature'.on_attach(cfg)
     on_attach(client)
   end,
-  root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git", ""),
+  root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   settings = {documentFormatting = false},
   handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

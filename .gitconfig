@@ -1,5 +1,5 @@
 [user]
-	email = wesleyalopes2010@gmail.com
+	email = wesley.lopes@willbank.com.br
 	name = wesdeveloper
 [core]
 	editor = nvim
@@ -12,3 +12,5 @@
   co = checkout
 [cola]
 	spellcheck = false
+[pull]
+	rebase = false
