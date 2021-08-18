@@ -23,6 +23,7 @@ noremap <leader>s :source ~/.config/nvim/init.vim<CR>
 let g:rnvimr_ex_enable = 1
 
 nmap <space>r :RnvimrToggle<CR>
+nmap <space>pf :CocCommand prettier.formatFile<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -79,6 +80,9 @@ nnoremap <silent>dp :Lspsaga preview_definition<CR>
 nmap <F8> :!eslint_d % --fix<CR>
 
 nnoremap <silent>mr :lua require('rest-nvim').run()<CR>
+nnoremap <silent>mrd :lua require('rest-nvim').run(true)<CR>
+nnoremap <silent>mcr :CocCommand rest-client.request<CR>
+nnoremap <silent>bw :bw <CR>
 
 let g:gitblame_enabled = 0
 
