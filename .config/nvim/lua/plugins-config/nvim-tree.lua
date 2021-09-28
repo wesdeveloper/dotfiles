@@ -50,6 +50,7 @@ vim.api.nvim_set_keymap(
     }
 )
 require('nvim-tree').setup {
+  disable_netrw = false,
   view = {
     width = 30,
     auto_resize = true

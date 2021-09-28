@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/wesley.lopes/.oh-my-zsh"
+export ZSH="/home/weslopes/.oh-my-zsh"
 
 # Theme
 ZSH_THEME="arrow"
@@ -12,11 +12,9 @@ plugins=(
   docker
   docker-compose
   zsh-autosuggestions
-  # zsh-terraform
   kubectl
 )
 source $ZSH/oh-my-zsh.sh
-source ~/.zsh/zsh-terraform/terraform.zsh
 
 export NVM_DIR="$([ -z "${XDG_CONFIG_HOME-}" ] && printf %s "${HOME}/.nvm" || printf %s "${XDG_CONFIG_HOME}/nvm")"
 [ -s "$NVM_DIRnvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
@@ -50,7 +48,7 @@ alias rg="ranger"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
-export NVM_DIR="/home/wesley.lopes/.nvm"
+export NVM_DIR="/home/weslopes/.nvm"
 export PATH="$(nvm which default):$PATH"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
@@ -62,6 +60,5 @@ fi
 
 TranslateWheelToCursor=off
 DisableWheelToCursorByCtrl=off
-source ~/.zsh/zsh-terraform/terraform.zsh
 
 eval "$(starship init zsh)"

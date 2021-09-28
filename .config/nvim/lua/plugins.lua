@@ -18,6 +18,12 @@ function()
   -- colorscheme
   use 'nathanaelkane/vim-indent-guides'
   use 'patstockwell/vim-monokai-tasty'
+  use 'HerringtonDarkholme/yats.vim'
+  use 'pangloss/vim-javascript'
+  use 'MaxMEllon/vim-jsx-pretty'
+  use 'styled-components/vim-styled-components'
+  use 'elzr/vim-json'
+  use 'jparise/vim-graphql'
 
   -- nvim-tree
   use 'ryanoasis/vim-devicons'
@@ -47,7 +53,7 @@ function()
   use {"rafamadriz/friendly-snippets", opt = true}
 
   use 'scrooloose/nerdcommenter'
-    use 'zivyangll/git-blame.vim'
+  use 'zivyangll/git-blame.vim'
   use 'tpope/vim-fugitive'
   use 'editorconfig/editorconfig-vim'
   use 'kevinhwang91/rnvimr'
@@ -70,7 +76,6 @@ function()
   use 'HendrikPetertje/vimify'
   use 'iamcco/markdown-preview.nvim'
   use 'terryma/vim-multiple-cursors'
-  -- use {"folke/which-key.nvim", opt = true}
   use 'ray-x/lsp_signature.nvim'
   use {
     "folke/trouble.nvim",
