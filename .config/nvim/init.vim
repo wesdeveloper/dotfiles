@@ -82,7 +82,7 @@ nmap <F8> :!eslint_d % --fix<CR>
 nnoremap <silent>mr :lua require('rest-nvim').run()<CR>
 nnoremap <silent>mrd :lua require('rest-nvim').run(true)<CR>
 nnoremap <silent>mcr :CocCommand rest-client.request<CR>
-nnoremap <silent>bw :bw <CR>
+nnoremap <silent>cb :bw <CR>
 
 let g:gitblame_enabled = 0
 

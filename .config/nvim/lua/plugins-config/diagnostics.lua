@@ -33,6 +33,7 @@ local formatFiletypes = {
 }
 
 require('lspconfig').diagnosticls.setup {
+    cmd = { "diagnostic-languageserver", "--stdio" },
     on_attach = on_attach,
     filetypes = vim.tbl_keys(filetypes),
     init_options = {

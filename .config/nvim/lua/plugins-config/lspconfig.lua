@@ -42,14 +42,14 @@ nvim_lsp.intelephense.setup{}
 DATA_PATH = vim.fn.stdpath('data')
 local nvim_lsp = require('lspconfig')
 nvim_lsp.tsserver.setup {
-  -- cmd = {DATA_PATH .. "/lspinstall/typescript/node_modules/.bin/typescript-language-server", "--stdio"},
-  filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
+  cmd = { "typescript-language-server", "--stdio" },
+  -- filetypes = { "javascript", "javascriptreact", "javascript.jsx", "typescript", "typescriptreact", "typescript.tsx" },
   on_attach = function(client)
     client.resolved_capabilities.document_formatting = false
     require'lsp_signature'.on_attach(cfg)
     on_attach(client)
   end,
-  root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
+  -- root_dir = require('lspconfig/util').root_pattern("package.json", "tsconfig.json", "jsconfig.json", ".git"),
   settings = {documentFormatting = false},
   handlers = {
     ["textDocument/publishDiagnostics"] = vim.lsp.with(vim.lsp.diagnostic.on_publish_diagnostics, {

@@ -3,6 +3,5 @@
     "diagnostic.enable": false,
     "suggest.enablePreselect": false,
     "suggest.noselect": true,
-    "suggest.autoTrigger": "none",
-    "tsserver.maxTsServerMemory": "500MB"
+    "suggest.autoTrigger": "none"
 }

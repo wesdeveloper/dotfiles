@@ -51,8 +51,11 @@ vim.api.nvim_set_keymap(
 )
 require('nvim-tree').setup {
   disable_netrw = false,
+  update_focused_file = {
+    enable = true
+  },
   view = {
-    width = 30,
+    width = 37,
     auto_resize = true
   }
 }
