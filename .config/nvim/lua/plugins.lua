@@ -220,6 +220,7 @@ use 'folke/lsp-colors.nvim'
 use 'f-person/git-blame.nvim'
 use 'puremourning/vimspector'
 use {'neoclide/coc.nvim', branch = 'release'}
+use {"akinsho/toggleterm.nvim"}
 end
 )
 

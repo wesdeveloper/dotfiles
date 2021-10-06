@@ -8,7 +8,7 @@ gaps outer 0
 smart_borders on
 
 # Set wallpaper
-exec feh --bg-fill ~/Pictures/wallpapers/5.png
+exec feh --bg-fill ~/Pictures/wallpapers/6.jpg
 
 # for transparency
 exec --no-startup-id compton
