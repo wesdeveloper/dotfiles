@@ -114,9 +114,6 @@ map('n', '<leader>ds', ':Telescope dap frames<CR>')
 -- map('n', '<leader>dc', ':Telescope dap commands<CR>')
 map('n', '<leader>db', ':Telescope dap list_breakpoints<CR>')
 
--- theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
-g.dap_virtual_text = true
-
 require("toggleterm").setup{
   -- size can be a number or function which is passed the current terminal
   size = function(term)
@@ -162,5 +159,5 @@ end
 
 -- if you only want these mappings for toggle term use term://*toggleterm#* instead
 vim.cmd('autocmd! TermOpen term://* lua set_terminal_keymaps()')
-map('n', '<leader>ttv', ':ToggleTerm<CR>')
+map('n', '<leader>ttv', ':ToggleTerm direction=vertical<CR>')
 map('n', '<leader>tth', ':ToggleTerm direction=horizontal<CR>')

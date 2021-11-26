@@ -32,15 +32,16 @@ local on_attach = function(client, bufnr)
   buf_set_keymap("n", "<space>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
 end
 
--- Use a loop to conveniently call 'setup' on multiple servers and
--- map buffer local keybindings when the language server attaches
-require'lspinstall'.setup() -- important
-local servers = require'lspinstall'.installed_servers()
-for _, lsp in ipairs(servers) do
-  nvim_lsp[lsp].setup {
-    on_attach = on_attach,
-    flags = {
-      debounce_text_changes = 150,
-    }
-  }
+local lsp_installer_servers = require'nvim-lsp-installer.servers'
+
+local server_available, requested_server = lsp_installer_servers.get_server("rust_analyzer")
+if server_available then
+    requested_server:on_ready(function ()
+        local opts = {}
+        requested_server:setup(opts)
+    end)
+    if not requested_server:is_installed() then
+        -- Queue the server to be installed
+        requested_server:install()
+    end
 end
