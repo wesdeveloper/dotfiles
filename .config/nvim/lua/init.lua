@@ -12,6 +12,7 @@ require('plugins-config/diagnostics')
 require('plugins-config/nvim-treesitter')
 require('plugins-config/lspsignature')
 require('plugins-config/nvim-dap')
+require('plugins-config/indent-brankline')
 
 require('lspkind').init({
     -- enables text annotations

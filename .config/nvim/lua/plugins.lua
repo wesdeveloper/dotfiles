@@ -12,18 +12,14 @@ function()
   -- Packer can manage itself as an optional plugin
   use "wbthomason/packer.nvim"
 
+  use 'jose-elias-alvarez/null-ls.nvim'
   -- initial screen
   use 'mhinz/vim-startify'
 
   -- colorscheme
+  use 'lukas-reineke/indent-blankline.nvim'
   use 'nathanaelkane/vim-indent-guides'
   use 'patstockwell/vim-monokai-tasty'
-  use 'HerringtonDarkholme/yats.vim'
-  use 'pangloss/vim-javascript'
-  use 'MaxMEllon/vim-jsx-pretty'
-  use 'styled-components/vim-styled-components'
-  use 'elzr/vim-json'
-  use 'jparise/vim-graphql'
 
   -- nvim-tree
   use 'ryanoasis/vim-devicons'
@@ -49,8 +45,13 @@ function()
   use 'mattn/vim-lsp-icons'
   use 'onsails/lspkind-nvim'
 
+
   -- Autocomplete
-  use 'hrsh7th/nvim-compe'
+  use 'hrsh7th/cmp-nvim-lsp'
+  use 'hrsh7th/cmp-buffer'
+  use 'hrsh7th/cmp-path'
+  use 'hrsh7th/cmp-cmdline'
+  use 'hrsh7th/nvim-cmp'
   use {"hrsh7th/vim-vsnip"}
   use {"rafamadriz/friendly-snippets", opt = true}
 
@@ -75,10 +76,25 @@ function()
   use 'romgrk/barbar.nvim'
   use 'machakann/vim-highlightedyank'
   use 'mhinz/vim-signify'
-  use 'HendrikPetertje/vimify'
   use 'iamcco/markdown-preview.nvim'
   use 'terryma/vim-multiple-cursors'
   use 'ray-x/lsp_signature.nvim'
+
+  use 'eliba2/vim-node-inspect'
+
+  use "Pocco81/DAPInstall.nvim"
+  use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
+  use { 'francoiscabrol/ranger.vim', requires = {'rbgrouleff/bclose.vim'} }
+  use 'nvim-telescope/telescope-dap.nvim'
+  use 'theHamsta/nvim-dap-virtual-text'
+  use 'vim-syntastic/syntastic'
+  use 'mfussenegger/nvim-jdtls'
+  use 'sbdchd/neoformat'
+  use 'folke/lsp-colors.nvim'
+  use 'f-person/git-blame.nvim'
+  use {'neoclide/coc.nvim', branch = 'release'}
+  use {"akinsho/toggleterm.nvim"}
+
   use {
     "folke/trouble.nvim",
     requires = "kyazdani42/nvim-web-devicons",
@@ -209,20 +225,6 @@ use {
   'NTBBloodbath/rest.nvim',
   requires = { 'nvim-lua/plenary.nvim' }
 }
-use 'eliba2/vim-node-inspect'
-use "Pocco81/DAPInstall.nvim"
-use { "rcarriga/nvim-dap-ui", requires = {"mfussenegger/nvim-dap"} }
-use { 'francoiscabrol/ranger.vim', requires = {'rbgrouleff/bclose.vim'} }
-use 'nvim-telescope/telescope-dap.nvim'
-use 'theHamsta/nvim-dap-virtual-text'
-use 'vim-syntastic/syntastic'
-use 'mfussenegger/nvim-jdtls'
-use 'sbdchd/neoformat'
-use 'folke/lsp-colors.nvim'
-use 'f-person/git-blame.nvim'
-use 'puremourning/vimspector'
-use {'neoclide/coc.nvim', branch = 'release'}
-use {"akinsho/toggleterm.nvim"}
 end
 )
 
