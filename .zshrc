@@ -50,6 +50,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
 export NVM_DIR="/home/weslopes/.nvm"
 export PATH="$(nvm which default):$PATH"
+export PATH=/usr/local/share/npm/bin:$PATH
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
