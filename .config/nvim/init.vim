@@ -77,8 +77,8 @@ nnoremap <silent>rr :Lspsaga rename<CR>
 nnoremap <silent>dp :Lspsaga preview_definition<CR>
 
 " Bind F8 to fixing problems with ALE
-" nmap <F8> :!eslint_d % --fix<CR>
-nmap <F8> :Neoformat<CR>
+nmap <F8> :!eslint_d % --fix<CR>
+" nmap <F8> :Neoformat<CR>
 
 nnoremap <silent>mr :lua require('rest-nvim').run()<CR>
 nnoremap <silent>mrd :lua require('rest-nvim').run(true)<CR>
