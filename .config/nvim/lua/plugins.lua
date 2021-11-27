@@ -54,6 +54,7 @@ function()
   use 'hrsh7th/nvim-cmp'
   use {"hrsh7th/vim-vsnip"}
   use {"rafamadriz/friendly-snippets", opt = true}
+  use 'windwp/nvim-autopairs'
 
   use 'scrooloose/nerdcommenter'
   use 'zivyangll/git-blame.vim'
