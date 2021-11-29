@@ -69,7 +69,7 @@ nnoremap <silent>qq :q<CR>
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent>ca :Lspsaga code_action<CR>
 vnoremap <silent>ca :<C-U>Lspsaga range_code_action<CR>
-nnoremap <silent>sd :Lspsaga hover_doc<CR>
+nnoremap <silent> sd :lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 nnoremap <silent>sp :Lspsaga signature_help<CR>
