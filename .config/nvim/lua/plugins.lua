@@ -20,6 +20,12 @@ function()
   use 'lukas-reineke/indent-blankline.nvim'
   use 'nathanaelkane/vim-indent-guides'
   use 'patstockwell/vim-monokai-tasty'
+  use 'HerringtonDarkholme/yats.vim'
+  use 'pangloss/vim-javascript'
+  use 'MaxMEllon/vim-jsx-pretty'
+  use 'styled-components/vim-styled-components'
+  use 'elzr/vim-json'
+  use 'jparise/vim-graphql'
 
   -- nvim-tree
   use 'ryanoasis/vim-devicons'

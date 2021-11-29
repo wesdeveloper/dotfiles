@@ -65,9 +65,7 @@ vim.g.termbufm_direction_cmd = 'new'
 
 -- colorscheme
 vim.cmd('let g:vim_monokai_tasty_italic = 1')
-vim.cmd('colorscheme vim-monokai-tasty')
-
--- background transparent
+vim.cmd[[colorscheme vim-monokai-tasty]]
 vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
 vim.cmd('let g:autoload_last_session = v:false')

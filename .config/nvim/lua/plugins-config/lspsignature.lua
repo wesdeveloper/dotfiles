@@ -1,4 +1,4 @@
- local cfg = {
+ cfg = {
   debug = false, -- set to true to enable debug logging
   log_path = "debug_log_file_path", -- debug log path
   verbose = false, -- show debug line number
@@ -24,9 +24,8 @@
   max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
                    -- to view the hiding contents
   max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
-  transpancy = 10, -- set this value if you want the floating windows to be transpant (100 fully transpant), nil to disable(default)
   handler_opts = {
-    border = "single"   -- double, single, shadow, none
+    border = "rounded"   -- double, rounded, single, shadow, none
   },
 
   always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
@@ -37,7 +36,7 @@
 
   padding = '', -- character to pad on left and right of signature can be ' ', or '|'  etc
 
-  transpancy = nil, -- disabled by default, allow floating win transparent value 1~100
+  transparency = nil, -- disabled by default, allow floating win transparent value 1~100
   shadow_blend = 36, -- if you using shadow as border use this set the opacity
   shadow_guibg = 'Black', -- if you using shadow as border use this set the color e.g. 'Green' or '#121315'
   timer_interval = 200, -- default timer check interval set to lower value if you want to reduce latency
@@ -50,4 +49,3 @@ require'lsp_signature'.setup(cfg) -- no need to specify bufnr if you don't use t
 -- You can also do this inside lsp on_attach
 -- note: on_attach deprecated
 require'lsp_signature'.on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
-
