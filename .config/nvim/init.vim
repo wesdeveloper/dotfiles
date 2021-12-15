@@ -67,14 +67,16 @@ nnoremap <silent>qq :q<CR>
 
 " lsp saga
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
-nnoremap <silent>ca :Lspsaga code_action<CR>
-vnoremap <silent>ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent> ca :Lspsaga code_action<CR>
+vnoremap <silent> ca :<C-U>Lspsaga range_code_action<CR>
+nnoremap <silent> gi :lua vim.lsp.buf.implementation()<CR>
+nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
 nnoremap <silent> sd :lua vim.lsp.buf.hover()<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
-nnoremap <silent>sp :Lspsaga signature_help<CR>
-nnoremap <silent>rr :Lspsaga rename<CR>
-nnoremap <silent>dp :Lspsaga preview_definition<CR>
+nnoremap <silent> sp :Lspsaga signature_help<CR>
+nnoremap <silent> rr :Lspsaga rename<CR>
+nnoremap <silent> dp :Lspsaga preview_definition<CR>
 
 " Bind F8 to fixing problems with ALE
 nmap <F8> :!eslint_d % --fix<CR>
@@ -96,3 +98,5 @@ function! GetUniqueSessionName()
 endfunction
 
 autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+lua require('dap.ext.vscode').load_launchjs()
+
