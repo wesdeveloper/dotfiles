@@ -10,7 +10,11 @@ end
 return require('packer').startup(
 function()
   -- Packer can manage itself as an optional plugin
-  use "wbthomason/packer.nvim"
+  use {
+    "wbthomason/packer.nvim",
+    requires = { 'lewis6991/gitsigns.nvim' }
+  }
+
 
   use 'jose-elias-alvarez/null-ls.nvim'
   -- initial screen
