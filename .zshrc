@@ -13,6 +13,8 @@ plugins=(
   docker-compose
   zsh-autosuggestions
   kubectl
+  zsh-fzf-history-search
+  zsh-z
 )
 source $ZSH/oh-my-zsh.sh
 
@@ -45,6 +47,7 @@ alias ls="colorls -A"           # short, multi-line
 alias nf="neofetch"
 alias lg="lazygit"
 alias rg="ranger"
+alias jd="node --inspect-brk ./node_modules/.bin/jest -t "
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
