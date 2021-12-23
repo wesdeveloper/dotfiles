@@ -52,7 +52,7 @@ nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
 " Better tab experience - from https://webdevetc.com/
 nmap t :BufferNext<cr>
 nmap tp :BufferPrevious<cr>
-nmap tc :BufferClose<cr>
+nmap tc :BufferClose!<cr>
 
 if exists("g:loaded_webdevicons")
   call webdevicons#refresh()
