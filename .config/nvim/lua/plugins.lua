@@ -47,7 +47,7 @@ function()
     'neovim/nvim-lspconfig',
     'williamboman/nvim-lsp-installer',
   }
-  use 'glepnir/lspsaga.nvim'
+  use 'tami5/lspsaga.nvim'
   use 'mattn/vim-lsp-icons'
   use 'onsails/lspkind-nvim'
 
