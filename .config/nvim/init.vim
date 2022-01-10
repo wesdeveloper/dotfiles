@@ -89,8 +89,6 @@ nnoremap <silent>cb :bw <CR>
 
 let g:gitblame_enabled = 0
 
-autocmd FileType java nnoremap ca <Cmd>lua require('jdtls').code_action()<CR>
-
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')
   let path = empty(path) ? 'no-project' : path
@@ -98,5 +96,4 @@ function! GetUniqueSessionName()
 endfunction
 
 autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-lua require('dap.ext.vscode').load_launchjs()
 
