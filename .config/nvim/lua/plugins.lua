@@ -20,7 +20,7 @@ function()
   -- initial screen
   use 'mhinz/vim-startify'
 
-  -- colorscheme
+  -- -- colorscheme
   use 'lukas-reineke/indent-blankline.nvim'
   use 'nathanaelkane/vim-indent-guides'
   use 'patstockwell/vim-monokai-tasty'
@@ -99,7 +99,7 @@ function()
   use 'sbdchd/neoformat'
   use 'folke/lsp-colors.nvim'
   use 'f-person/git-blame.nvim'
-  use {'neoclide/coc.nvim', branch = 'release'}
+  -- use {'neoclide/coc.nvim', branch = 'release'}
   use {"akinsho/toggleterm.nvim"}
 
 -- Lua
