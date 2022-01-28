@@ -48,7 +48,7 @@ function()
 
   -- lsp
   use {
-    'neovim/nvim-lspconfig',
+    'neovim/nvim-lspconfig', opt = true,
     'williamboman/nvim-lsp-installer',
   }
   use 'tami5/lspsaga.nvim'
