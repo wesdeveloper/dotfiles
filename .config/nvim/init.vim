@@ -47,7 +47,7 @@ map <Tab> >>
 map <S-Tab> <<
 
 " git blame shortcut
-nnoremap <Leader>gb :<C-u>call gitblame#echo()<CR>
+nnoremap <Leader>gb :GitBlame<CR>
 
 " Better tab experience - from https://webdevetc.com/
 nmap t :BufferNext<cr>
