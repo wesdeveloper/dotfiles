@@ -3,8 +3,6 @@ local g = vim.g
 vim.o.termguicolors = true
 
 g.nvim_tree_side = "left"
-g.nvim_tree_quit_on_open = 0
-g.nvim_tree_indent_markers = 1
 g.nvim_tree_git_hl = 1
 g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_allow_resize = 1
@@ -60,6 +58,31 @@ require('nvim-tree').setup {
   filters = {
     dotfiles = false,
     custom = {}
-  }
+  },
+  renderer = {
+    indent_markers = {
+      enable = false,
+      icons = {
+        corner = "└ ",
+        edge = "│ ",
+        none = "  ",
+      },
+    },
+  },
+  trash = {
+    cmd = "trash",
+    require_confirm = true,
+  },
+  log = {
+    enable = false,
+    truncate = false,
+    types = {
+      all = false,
+      config = false,
+      copy_paste = false,
+      git = false,
+      profile = false,
+    },
+  },
 }
 
