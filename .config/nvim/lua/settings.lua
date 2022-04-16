@@ -21,14 +21,6 @@ vim.cmd('set foldmethod=indent')
 vim.cmd('set foldlevel=99')
 
 vim.cmd('set incsearch')
--- " set autoindent
--- " set smartcase
--- " set autoread
--- " set ic
--- " set noerrorbells
--- " set laststatus=2
--- " set foldmethod=syntax
--- " set foldlevel=99
 
 vim.o.ruler = false
 vim.o.splitright = true
@@ -66,7 +58,6 @@ vim.g.termbufm_direction_cmd = 'new'
 -- colorscheme
 vim.cmd('let g:vim_monokai_tasty_italic = 1')
 vim.cmd[[colorscheme vim-monokai-tasty]]
-vim.cmd('hi Normal guibg=NONE ctermbg=NONE')
 
 vim.cmd('let g:autoload_last_session = v:false')
 

@@ -23,7 +23,7 @@ noremap <leader>s :source ~/.config/nvim/init.vim<CR>
 let g:rnvimr_ex_enable = 1
 
 nmap <space>r :RnvimrToggle<CR>
-nmap <space>pf :CocCommand prettier.formatFile<CR>
+" nmap <space>pf :CocCommand prettier.formatFile<CR>
 
 " Find files using Telescope command-line sugar.
 nnoremap <leader>ff <cmd>Telescope find_files<cr>
@@ -37,17 +37,13 @@ map sk <C-w>k
 map sj <C-w>j
 map sl <C-w>l
 
-" Copy and paste
-noremap <Leader>y "+y
-noremap <Leader>p "+p
-
 " Ident
 map <Leader>i gg=G
 map <Tab> >>
 map <S-Tab> <<
 
 " git blame shortcut
-nnoremap <Leader>gb :GitBlame<CR>
+nnoremap <Leader>gb :GitBlameToggle<CR>
 
 " Better tab experience - from https://webdevetc.com/
 nmap t :BufferNext<cr>
@@ -63,8 +59,6 @@ let g:completion_matching_strategy_list = ['exact', 'substring', 'fuzzy']
 inoremap <expr> <Tab>   pumvisible() ? "\<C-n>" : "\<Tab>"
 inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 
-nnoremap <silent>qq :q<CR>
-
 " lsp saga
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent> ca :Lspsaga code_action<CR>
@@ -79,13 +73,15 @@ nnoremap <silent> rr :Lspsaga rename<CR>
 nnoremap <silent> dp :Lspsaga preview_definition<CR>
 
 " Bind F8 to fixing problems with ALE
-nmap <F8> :!eslint_d % --fix<CR>
-" nmap <F8> :Neoformat<CR>
+" nmap <F8> :!eslint_d % --fix<CR>
+nmap <F8> :Neoformat<CR>
 
 nnoremap <silent>mr :lua require('rest-nvim').run()<CR>
 nnoremap <silent>mrd :lua require('rest-nvim').run(true)<CR>
 nnoremap <silent>mcr :CocCommand rest-client.request<CR>
+
 nnoremap <silent>cb :bw <CR>
+nnoremap <silent>qq :q<CR>
 
 let g:gitblame_enabled = 0
 
