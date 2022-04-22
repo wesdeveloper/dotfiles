@@ -51,66 +51,158 @@ local on_attach = function(client, bufnr)
 end
 
 -- nvim-cmp supports additional completion capabilities
-local capabilities = vim.lsp.protocol.make_client_capabilities()
-capabilities = require('cmp_nvim_lsp').update_capabilities(capabilities)
+vim.o.completeopt = "menu,menuone,noselect"
+
+local kind_icons = {
+  Text = "",
+  Method = "",
+  Function = "",
+  Constructor = "",
+  Field = "",
+  Variable = "",
+  Class = "ﴯ",
+  Interface = "",
+  Module = "",
+  Property = "ﰠ",
+  Unit = "",
+  Value = "",
+  Enum = "",
+  Keyword = "",
+  Snippet = "",
+  Color = "",
+  File = "",
+  Reference = "",
+  Folder = "",
+  EnumMember = "",
+  Constant = "",
+  Struct = "",
+  Event = "",
+  Operator = "",
+  TypeParameter = ""
+}
+-- Setup nvim-cmp.
+local cmp = require'cmp'
+
+cmp.setup({
+  snippet = {
+    -- REQUIRED - you must specify a snippet engine
+    expand = function(args)
+      vim.fn["vsnip#anonymous"](args.body) -- For `vsnip` users.
+      require('luasnip').lsp_expand(args.body) -- For `luasnip` users.
+      -- vim.fn["UltiSnips#Anon"](args.body) -- For `ultisnips` users.
+      -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
+    end,
+  },
+   mapping = {
+    -- ... Your other mappings ...
+    ["<Tab>"] = cmp.mapping(function(fallback)
+      if cmp.visible() then
+        cmp.select_next_item()
+      elseif vim.fn["vsnip#available"](1) == 1 then
+        feedkey("<Plug>(vsnip-expand-or-jump)", "")
+      else
+        fallback() -- The fallback function sends a already mapped key. In this case, it's probably `<Tab>`.
+      end
+    end, { "i", "s" }),
+    ["<S-Tab>"] = cmp.mapping(function()
+      if cmp.visible() then
+        cmp.select_prev_item()
+      elseif vim.fn["vsnip#jumpable"](-1) == 1 then
+        feedkey("<Plug>(vsnip-jump-prev)", "")
+      end
+    end, { "i", "s" }),
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
+  },
+  sources = cmp.config.sources({
+    { name = 'nvim_lsp' },
+    { name = 'vsnip' }, -- For vsnip users.
+    { name = 'luasnip' }, -- For luasnip users.
+    { name = 'ultisnips' }, -- For ultisnips users.
+    { name = 'snippy' }, -- For snippy users.
+  }, {
+    { name = 'buffer' },
+  }),
+  formatting = {
+    format = function(entry, vim_item)
+      -- Kind icons
+      vim_item.kind = string.format('%s %s', kind_icons[vim_item.kind], vim_item.kind) -- This concatonates the icons with the name of the item kind
+      -- Source
+      vim_item.menu = ({
+        nvim_lsp = "ﲳ",
+        nvim_lua = "",
+        treesitter = "",
+        path = "ﱮ",
+        buffer = "﬘",
+        zsh = "",
+        vsnip = "",
+        spell = "暈",
+      })[entry.source.name]
+      return vim_item
+    end
+  },
+})
+
+-- Setup lspconfig.
+local capabilities = require('cmp_nvim_lsp').update_capabilities(vim.lsp.protocol.make_client_capabilities())
 
 -- Use a loop to conveniently call 'setup' on multiple servers and
 -- map buffer local keybindings when the language server attaches
-local servers = { 'pyright', 'tsserver', 'sumneko_lua', 'jsonls' }
+local servers = { 'tsserver', 'pyright', 'sumneko_lua', 'jsonls' }
 for _, lsp in ipairs(servers) do
   nvim_lsp[lsp].setup {
     on_attach = on_attach,
     capabilities = capabilities,
     flags = {
       debounce_text_changes = 150,
+      allow_incremental_sync = true,
     }
   }
 end
 
-local filetypes = {
-    typescript = "eslint",
-    typescriptreact = "eslint",
-}
+-- local filetypes = {
+    -- typescript = "eslint",
+    -- typescriptreact = "eslint",
+-- }
 
-local linters = {
-    eslint = {
-        sourceName = "eslint",
-        command = "eslint_d",
-        rootPatterns = {".eslintrc.js", ".eslintrc.json", "package.json"},
-        debounce = 100,
-        args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-        parseJson = {
-            errorsRoot = "[0].messages",
-            line = "line",
-            column = "column",
-            endLine = "endLine",
-            endColumn = "endColumn",
-            message = "${message} [${ruleId}]",
-            security = "severity"
-        },
-        securities = {[2] = "error", [1] = "warning"}
-    }
-}
+-- local linters = {
+    -- eslint = {
+        -- sourceName = "eslint",
+        -- command = "eslint_d",
+        -- rootPatterns = {".eslintrc.js", ".eslintrc.json", "package.json"},
+        -- debounce = 100,
+        -- args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
+        -- parseJson = {
+            -- errorsRoot = "[0].messages",
+            -- line = "line",
+            -- column = "column",
+            -- endLine = "endLine",
+            -- endColumn = "endColumn",
+            -- message = "${message} [${ruleId}]",
+            -- security = "severity"
+        -- },
+        -- securities = {[2] = "error", [1] = "warning"}
+    -- }
+-- }
 
-local formatters = {
-    prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
-}
+-- local formatters = {
+    -- prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+-- }
 
-local formatFiletypes = {
-    typescript = "prettier",
-    typescriptreact = "prettier"
-}
+-- local formatFiletypes = {
+    -- typescript = "prettier",
+    -- typescriptreact = "prettier"
+-- }
 
-nvim_lsp.diagnosticls.setup {
-    cmd = { "diagnostic-languageserver", "--stdio" },
-    capabilities = capabilities,
-    on_attach = on_attach,
-    filetypes = vim.tbl_keys(filetypes),
-    init_options = {
-        filetypes = filetypes,
-        linters = linters,
-        formatters = formatters,
-        formatFiletypes = formatFiletypes
-    }
-}
+-- nvim_lsp.diagnosticls.setup {
+    -- cmd = { "diagnostic-languageserver", "--stdio" },
+    -- capabilities = capabilities,
+    -- on_attach = on_attach,
+    -- filetypes = vim.tbl_keys(filetypes),
+    -- init_options = {
+        -- filetypes = filetypes,
+        -- linters = linters,
+        -- formatters = formatters,
+        -- formatFiletypes = formatFiletypes
+    -- }
+-- }
 

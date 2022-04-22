@@ -62,10 +62,9 @@ inoremap <expr> <S-Tab> pumvisible() ? "\<C-p>" : "\<S-Tab>"
 " lsp saga
 nnoremap <silent> gh :Lspsaga lsp_finder<CR>
 nnoremap <silent> ca :Lspsaga code_action<CR>
-vnoremap <silent> ca :<C-U>Lspsaga range_code_action<CR>
 nnoremap <silent> gi :lua vim.lsp.buf.implementation()<CR>
 nnoremap <silent> gd :lua vim.lsp.buf.definition()<CR>
-nnoremap <silent> sd :lua vim.lsp.buf.hover()<CR>
+nnoremap <silent> sd :Lspsaga hover_doc<CR>
 nnoremap <silent> <C-f> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(1)<CR>
 nnoremap <silent> <C-b> <cmd>lua require('lspsaga.action').smart_scroll_with_saga(-1)<CR>
 nnoremap <silent> sp :Lspsaga signature_help<CR>
@@ -83,7 +82,12 @@ nnoremap <silent>mcr :CocCommand rest-client.request<CR>
 nnoremap <silent>cb :bw <CR>
 nnoremap <silent>qq :q<CR>
 
-let g:gitblame_enabled = 0
+" let g:gitblame_enabled = 0
+
+augroup fmt
+  autocmd!
+  autocmd BufWritePre *.ts,*.js undojoin | Neoformat! typescript prettier
+augroup END
 
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')
@@ -91,5 +95,4 @@ function! GetUniqueSessionName()
   return path
 endfunction
 
-autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
-
+" autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()

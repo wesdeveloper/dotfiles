@@ -106,15 +106,15 @@ use {
   },
 }
 
-use {
-  'nvim-lualine/lualine.nvim',
-  requires = { 'kyazdani42/nvim-web-devicons', opt = true }
-}
+use 'nvim-lualine/lualine.nvim'
 
 use {
   'NTBBloodbath/rest.nvim',
   requires = { 'nvim-lua/plenary.nvim' }
 }
+
+use 'folke/trouble.nvim'
+
 end
 )
 

@@ -1,7 +1,0 @@
-{
-    "javascript.suggestionActions.enabled": false,
-    "diagnostic.enable": false,
-    "suggest.enablePreselect": false,
-    "suggest.noselect": true,
-    "suggest.autoTrigger": "none"
-}

@@ -10,7 +10,8 @@ g.nvim_tree_allow_resize = 1
 g.nvim_tree_show_icons = {
     git = 1,
     folders = 1,
-    files = 1
+    files = 1,
+    folder_arrows = 1
 }
 
 g.nvim_tree_icons = {
@@ -77,12 +78,15 @@ require('nvim-tree').setup {
   },
   renderer = {
     indent_markers = {
-      enable = false,
+      enable = true,
       icons = {
         corner = "└ ",
         edge = "│ ",
         none = "  ",
       },
+    },
+    icons = {
+      webdev_colors = true,
     },
   },
   trash = {
