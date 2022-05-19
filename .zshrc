@@ -1,5 +1,5 @@
 # Path to your oh-my-zsh installation.
-export ZSH="/home/weslopes/.oh-my-zsh"
+export ZSH="$HOME/.oh-my-zsh"
 
 # Theme
 ZSH_THEME="arrow"
@@ -35,15 +35,15 @@ DEFAULT_USER="$(whoami)"
 prompt_dir() {
   prompt_segment blue black "${PWD##*/}"
 }
-
+OS=$(uname -s)
 #### ALIAS ###
 # ide script
 alias ide="~/./ide.sh"
 # Map vi and vim to nvim
 alias vi="nvim"
 alias vim="nvim"
-alias lc='colorls -lA --sd'
-alias ls="colorls -A"           # short, multi-line
+alias lc='arch -arm64 colorls -lA --sd'
+alias ls="arch -arm64 colorls -A"           # short, multi-line
 alias nf="neofetch"
 alias lg="lazygit"
 alias rg="ranger"
@@ -51,7 +51,7 @@ alias jd="node --inspect-brk ./node_modules/.bin/jest -t "
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
-export NVM_DIR="/home/weslopes/.nvm"
+export NVM_DIR="$HOME/.nvm"
 export PATH="$(nvm which default):$PATH"
 export PATH=/usr/local/share/npm/bin:$PATH
 

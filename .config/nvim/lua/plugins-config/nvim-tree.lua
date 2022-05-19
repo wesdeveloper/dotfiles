@@ -49,7 +49,7 @@ vim.api.nvim_set_keymap(
 require('nvim-tree').setup {
   auto_reload_on_write = true,
   disable_netrw = false,
-  hide_root_folder = false,
+  -- hide_root_folder = false,
   hijack_cursor = false,
   hijack_netrw = true,
   hijack_unnamed_buffer_when_opening = false,

@@ -21,7 +21,7 @@ map('n', '<leader>dH', ":lua require'dap'.set_breakpoint(vim.fn.input('Breakpoin
 map('n', '<A-k>', ':lua require"dap".step_out()<CR>')
 map('n', "<A-l>", ':lua require"dap".step_into()<CR>')
 map('n', '<A-j>', ':lua require"dap".step_over()<CR>')
-map('n', '<A-h>', ':lua require"dap".continue()<CR>')
+map('n', ']h', ':lua require"dap".continue()<CR>')
 map('n', '<leader>dn', ':lua require"dap".run_to_cursor()<CR>')
 map('n', '<leader>dk', ':lua require"dap".up()<CR>zz')
 map('n', '<leader>dj', ':lua require"dap".down()<CR>zz')

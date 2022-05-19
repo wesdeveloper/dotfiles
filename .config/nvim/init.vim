@@ -95,4 +95,4 @@ function! GetUniqueSessionName()
   return path
 endfunction
 
-" autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()
+autocmd VimLeavePre * silent execute 'SSave! ' . GetUniqueSessionName()

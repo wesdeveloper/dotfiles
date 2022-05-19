@@ -67,7 +67,7 @@ function()
   use {"hrsh7th/vim-vsnip"}
   use {"rafamadriz/friendly-snippets", opt = true}
   use 'windwp/nvim-autopairs'
-
+  use 'hrsh7th/cmp-vsnip'
   use 'scrooloose/nerdcommenter'
   use 'tpope/vim-fugitive'
   use 'editorconfig/editorconfig-vim'
@@ -114,7 +114,6 @@ use {
 }
 
 use 'folke/trouble.nvim'
-
 end
 )
 
