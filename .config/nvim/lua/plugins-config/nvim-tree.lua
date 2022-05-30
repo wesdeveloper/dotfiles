@@ -3,38 +3,7 @@ local g = vim.g
 vim.o.termguicolors = true
 
 g.nvim_tree_side = "left"
-g.nvim_tree_git_hl = 1
-g.nvim_tree_root_folder_modifier = ":t"
 g.nvim_tree_allow_resize = 1
-
-g.nvim_tree_show_icons = {
-    git = 1,
-    folders = 1,
-    files = 1,
-    folder_arrows = 1
-}
-
-g.nvim_tree_icons = {
-    default = " ",
-    symlink = " ",
-    git = {
-        unstaged = "✗",
-        staged = "✓",
-        unmerged = "",
-        renamed = "➜",
-        untracked = "★",
-        deleted = "",
-        ignored = "◌"
-    },
-    folder = {
-        default = "",
-        open = "",
-        symlink = "",
-        empty = "",
-        empty_open = "",
-        symlink_open = ""
-    }
-}
 -- Mappings for nvimtree
 
 vim.api.nvim_set_keymap(
@@ -77,6 +46,8 @@ require('nvim-tree').setup {
     timeout = 400,
   },
   renderer = {
+    root_folder_modifier = ":t",
+    highlight_git = true,
     indent_markers = {
       enable = true,
       icons = {
@@ -87,6 +58,33 @@ require('nvim-tree').setup {
     },
     icons = {
       webdev_colors = true,
+      show = {
+        git = true,
+        folder = true,
+        file = true,
+        folder_arrow = true
+      },
+      glyphs = {
+        default = " ",
+        symlink = " ",
+        git = {
+            unstaged = "✗",
+            staged = "✓",
+            unmerged = "",
+            renamed = "➜",
+            untracked = "★",
+            deleted = "",
+            ignored = "◌"
+        },
+        folder = {
+            default = "",
+            open = "",
+            symlink = "",
+            empty = "",
+            empty_open = "",
+            symlink_open = ""
+        }
+      }
     },
   },
   trash = {
