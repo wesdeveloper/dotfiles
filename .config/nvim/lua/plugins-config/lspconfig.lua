@@ -1,20 +1,21 @@
 local lsp_installer = require("nvim-lsp-installer")
 local nvim_lsp = require('lspconfig')
 
+
 lsp_installer.settings({
-    ui = {
-        icons = {
-            server_installed = "✓",
-            server_pending = "➜",
-            server_uninstalled = "✗"
-        }
+  ui = {
+    icons = {
+      server_installed = "✓",
+      server_pending = "➜",
+      server_uninstalled = "✗"
     }
+  }
 })
 
 lsp_installer.on_server_ready(function(server)
-    local opts = {}
+  local opts = {}
 
-    server:setup(opts)
+  server:setup(opts)
 end)
 
 
@@ -93,7 +94,7 @@ cmp.setup({
       -- require'snippy'.expand_snippet(args.body) -- For `snippy` users.
     end,
   },
-   mapping = {
+  mapping = {
     -- ... Your other mappings ...
     ["<Tab>"] = cmp.mapping(function(fallback)
       if cmp.visible() then
@@ -160,49 +161,49 @@ for _, lsp in ipairs(servers) do
 end
 
 -- local filetypes = {
-    -- typescript = "eslint",
-    -- typescriptreact = "eslint",
--- }
+  -- typescript = "eslint",
+  -- typescriptreact = "eslint",
+  -- }
 
--- local linters = {
+  -- local linters = {
     -- eslint = {
-        -- sourceName = "eslint",
-        -- command = "eslint_d",
-        -- rootPatterns = {".eslintrc.js", ".eslintrc.json", "package.json"},
-        -- debounce = 100,
-        -- args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
-        -- parseJson = {
-            -- errorsRoot = "[0].messages",
-            -- line = "line",
-            -- column = "column",
-            -- endLine = "endLine",
-            -- endColumn = "endColumn",
-            -- message = "${message} [${ruleId}]",
-            -- security = "severity"
+      -- sourceName = "eslint",
+      -- command = "eslint_d",
+      -- rootPatterns = {".eslintrc.js", ".eslintrc.json", "package.json"},
+      -- debounce = 100,
+      -- args = {"--stdin", "--stdin-filename", "%filepath", "--format", "json"},
+      -- parseJson = {
+        -- errorsRoot = "[0].messages",
+        -- line = "line",
+        -- column = "column",
+        -- endLine = "endLine",
+        -- endColumn = "endColumn",
+        -- message = "${message} [${ruleId}]",
+        -- security = "severity"
         -- },
         -- securities = {[2] = "error", [1] = "warning"}
-    -- }
--- }
+        -- }
+        -- }
 
--- local formatters = {
-    -- prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
--- }
+        -- local formatters = {
+          -- prettier = {command = "prettier", args = {"--stdin-filepath", "%filepath"}}
+          -- }
 
--- local formatFiletypes = {
-    -- typescript = "prettier",
-    -- typescriptreact = "prettier"
--- }
+          -- local formatFiletypes = {
+            -- typescript = "prettier",
+            -- typescriptreact = "prettier"
+            -- }
 
--- nvim_lsp.diagnosticls.setup {
-    -- cmd = { "diagnostic-languageserver", "--stdio" },
-    -- capabilities = capabilities,
-    -- on_attach = on_attach,
-    -- filetypes = vim.tbl_keys(filetypes),
-    -- init_options = {
-        -- filetypes = filetypes,
-        -- linters = linters,
-        -- formatters = formatters,
-        -- formatFiletypes = formatFiletypes
-    -- }
--- }
+            -- nvim_lsp.diagnosticls.setup {
+              -- cmd = { "diagnostic-languageserver", "--stdio" },
+              -- capabilities = capabilities,
+              -- on_attach = on_attach,
+              -- filetypes = vim.tbl_keys(filetypes),
+              -- init_options = {
+                -- filetypes = filetypes,
+                -- linters = linters,
+                -- formatters = formatters,
+                -- formatFiletypes = formatFiletypes
+                -- }
+                -- }
 

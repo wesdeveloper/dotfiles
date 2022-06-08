@@ -74,6 +74,7 @@ function()
   use 'kevinhwang91/rnvimr'
 
   -- use {"glepnir/galaxyline.nvim"}
+  use 'mattn/emmet-vim'
 
   use {
         "norcalli/nvim-colorizer.lua",
