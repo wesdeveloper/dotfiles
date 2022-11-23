@@ -92,6 +92,9 @@ inoremap <leader>k <Esc>:m .-2<CR>==gi
 vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
 
+set clipboard+=unnamedplus
+set conceallevel=0
+
 augroup fmt
   autocmd!
   autocmd BufWritePre *.ts,*.js undojoin | Neoformat! typescript prettier
