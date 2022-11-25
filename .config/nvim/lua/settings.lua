@@ -57,7 +57,8 @@ vim.g.termbufm_direction_cmd = 'new'
 
 vim.g.gitblame_enabled = 0
 -- colorscheme
-vim.cmd('let g:vim_monokai_tasty_italic = 1')
+-- vim.cmd('let g:vim_monokai_tasty_italic = 1')
+vim.cmd('let g:vim_monokai_tasty_machine_tint = 1')
 vim.cmd[[colorscheme vim-monokai-tasty]]
 
 vim.cmd('let g:autoload_last_session = v:false')
