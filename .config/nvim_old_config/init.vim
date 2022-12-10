@@ -93,6 +93,7 @@ vnoremap <leader>j :m '>+1<CR>gv=gv
 vnoremap <leader>k :m '<-2<CR>gv=gv
 
 set clipboard+=unnamedplus
+" set clipboard=unnamed
 set conceallevel=0
 
 augroup fmt
