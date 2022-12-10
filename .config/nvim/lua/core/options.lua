@@ -2,6 +2,7 @@ local opt = vim.opt -- for conciseness
 
 vim.cmd("syntax on") -- syntax highlighting
 vim.cmd("filetype plugin on") -- filetype detection
+vim.cmd("let g:startify_change_to_dir = 0")
 
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.mouse = "a" -- Enable your mouse

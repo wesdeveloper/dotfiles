@@ -29,7 +29,9 @@ return require("packer").startup(function(use)
 	use("xiyaowong/nvim-transparent")
 
 	--  commenting with gc
-	use("numToStr/Comment.nvim")
+	use("scrooloose/nerdcommenter")
+
+	use("lukas-reineke/indent-blankline.nvim")
 
 	-- file explore
 	use({
@@ -39,8 +41,6 @@ return require("packer").startup(function(use)
 		},
 		tag = "nightly", -- optional, updated every week. (see issue #1193)
 	})
-
-	use("nvim-tree/nvim-tree.lua")
 
 	-- vs-code like icons
 	use("nvim-tree/nvim-web-devicons")
