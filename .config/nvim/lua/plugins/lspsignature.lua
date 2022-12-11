@@ -1,6 +1,7 @@
 cfg = {
 	debug = false, -- set to true to enable debug logging
-	log_path = "debug_log_file_path", -- debug log path
+	log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
+	-- default is  ~/.cache/nvim/lsp_signature.log
 	verbose = false, -- show debug line number
 
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
@@ -10,6 +11,10 @@ cfg = {
 	-- This setting only take effect in insert mode, it does not affect signature help in normal
 	-- mode, 10 by default
 
+	max_height = 12, -- max height of signature floating_window
+	max_width = 80, -- max_width of signature floating_window
+	noice = false, -- set to true if you using noice to render markdown
+	wrap = true, -- allow doc/signature text wrap inside floating_window, useful if your lsp return doc/sig is too long
 	floating_window = true, -- show hint in a floating window, set to false for virtual text only mode
 
 	floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
@@ -18,15 +23,12 @@ cfg = {
 	fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
 	close_timeout = 4000, -- close floating window after ms when laster parameter is entered
 	hint_enable = true, -- virtual hint enable
-	hint_prefix = "🐼 ", -- Panda for parameter
+	hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
 	hint_scheme = "String",
 	use_lspsaga = true, -- set to true if you want to use lspsaga popup
 	hi_parameter = "LspSignatureActiveParameter", -- how your parameter will be highlight
-	max_height = 12, -- max height of signature floating_window, if content is more than max_height, you can scroll down
-	-- to view the hiding contents
-	max_width = 120, -- max_width of signature floating_window, line will be wrapped if exceed max_width
 	handler_opts = {
-		border = "single", -- double, rounded, single, shadow, none
+		border = "rounded", -- double, rounded, single, shadow, none, or a table of borders
 	},
 
 	always_trigger = false, -- sometime show signature on new line or in middle of parameter can be confusing, set it to false for #58
@@ -44,7 +46,7 @@ cfg = {
 	toggle_key = nil, -- toggle signature on and off in insert mode,  e.g. toggle_key = '<M-x>'
 }
 
--- recommanded:
+-- recommended:
 require("lsp_signature").setup(cfg) -- no need to specify bufnr if you don't use toggle_key
 
 -- You can also do this inside lsp on_attach

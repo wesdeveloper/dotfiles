@@ -26,9 +26,9 @@ keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
 keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 
-keymap.set("n", "<leader>bc", ":BufferClose!<CR>") -- close current buffer
-keymap.set("n", "<leader>bn", ":BufferNext<CR>") --  go to next buffer
-keymap.set("n", "<leader>bp", ":BufferPrevious<CR>") --  go to previous buffer
+keymap.set("n", "t", ":BufferNext<CR>") --  go to next buffer
+keymap.set("n", "tp", ":BufferPrevious<CR>") --  go to previous buffer
+keymap.set("n", "tc", ":BufferClose!<CR>") -- close current buffer
 keymap.set("n", "qq", ":q<CR>") -- quite
 
 -- source nvim
