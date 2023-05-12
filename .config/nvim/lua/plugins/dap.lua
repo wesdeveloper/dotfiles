@@ -2,7 +2,7 @@ local dap = require("dap")
 dap.adapters.node2 = {
 	type = "executable",
 	command = "node",
-	-- args = { os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebug.js" },
+	args = { os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebug.js" },
 }
 
 -- require('dap').set_log_level('INFO')
@@ -46,3 +46,4 @@ map("n", "<leader>db", ":Telescope dap list_breakpoints<CR>")
 -- require('telescope').load_extension('file_browser')
 -- theHamsta/nvim-dap-virtual-text and mfussenegger/nvim-dap
 require("nvim-dap-virtual-text").setup()
+--require("jester").setup({ path_to_jest = "/opt/homebrew/bin/jest" })

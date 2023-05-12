@@ -1,4 +1,4 @@
-cfg = {
+local cfg = {
 	debug = false, -- set to true to enable debug logging
 	log_path = vim.fn.stdpath("cache") .. "/lsp_signature.log", -- log dir when debug is on
 	-- default is  ~/.cache/nvim/lsp_signature.log
@@ -6,7 +6,7 @@ cfg = {
 
 	bind = true, -- This is mandatory, otherwise border config won't get registered.
 	-- If you want to hook lspsaga or other signature handler, pls set to false
-	doc_lines = 5, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
+	doc_lines = 10, -- will show two lines of comment/doc(if there are more than two lines in doc, will be truncated);
 	-- set to 0 if you DO NOT want any API comments be shown
 	-- This setting only take effect in insert mode, it does not affect signature help in normal
 	-- mode, 10 by default
@@ -20,7 +20,7 @@ cfg = {
 	floating_window_above_cur_line = true, -- try to place the floating above the current line when possible Note:
 	-- will set to true when fully tested, set to false will use whichever side has more space
 	-- this setting will be helpful if you do not want the PUM and floating win overlap
-	fix_pos = false, -- set to true, the floating window will not auto-close until finish all parameters
+	fix_pos = true, -- set to true, the floating window will not auto-close until finish all parameters
 	close_timeout = 4000, -- close floating window after ms when laster parameter is entered
 	hint_enable = true, -- virtual hint enable
 	hint_prefix = "🐼 ", -- Panda for parameter, NOTE: for the terminal not support emoji, might crash
@@ -48,7 +48,3 @@ cfg = {
 
 -- recommended:
 require("lsp_signature").setup(cfg) -- no need to specify bufnr if you don't use toggle_key
-
--- You can also do this inside lsp on_attach
--- note: on_attach deprecated
-require("lsp_signature").on_attach(cfg, bufnr) -- no need to specify bufnr if you don't use toggle_key
