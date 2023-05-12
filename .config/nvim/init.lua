@@ -1,7 +1,7 @@
+require("plugins-setup")
 require("core.options")
 require("core.keymaps")
 require("core.colorscheme")
-require("plugins-setup")
 require("plugins.comment")
 require("plugins.nvim-tree")
 require("plugins.lualine")
@@ -17,3 +17,13 @@ require("plugins.transparent")
 require("plugins.lspsignature")
 require("plugins.dap")
 require("plugins.indent-blankline")
+
+vim.cmd([[
+function! GetUniqueSessionName()
+  let path = fnamemodify(getcwd(), ':~:t')
+  let path = empty(path) ? 'no-project' : path
+  return substitute(path, '/', '-', 'g')
+endfunction
+
+autocmd VimLeavePre *             silent execute 'SSave! ' . GetUniqueSessionName()
+]])
