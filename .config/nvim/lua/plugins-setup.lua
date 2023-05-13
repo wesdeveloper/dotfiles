@@ -1,117 +1,149 @@
-local ensure_packer = function()
-	local fn = vim.fn
-	local install_path = fn.stdpath("data") .. "/site/pack/packer/start/packer.nvim"
-	if fn.empty(fn.glob(install_path)) > 0 then
-		fn.system({ "git", "clone", "--depth", "1", "https://github.com/wbthomason/packer.nvim", install_path })
-		vim.cmd([[packadd packer.nvim]])
-		return true
-	end
-	return false
-end
-
-local packer_bootstrap = ensure_packer()
-
-return require("packer").startup(function(use)
-	use("wbthomason/packer.nvim")
-
-	use("mhinz/vim-startify") -- initial screen
-
-	use("nvim-lua/plenary.nvim") -- lua functions that many plugins use
-
-	use("patstockwell/vim-monokai-tasty") -- preferred colorscheme
-
-	use("christoomey/vim-tmux-navigator") -- tmux & split window navigation
-
-	use("szw/vim-maximizer") -- maximizes and restores current window
-
-	use("tpope/vim-fugitive")
-	use("editorconfig/editorconfig-vim")
-	use("xiyaowong/nvim-transparent")
-
-	--  commenting with gc
-	use("scrooloose/nerdcommenter")
-
-	use("lukas-reineke/indent-blankline.nvim")
-
-	-- file explore
-	use({
-		"nvim-tree/nvim-tree.lua",
-		requires = {
-			"nvim-tree/nvim-web-devicons", -- optional, for file icons
-		},
-		tag = "nightly", -- optional, updated every week. (see issue #1193)
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
 	})
+end
+vim.opt.rtp:prepend(lazypath)
 
+local plugins = {
+	"mhinz/vim-startify", -- initial screen
+	"nvim-lua/plenary.nvim", -- lua functions that many plugins
+	"patstockwell/vim-monokai-tasty", -- preferred colorscheme
+	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
+	"szw/vim-maximizer", -- maximizes and restores current window
+	{
+		"terrortylor/nvim-comment",
+		config = function()
+			require("nvim_comment").setup()
+		end,
+	},
+	"folke/todo-comments.nvim",
+	"tpope/vim-fugitive",
+	"editorconfig/editorconfig-vim",
+	"xiyaowong/nvim-transparent",
+	"nvim-lua/plenary.nvim",
+	"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
+	"MunifTanjim/nui.nvim",
+
+	"lukas-reineke/indent-blankline.nvim",
+
+	{
+		"nvim-neo-tree/neo-tree.nvim",
+		cmd = "Neotree",
+		keys = {
+			{
+				"<leader>e",
+				function()
+					require("neo-tree.command").execute({ toggle = true, dir = vim.loop.cwd() })
+				end,
+				desc = "Explorer NeoTree (cwd)",
+			},
+		},
+		deactivate = function()
+			vim.cmd([[Neotree close]])
+		end,
+		init = function()
+			vim.g.neo_tree_remove_legacy_commands = 1
+			if vim.fn.argc() == 1 then
+				local stat = vim.loop.fs_stat(vim.fn.argv(0))
+				if stat and stat.type == "directory" then
+					require("neo-tree")
+				end
+			end
+		end,
+		config = function(_, opts)
+			require("neo-tree").setup(opts)
+			vim.api.nvim_create_autocmd("TermClose", {
+				pattern = "*lazygit",
+				callback = function()
+					if package.loaded["neo-tree.sources.git_status"] then
+						require("neo-tree.sources.git_status").refresh()
+					end
+				end,
+			})
+		end,
+	},
 	-- vs-code like icons
-	use("nvim-tree/nvim-web-devicons")
-	use({ "romgrk/barbar.nvim", wants = "nvim-web-devicons" })
+	{
+		"romgrk/barbar.nvim",
+		dependencies = {
+			"lewis6991/gitsigns.nvim", -- OPTIONAL: for git status
+			"nvim-tree/nvim-web-devicons", -- OPTIONAL: for file icons
+		},
+		init = function()
+			vim.g.barbar_auto_setup = false
+		end,
+		opts = {},
+		version = "^1.0.0", -- optional: only update when a new 1.x version is released
+	},
 	-- statusline
-	use("nvim-lualine/lualine.nvim")
+	"nvim-lualine/lualine.nvim",
 
 	-- fuzzy finding w/ telescope
-	use({ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }) -- dependency for better sorting performance
-	use({ "nvim-telescope/telescope.nvim", branch = "0.1.x" }) -- fuzzy finder
+	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- dependency for better sorting performance
+	{ "nvim-telescope/telescope.nvim", branch = "0.1.x" }, -- fuzzy finder
 
 	-- autocompletion
-	use("hrsh7th/nvim-cmp") -- completion plugin
-	use("hrsh7th/cmp-buffer") -- source for text in buffer
-	use("hrsh7th/cmp-path") -- source for file system paths
+	"hrsh7th/nvim-cmp", -- completion plugin
+	"hrsh7th/cmp-buffer", -- source for text in buffer
+	"hrsh7th/cmp-path", -- source for file system paths
 
 	-- snippets
-	use("L3MON4D3/LuaSnip") -- snippet engine
-	use("saadparwaiz1/cmp_luasnip") -- for autocompletion
-	use("rafamadriz/friendly-snippets") -- useful snippets
+	"L3MON4D3/LuaSnip", -- snippet engine
+	"saadparwaiz1/cmp_luasnip", -- for autocompletion
+	"rafamadriz/friendly-snippets", -- useful snippets
 
 	-- managing & installing lsp servers, linters & formatters
-	use("williamboman/mason.nvim") -- in charge of managing lsp servers, linters & formatters
-	use("williamboman/mason-lspconfig.nvim") -- bridges gap b/w mason & lspconfig
+	"williamboman/mason.nvim", -- in charge of managing lsp servers, linters & formatters
+	"williamboman/mason-lspconfig.nvim", -- bridges gap b/w mason & lspconfig
 
 	-- configuring lsp servers
-	use("neovim/nvim-lspconfig") -- easily configure language servers
-	use("hrsh7th/cmp-nvim-lsp") -- for autocompletion
-	use({ "glepnir/lspsaga.nvim", branch = "main" }) -- enhanced lsp uis
-	use("jose-elias-alvarez/typescript.nvim") -- additional functionality for typescript server (e.g. rename file & update imports)
-	use("onsails/lspkind.nvim") -- vs-code like icons for autocompletion
+	"neovim/nvim-lspconfig", -- easily configure language servers
+	"hrsh7th/cmp-nvim-lsp", -- for autocompletion
+	{ "glepnir/lspsaga.nvim", branch = "main" }, -- enhanced lsp uis
+	"jose-elias-alvarez/typescript.nvim", -- additional functionality for typescript server (e.g. rename file & update imports)
+	"onsails/lspkind.nvim", -- vs-code like icons for autocompletion
 
 	-- formatting & linting
-	use("jose-elias-alvarez/null-ls.nvim") -- configure formatters & linters
-	use("jayp0521/mason-null-ls.nvim") -- bridges gap b/w mason & null-ls
+	"jose-elias-alvarez/null-ls.nvim", -- configure formatters & linters
+	"jayp0521/mason-null-ls.nvim", -- bridges gap b/w mason & null-ls
 
 	-- treesitter configuration
-	use({
-		"nvim-treesitter/nvim-treesitter",
-		run = function()
-			local ts_update = require("nvim-treesitter.install").update({ with_sync = true })
-			ts_update()
-		end,
-	})
+	"nvim-treesitter/nvim-treesitter",
 
 	-- auto closing
-	use("windwp/nvim-autopairs") -- autoclose parens, brackets, quotes, etc...
-	use({ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }) -- autoclose tags
+	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
+	{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }, -- autoclose tags
 
 	-- git integration
-	use("lewis6991/gitsigns.nvim") -- show line modifications on left hand side
+	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
 
-	use("f-person/git-blame.nvim")
+	"f-person/git-blame.nvim",
 
-	use("ray-x/lsp_signature.nvim")
+	"ray-x/lsp_signature.nvim",
 
-	use("sbdchd/neoformat")
-	use("machakann/vim-highlightedyank")
-	use("iamcco/markdown-preview.nvim")
-	use("terryma/vim-multiple-cursors")
+	"sbdchd/neoformat",
+	"machakann/vim-highlightedyank",
+	"iamcco/markdown-preview.nvim",
+	"terryma/vim-multiple-cursors",
 
 	-- debugger
-	use("ravenxrz/DAPInstall.nvim")
-	use("mfussenegger/nvim-dap")
-	use("theHamsta/nvim-dap-virtual-text")
-	use("nvim-telescope/telescope-dap.nvim")
-	use("David-Kunz/jester")
+	"ravenxrz/DAPInstall.nvim",
+	"mfussenegger/nvim-dap",
+	"theHamsta/nvim-dap-virtual-text",
+	"nvim-telescope/telescope-dap.nvim",
+	"David-Kunz/jester",
+	"preservim/vimux",
+	"ryanoasis/vim-devicons",
+	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
+	"rest-nvim/rest.nvim",
+}
 
-	-- Automatically set up your configuration after cloning packer.nvim
-	-- Put this at the end after all plugins
-	if packer_bootstrap then
-		require("packer").sync()
-	end
-end)
+local opts = {}
+require("lazy").setup(plugins, opts)
