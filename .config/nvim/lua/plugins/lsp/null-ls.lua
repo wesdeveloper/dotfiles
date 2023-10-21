@@ -16,13 +16,16 @@ null_ls.setup({
 	-- setup formatters & linters
 	sources = {
 		formatting.stylua, -- lua formatter
-		diagnostics.eslint_d.with({ -- js/ts linter
+		diagnostics.eslint_d.with({
+			-- js/ts linter
 			-- only enable eslint if root has .eslintrc.js (not in youtube nvim video)
 			condition = function(utils)
 				return utils.root_has_file(".eslintrc.js") -- change file extension if you use something else
 			end,
 		}),
 		null_ls.builtins.formatting.prettierd,
+		-- null_ls.builtins.formatting.stylua,
+		null_ls.builtins.completion.spell,
 	},
 	-- configure format on save
 	on_attach = function(current_client, bufnr)

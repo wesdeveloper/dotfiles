@@ -23,6 +23,7 @@ vim.o.hlsearch = false
 
 -- line numbers
 opt.number = true
+opt.relativenumber = true
 
 -- tab & indentation
 opt.tabstop = 2
@@ -57,7 +58,7 @@ opt.splitbelow = true
 
 vim.g.gitblame_enabled = 0
 
-vim.o.scrolloff = 5
+vim.o.scrolloff = 999
 vim.o.sidescrolloff = 5
 
 opt.iskeyword:append("-")

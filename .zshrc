@@ -41,13 +41,14 @@ OS=$(uname -s)
 alias ide="~/./ide.sh"
 # Map vi and vim to nvim
 alias vi="nvim"
-alias vim="nvim"
+alias vim="~/personal/nvim-macos/bin/nvim"
 alias lc='arch -arm64 colorls -lA --sd'
 alias ls="arch -arm64 colorls -A"           # short, multi-line
 alias nf="neofetch"
 alias lg="lazygit"
 alias rg="ranger"
 alias jd="node --inspect-brk ./node_modules/.bin/jest -t "
+alias cc="clear"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 
@@ -66,3 +67,7 @@ TranslateWheelToCursor=off
 DisableWheelToCursorByCtrl=off
 
 eval "$(starship init zsh)"
+
+
+# Load Angular CLI autocompletion.
+# source <(ng completion script)

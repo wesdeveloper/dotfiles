@@ -1,4 +1,4 @@
-require("lspsaga").setup({})
+-- require("lspsaga").setup({})
 
 local keymap = vim.keymap.set
 
@@ -6,7 +6,7 @@ local keymap = vim.keymap.set
 -- If there is no definition, it will instead be hidden
 -- When you use an action in finder like "open vsplit",
 -- you can use <C-t> to jump back
-keymap("n", "gh", "<cmd>Lspsaga lsp_finder<CR>")
+keymap("n", "gh", "<cmd>Lspsaga finder<CR>")
 
 -- Code action
 keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
@@ -15,7 +15,7 @@ keymap({ "n", "v" }, "<leader>ca", "<cmd>Lspsaga code_action<CR>")
 keymap("n", "gr", "<cmd>Lspsaga rename<CR>")
 
 -- Rename all occurrences of the hovered word for the selected files
-keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
+-- keymap("n", "gr", "<cmd>Lspsaga rename ++project<CR>")
 
 -- Peek definition
 -- You can edit the file containing the definition in the floating window

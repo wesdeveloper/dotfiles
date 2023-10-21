@@ -1,9 +1,9 @@
-require("plugins-setup")
 require("core.options")
 require("core.keymaps")
-require("core.colorscheme")
+require("plugins-setup")
+-- require("core.colorscheme")
 -- require("plugins.comment")
--- require("plugins.nvim-tree")
+require("plugins.nvim-tree")
 require("plugins.lualine")
 require("plugins.nvim-cmp")
 require("plugins.lsp.mason")
@@ -25,7 +25,15 @@ function! GetUniqueSessionName()
 endfunction
 
 autocmd VimLeavePre *             silent execute 'SSave! ' . GetUniqueSessionName()
+autocmd BufNewFile,BufRead *.http set syntax=javascript
 ]])
 
 vim.opt.termguicolors = true
 require("bufferline").setup({})
+
+-- vim.cmd([[
+-- augroup fmt
+--   autocmd!
+--   autocmd BufWritePre * undojoin | Neoformat
+-- augroup END
+-- ]])
