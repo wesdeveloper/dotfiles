@@ -148,6 +148,7 @@ local plugins = {
 	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" },
 	{
 		"rest-nvim/rest.nvim",
+		commit = "8b62563",
 		config = function()
 			require("rest-nvim").setup({
 				-- Open request results in a horizontal split
@@ -169,8 +170,8 @@ local plugins = {
 					-- show the generated curl command in case you want to launch
 					-- the same request via the terminal (can be verbose)
 					show_curl_command = false,
-					show_http_info = true,
-					show_headers = true,
+					show_http_info = false,
+					show_headers = false,
 					-- executables or functions for formatting response body [optional]
 					-- set them to false if you want to disable them
 					formatters = {
@@ -271,7 +272,7 @@ local plugins = {
 			-- configurations go here
 		},
 	},
-	"tpope/vim-surround",
+	"sindrets/diffview.nvim",
 	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
