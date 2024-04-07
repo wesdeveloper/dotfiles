@@ -4,7 +4,7 @@ require("plugins-setup")
 -- require("core.colorscheme")
 -- require("plugins.comment")
 require("plugins.nvim-tree")
-require("plugins.lualine")
+-- require("plugins.lualine")
 require("plugins.nvim-cmp")
 require("plugins.lsp.mason")
 require("plugins.lsp.lspsaga")
@@ -30,6 +30,8 @@ autocmd BufNewFile,BufRead *.http set syntax=javascript
 
 vim.opt.termguicolors = true
 require("bufferline").setup({})
+vim.cmd("colorscheme ayu")
+vim.g.ayucolor = "mirage"
 
 -- vim.cmd([[
 -- augroup fmt

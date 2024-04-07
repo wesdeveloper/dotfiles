@@ -14,7 +14,7 @@ vim.opt.rtp:prepend(lazypath)
 local plugins = {
 	"mhinz/vim-startify", -- initial screen
 	"nvim-lua/plenary.nvim", -- lua functions that many plugins
-	"patstockwell/vim-monokai-tasty", -- preferred colorscheme
+	-- "patstockwell/vim-monokai-tasty", -- preferred colorscheme
 	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
 	"szw/vim-maximizer", -- maximizes and restores current window
 	{
@@ -74,7 +74,6 @@ local plugins = {
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
 	-- statusline
-	"nvim-lualine/lualine.nvim",
 
 	-- fuzzy finding w/ telescope
 	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- dependency for better sorting performance
@@ -200,23 +199,6 @@ local plugins = {
 			vim.notify = require("notify")
 		end,
 	},
-	{ "EdenEast/nightfox.nvim" }, -- lazy
-	"marko-cerovac/material.nvim",
-	{
-		"Shatur/neovim-ayu",
-		config = function()
-			require("ayu").setup({
-				mirage = true,
-			})
-			require("lualine").setup({
-				options = {
-					theme = "ayu",
-				},
-			})
-
-			require("ayu").colorscheme()
-		end,
-	},
 	{
 		"nvim-tree/nvim-tree.lua",
 		version = "*",
@@ -281,6 +263,38 @@ local plugins = {
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 		},
+	},
+	--statusline
+	{
+		"arsham/arshamiser.nvim",
+		dependencies = {
+			"arsham/arshlib.nvim",
+			"famiu/feline.nvim",
+			"rebelot/heirline.nvim",
+			"kyazdani42/nvim-web-devicons",
+		},
+		config = function()
+			-- ignore any parts you don't want to use
+			vim.cmd.colorscheme("arshamiser_light")
+			require("arshamiser.feliniser")
+			-- or:
+			-- require("arshamiser.heirliniser")
+
+			_G.custom_foldtext = require("arshamiser.folding").foldtext
+			vim.opt.foldtext = "v:lua.custom_foldtext()"
+			-- if you want to draw a tabline:
+			vim.api.nvim_set_option("tabline", [[%{%v:lua.require("arshamiser.tabline").draw()%}]])
+		end,
+	},
+	{
+		"Shatur/neovim-ayu",
+		config = function()
+			require("ayu").setup({
+				mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+				terminal = true, -- Set to `false` to let terminal manage its own colors.
+				overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+			})
+		end,
 	},
 }
 

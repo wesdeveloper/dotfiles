@@ -17,7 +17,6 @@ vim.o.updatetime = 300 -- Faster completion
 vim.cmd("set noswapfile")
 vim.cmd("set foldmethod=indent")
 vim.cmd("set foldlevel=99")
-
 vim.cmd("set incsearch")
 vim.o.hlsearch = false
 
