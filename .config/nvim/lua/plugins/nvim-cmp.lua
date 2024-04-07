@@ -71,6 +71,7 @@ cmp.setup({
 		["<C-Space>"] = cmp.mapping.complete(), -- show completion suggestions]]
 	},
 	sources = cmp.config.sources({
+		{ name = "copilot" }, -- copilot
 		{ name = "nvim_lsp" }, -- lsp
 		{ name = "luasnip" }, -- snippets
 		{ name = "buffer" }, -- text within current buffer
