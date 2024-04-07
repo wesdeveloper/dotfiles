@@ -12,33 +12,12 @@ end
 vim.opt.rtp:prepend(lazypath)
 
 local plugins = {
+	-- UI Enhancements
 	"mhinz/vim-startify", -- initial screen
-	"nvim-lua/plenary.nvim", -- lua functions that many plugins
-	"patstockwell/vim-monokai-tasty", -- preferred colorscheme
-	"christoomey/vim-tmux-navigator", -- tmux & split window navigation
-	"szw/vim-maximizer", -- maximizes and restores current window
-	{
-		"terrortylor/nvim-comment",
-		config = function()
-			require("nvim_comment").setup()
-		end,
-	},
-	{
-		"folke/todo-comments.nvim",
-		config = function()
-			require("todo-comments").setup()
-		end,
-	},
-	"tpope/vim-fugitive",
-	"editorconfig/editorconfig-vim",
-	"xiyaowong/nvim-transparent",
-	"nvim-lua/plenary.nvim",
-	"nvim-tree/nvim-web-devicons", -- not strictly required, but recommended
-	"MunifTanjim/nui.nvim",
+	"lukas-reineke/indent-blankline.nvim", -- indentation guides
+	"xiyaowong/nvim-transparent", -- transparency
+	"nvim-tree/nvim-web-devicons", -- icons
 
-	"lukas-reineke/indent-blankline.nvim",
-
-	"nvim-neo-tree/neo-tree.nvim",
 	-- vs-code like icons
 	{
 		"romgrk/barbar.nvim",
@@ -66,15 +45,75 @@ local plugins = {
 				pinned = { button = "", filename = true },
 				preset = "default",
 				alternate = { filetype = { enabled = false } },
-				current = { button = "-" },
+				current = { button = "" },
 				inactive = { button = "x" },
 				visible = { modified = { buffer_number = false } },
 			},
 		},
 		version = "^1.0.0", -- optional: only update when a new 1.x version is released
 	},
-	-- statusline
-	"nvim-lualine/lualine.nvim",
+	{
+		"arsham/arshamiser.nvim",
+		dependencies = {
+			"arsham/arshlib.nvim",
+			"famiu/feline.nvim",
+			"rebelot/heirline.nvim",
+			"kyazdani42/nvim-web-devicons",
+		},
+		config = function()
+			-- ignore any parts you don't want to use
+			vim.cmd.colorscheme("arshamiser_light")
+			require("arshamiser.feliniser")
+			-- or:
+			-- require("arshamiser.heirliniser")
+
+			_G.custom_foldtext = require("arshamiser.folding").foldtext
+			vim.opt.foldtext = "v:lua.custom_foldtext()"
+			-- if you want to draw a tabline:
+			vim.api.nvim_set_option("tabline", [[%{%v:lua.require("arshamiser.tabline").draw()%}]])
+		end,
+	},
+	{ "akinsho/bufferline.nvim", version = "*", dependencies = "nvim-tree/nvim-web-devicons" }, -- bufferline
+	{
+		"Shatur/neovim-ayu",
+		config = function()
+			require("ayu").setup({
+				mirage = true, -- Set to `true` to use `mirage` variant instead of `dark` for dark background.
+				terminal = true, -- Set to `false` to let terminal manage its own colors.
+				overrides = {}, -- A dictionary of group names, each associated with a dictionary of parameters (`bg`, `fg`, `sp` and `style`) and colors in hex.
+			})
+		end,
+	},
+
+	-- Navigation
+	"christoomey/vim-tmux-navigator", -- tmux & split navigation
+	"szw/vim-maximizer", -- maximize windows
+	"nvim-tree/nvim-tree.lua", -- file explorer
+
+	-- Git Integration
+	"tpope/vim-fugitive", -- git commands
+	"lewis6991/gitsigns.nvim", -- git signs
+	{ "akinsho/git-conflict.nvim", version = "*", config = true }, -- resolve conflicts
+	"sindrets/diffview.nvim", -- diff view
+	"f-person/git-blame.nvim", -- git blame
+
+	"nvim-lua/plenary.nvim", -- lua functions that many plugins
+	{
+		"terrortylor/nvim-comment",
+		config = function()
+			require("nvim_comment").setup()
+		end,
+	},
+	{
+		"folke/todo-comments.nvim",
+		config = function()
+			require("todo-comments").setup()
+		end,
+	},
+	"editorconfig/editorconfig-vim",
+	"MunifTanjim/nui.nvim",
+
+	"nvim-neo-tree/neo-tree.nvim",
 
 	-- fuzzy finding w/ telescope
 	{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- dependency for better sorting performance
@@ -124,11 +163,6 @@ local plugins = {
 	-- auto closing
 	"windwp/nvim-autopairs", -- autoclose parens, brackets, quotes, etc...
 	{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }, -- autoclose tags
-
-	-- git integration
-	"lewis6991/gitsigns.nvim", -- show line modifications on left hand side
-
-	"f-person/git-blame.nvim",
 
 	"ray-x/lsp_signature.nvim",
 
@@ -200,39 +234,6 @@ local plugins = {
 			vim.notify = require("notify")
 		end,
 	},
-	{ "EdenEast/nightfox.nvim" }, -- lazy
-	"marko-cerovac/material.nvim",
-	{
-		"Shatur/neovim-ayu",
-		config = function()
-			require("ayu").setup({
-				mirage = true,
-			})
-			require("lualine").setup({
-				options = {
-					theme = "ayu",
-				},
-			})
-
-			require("ayu").colorscheme()
-		end,
-	},
-	{
-		"nvim-tree/nvim-tree.lua",
-		version = "*",
-		dependencies = {
-			"nvim-tree/nvim-web-devicons",
-		},
-		config = function()
-			require("nvim-tree").setup({})
-		end,
-	},
-	{
-		"simrat39/symbols-outline.nvim",
-		config = function()
-			require("symbols-outline").setup()
-		end,
-	},
 	{
 		"tomasky/bookmarks.nvim",
 		event = "VimEnter",
@@ -261,19 +262,6 @@ local plugins = {
 		end,
 	},
 	{
-		"utilyre/barbecue.nvim",
-		name = "barbecue",
-		version = "*",
-		dependencies = {
-			"SmiteshP/nvim-navic",
-			"nvim-tree/nvim-web-devicons", -- optional dependency
-		},
-		opts = {
-			-- configurations go here
-		},
-	},
-	"sindrets/diffview.nvim",
-	{
 		"folke/trouble.nvim",
 		dependencies = { "nvim-tree/nvim-web-devicons" },
 		opts = {
@@ -281,6 +269,37 @@ local plugins = {
 			-- or leave it empty to use the default settings
 			-- refer to the configuration section below
 		},
+	},
+	{
+		"folke/which-key.nvim",
+		event = "VeryLazy",
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+		},
+		keys = {
+			{
+				"<leader>?",
+				function()
+					require("which-key").show({ global = false })
+				end,
+				desc = "Buffer Local Keymaps (which-key)",
+			},
+		},
+	},
+	"github/copilot.vim",
+	{
+		"CopilotC-Nvim/CopilotChat.nvim",
+		dependencies = {
+			{ "github/copilot.vim" }, -- or zbirenbaum/copilot.lua
+			{ "nvim-lua/plenary.nvim", branch = "master" }, -- for curl, log and async functions
+		},
+		build = "make tiktoken", -- Only on MacOS or Linux
+		opts = {
+			-- See Configuration section for options
+		},
+		-- See Commands section for default commands if you want to lazy load on them
 	},
 }
 
