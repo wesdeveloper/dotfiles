@@ -41,9 +41,10 @@ OS=$(uname -s)
 alias ide="~/./ide.sh"
 # Map vi and vim to nvim
 alias vi="nvim"
-alias vim="~/personal/nvim-macos/bin/nvim"
+alias vim="/opt/homebrew/bin/nvim"
 alias lc='arch -arm64 colorls -lA --sd'
 alias ls="arch -arm64 colorls -A"           # short, multi-line
+alias ss="arch -arm64 ls"           # short, multi-line
 alias nf="neofetch"
 alias lg="lazygit"
 alias rg="ranger"
@@ -71,3 +72,9 @@ eval "$(starship init zsh)"
 
 # Load Angular CLI autocompletion.
 # source <(ng completion script)
+
+# Add RVM to PATH for scripting. Make sure this is the last PATH variable change.
+export PATH="$PATH:$HOME/.rvm/bin"
+
+test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
+alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python

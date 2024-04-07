@@ -24,13 +24,6 @@ local util = require("lspconfig.util")
 local on_attach = function(client, bufnr)
 	-- keybind options
 	local opts = { noremap = true, silent = true, buffer = bufnr }
-
-	-- typescript specific keymaps (e.g. rename file and update imports)
-	if client.name == "tsserver" then
-		keymap.set("n", "<leader>rf", ":TypescriptRenameFile<CR>", opts) -- rename file and update imports
-		keymap.set("n", "<leader>oi", ":TypescriptOrganizeImports<CR>", opts) -- organize imports (not in youtube nvim video)
-		keymap.set("n", "<leader>ru", ":TypescriptRemoveUnused<CR>", opts) -- remove unused variables (not in youtube nvim video)
-	end
 end
 
 -- used to enable autocompletion (assign to every lsp server config)
@@ -59,6 +52,22 @@ typescript.setup({
 	},
 })
 
+ts_ls.setup({
+	root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	},
+})
+
+tsserver.setup({
+	root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
+	server = {
+		capabilities = capabilities,
+		on_attach = on_attach,
+	},
+})
+
 -- configure css server
 lspconfig["cssls"].setup({
 	capabilities = capabilities,
@@ -67,6 +76,11 @@ lspconfig["cssls"].setup({
 
 -- configure tailwindcss server
 lspconfig["tailwindcss"].setup({
+	capabilities = capabilities,
+	on_attach = on_attach,
+})
+
+lspconfig.pyright.setup({
 	capabilities = capabilities,
 	on_attach = on_attach,
 })

@@ -20,12 +20,18 @@ keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & heig
 keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
 keymap.set("n", "mr", ":lua require('rest-nvim').run()<CR>")
 keymap.set("n", "mrd", ":lua require('rest-nvim').run(true)<CR>")
-keymap.set("n", "f", ":Neoformat eslint_d<CR>")
+keymap.set("n", "qf", ":lua vim.lsp.buf.format()<CR>")
 
-keymap.set("n", "t", ":BufferNext<CR>") --  go to next buffer
-keymap.set("n", "tp", ":BufferPrevious<CR>") --  go to previous buffer
-keymap.set("n", "tc", ":BufferClose!<CR>") -- close current buffer
+-- keymap.set("n", "mr", ":Rest run<CR>")
+
+-- keymap.set("n", "t", ":BufferNext<CR>") --  go to next buffer
+-- keymap.set("n", "tp", ":BufferPrevious<CR>") --  go to previous buffer
+-- keymap.set("n", "tc", ":BufferClose!<CR>") -- close current buffer
 keymap.set("n", "qq", ":q<CR>") -- quite
+keymap.set("n", "bn", ":BufferNext<CR>") --  go to next buffer
+keymap.set("n", "ba", ":BufferPrevious<CR>") --  go to next buffer
+keymap.set("n", "bms", ":BufferMoveStart<CR>") --  go to next buffer
+keymap.set("n", "bc", ":BufferClose<CR>") --  go to next buffer
 
 keymap.set("n", "<Tab>", ">>")
 keymap.set("n", "<S-Tab>", "<<")
@@ -38,7 +44,6 @@ keymap.set("n", "<S-Tab>", "<<")
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
 -- nvim-tree
--- keymap.set("n", "<leader>e", ":Neotree filesystem reveal toggle<CR>") -- toggle file explorer
 keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
 
 -- telescope
@@ -50,3 +55,14 @@ vim.api.nvim_set_keymap("x", "K", ":move '<-2<CR>gv-gv", { noremap = true, silen
 vim.api.nvim_set_keymap("x", "J", ":move '>+1<CR>gv-gv", { noremap = true, silent = true })
 
 keymap.set("n", "<leader>gb", ":GitBlameToggle<CR>")
+
+vim.keymap.set("n", "<leader>xx", function()
+	require("trouble").toggle()
+end)
+
+-- Neotree
+keymap.set("n", "<leader>nt", ":Neotree<CR>")
+
+-- copilot
+vim.g.copilot_no_tab_map = true
+vim.api.nvim_set_keymap("i", "<leader>aa", 'copilot#Accept("<CR>")', { silent = true, expr = true })

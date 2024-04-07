@@ -3,6 +3,7 @@ local opt = vim.opt -- for conciseness
 vim.cmd("syntax on") -- syntax highlighting
 vim.cmd("filetype plugin on") -- filetype detection
 vim.cmd("let g:startify_change_to_dir = 0")
+vim.cmd("set jumpoptions=")
 
 vim.o.fileencoding = "utf-8" -- The encoding written to file
 vim.o.mouse = "a" -- Enable your mouse
@@ -17,7 +18,6 @@ vim.o.updatetime = 300 -- Faster completion
 vim.cmd("set noswapfile")
 vim.cmd("set foldmethod=indent")
 vim.cmd("set foldlevel=99")
-
 vim.cmd("set incsearch")
 vim.o.hlsearch = false
 
@@ -62,3 +62,7 @@ vim.o.scrolloff = 999
 vim.o.sidescrolloff = 5
 
 opt.iskeyword:append("-")
+
+vim.diagnostic.config({
+	severity_sort = true,
+})
