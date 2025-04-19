@@ -139,16 +139,17 @@ ins_left({ "location" })
 
 ins_left({ "progress", color = { fg = colors.fg, gui = "bold" } })
 
-ins_left({
-	"diagnostics",
-	sources = { "nvim_diagnostic" },
-	symbols = { error = " ", warn = " ", info = " " },
-	diagnostics_color = {
-		error = { fg = colors.red },
-		warn = { fg = colors.yellow },
-		info = { fg = colors.cyan },
-	},
-})
+ins_left({ "diagnostics", require("lspsaga.symbol.winbar").get_bar() })
+-- ins_left({
+-- 	"diagnostics",
+-- 	sources = { "nvim_diagnostic" },
+-- 	symbols = { error = " ", warn = " ", info = " " },
+-- 	diagnostics_color = {
+-- 		error = { fg = colors.red },
+-- 		warn = { fg = colors.yellow },
+-- 		info = { fg = colors.cyan },
+-- 	},
+-- })
 
 -- Insert mid section. You can make any number of sections in neovim :)
 -- for lualine it's any number greater then 2
