@@ -17,6 +17,8 @@ require("plugins.lspsignature")
 require("plugins.dap")
 require("plugins.indent-blankline")
 
+require("dapui").setup()
+
 vim.cmd([[
 function! GetUniqueSessionName()
   let path = fnamemodify(getcwd(), ':~:t')

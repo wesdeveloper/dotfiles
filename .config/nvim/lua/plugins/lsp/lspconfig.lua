@@ -44,29 +44,30 @@ lspconfig["html"].setup({
 })
 
 -- configure typescript server with plugin
-typescript.setup({
-	root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
-})
+-- typescript.setup({
+-- 	root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
+-- 	server = {
+-- 		capabilities = capabilities,
+-- 		on_attach = on_attach,
+-- 	},
+-- })
 
 ts_ls.setup({
-	root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
+	root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
 	server = {
 		capabilities = capabilities,
 		on_attach = on_attach,
 	},
 })
 
-tsserver.setup({
-	root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
-	server = {
-		capabilities = capabilities,
-		on_attach = on_attach,
-	},
-})
+-- tsserver.setup({
+-- 	-- root_dir = util.root_pattern(".root", "package.json", ".git") or vim.loop.cwd(),
+-- 	root_dir = lspconfig.util.root_pattern(".git", "package.json", "tsconfig.json"),
+-- 	server = {
+-- 		capabilities = capabilities,
+-- 		on_attach = on_attach,
+-- 	},
+-- })
 
 -- configure css server
 lspconfig["cssls"].setup({

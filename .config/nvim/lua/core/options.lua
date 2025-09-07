@@ -66,3 +66,12 @@ opt.iskeyword:append("-")
 vim.diagnostic.config({
 	severity_sort = true,
 })
+
+vim.api.nvim_create_autocmd("FileType", {
+	pattern = "json",
+	callback = function()
+		vim.bo.formatexpr = ""
+		vim.bo.formatprg = "jq"
+	end,
+	group = vim.api.nvim_create_augroup("Group", {}),
+})

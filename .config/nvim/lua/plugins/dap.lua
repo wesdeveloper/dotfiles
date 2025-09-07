@@ -1,9 +1,65 @@
+local js_based_languages = {
+	"typescript",
+	"javascript",
+	"typescriptreact",
+	"javascriptreact",
+	"vue",
+}
+
 local dap = require("dap")
 dap.adapters.node2 = {
 	type = "executable",
 	command = "node",
-	args = { os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebug.js" },
+	port = 9229,
+	args = {
+		os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebug.js",
+	},
 }
+
+dap.adapters["pwa-node"] = {
+	type = "server",
+	host = "localhost",
+	port = "${port}",
+	executable = {
+		command = "node",
+		cwd = vim.fn.getcwd(),
+		args = {
+			os.getenv("HOME") .. "/codebase/js-debug/src/dapDebugServer.js",
+			"${port}",
+			-- os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebugAdapter.js",
+		},
+	},
+}
+
+for _, language in ipairs(js_based_languages) do
+	dap.configurations[language] = {
+		{
+			-- For this to work you need to make sure the node process is started with the `--inspect` flag.
+			name = "Attach to process my",
+			type = "node2",
+			request = "attach",
+			processId = require("dap.utils").pick_process,
+			cwd = "${workspaceFolder}",
+			sourceMaps = true,
+			skipFiles = { "<node_internals>/**/*.js" },
+		},
+		{
+			type = "node2",
+			request = "attach",
+			name = "Attach to process node pwa",
+			pid = require("dap.utils").pick_process,
+			cwd = "${workspaceFolder}",
+			sourceMaps = true,
+			skipFiles = { "<node_internals>/**/*.js" },
+		},
+		-- Divider for the launch.json derived configs
+		{
+			name = "----- ↓ launch.json configs ↓ -----",
+			type = "",
+			request = "launch",
+		},
+	}
+end
 
 -- require('dap').set_log_level('INFO')
 dap.defaults.fallback.terminal_win_cmd = "20split new"
@@ -28,13 +84,14 @@ map("n", "<leader>dn", ':lua require"dap".run_to_cursor()<CR>')
 map("n", "<leader>dk", ':lua require"dap".up()<CR>zz')
 map("n", "<leader>dj", ':lua require"dap".down()<CR>zz')
 map("n", "<leader>dc", ':lua require"dap".terminate()<CR>')
-map("n", "<leader>dr", ':lua require"dap".repl.toggle({}, "vsplit")<CR><C-w>l')
+map("n", "<leader>dr", ':lua require"dap".repl.toggle({})<CR><C-w>l')
 map("n", "<leader>dR", ':lua require"dap".clear_breakpoints()<CR>')
 map("n", "<leader>de", ':lua require"dap".set_exception_breakpoints({"all"})<CR>')
 map("n", "<leader>da", ':lua require"debughelper".attach()<CR>')
 map("n", "<leader>dA", ':lua require"debughelper".attachToProcess()<CR>')
 map("n", "<leader>di", ':lua require"dap.ui.widgets".hover()<CR>')
 map("n", "<leader>d?", ':lua local widgets=require"dap.ui.widgets";widgets.centered_float(widgets.scopes)<CR>')
+map("n", "<leader>uit", ':lua require"dapui".toggle()<CR>')
 
 -- nvim-telescope/telescope-dap.nvim
 require("telescope").load_extension("dap")

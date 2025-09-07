@@ -139,8 +139,8 @@ local plugins = {
 	},
 
 	-- File Navigation and Search
-	"nvim-tree/nvim-tree.lua",
-	"nvim-neo-tree/neo-tree.nvim",
+	-- "nvim-tree/nvim-tree.lua",
+	-- "nvim-neo-tree/neo-tree.nvim",
 	{
 		"nvim-telescope/telescope.nvim",
 		branch = "0.1.x",
@@ -184,11 +184,11 @@ local plugins = {
 			require("lspsaga").setup({})
 		end,
 	},
-	{
-		"pmizio/typescript-tools.nvim",
-		dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
-		opts = {},
-	},
+	-- {
+	-- 	"pmizio/typescript-tools.nvim",
+	-- 	dependencies = { "nvim-lua/plenary.nvim", "neovim/nvim-lspconfig" },
+	-- 	opts = {},
+	-- },
 	"onsails/lspkind.nvim",
 	"ray-x/lsp_signature.nvim",
 
@@ -233,7 +233,35 @@ local plugins = {
 	"mfussenegger/nvim-dap",
 	"theHamsta/nvim-dap-virtual-text",
 	"nvim-telescope/telescope-dap.nvim",
-	"David-Kunz/jester",
+	{
+		"David-Kunz/jester",
+		opts = {},
+		config = function()
+			require("jester").setup({
+				cmd = "./node_modules/.bin/jest -t '$result' -- $file", -- run command
+				identifiers = { "test", "it" }, -- used to identify tests
+				prepend = { "describe" }, -- prepend describe blocks
+				expressions = { "call_expression" }, -- tree-sitter object used to scan for tests/describe blocks
+				path_to_jest_run = "./node_modules/.bin/jest", -- used to run tests
+				path_to_jest_debug = "./node_modules/.bin/jest", -- used for debugging
+				terminal_cmd = ":vsplit | terminal", -- used to spawn a terminal for running tests, for debugging refer to nvim-dap's config
+				dap = { -- debug adapter configuration
+					type = "node2",
+					request = "launch",
+					name = "Jest Dap",
+					cwd = vim.fn.getcwd(),
+					runtimeArgs = { "--inspect-brk", "$path_to_jest", "--no-coverage", "-t", "$result", "--", "$file" },
+					args = { "--no-cache" },
+					sourceMaps = false,
+					protocol = "inspector",
+					skipFiles = { "<node_internals>/**/*.js" },
+					console = "integratedTerminal",
+					port = 9229,
+					disableOptimisticBPs = true,
+				},
+			})
+		end,
+	},
 	"preservim/vimux",
 
 	-- AI Assistance
@@ -359,6 +387,131 @@ local plugins = {
 				desc = "Buffer Local Keymaps (which-key)",
 			},
 		},
+	},
+	{
+		"folke/snacks.nvim",
+		priority = 1000,
+		lazy = false,
+		---@type snacks.Config
+		opts = {
+			-- your configuration comes here
+			-- or leave it empty to use the default settings
+			-- refer to the configuration section below
+			bigfile = { enabled = true },
+			dashboard = {
+				enabled = false,
+			},
+			explorer = { enabled = true, replace_netrw = true },
+			indent = { enabled = true },
+			input = { enabled = true },
+			picker = { enabled = true },
+			notifier = { enabled = true },
+			quickfile = { enabled = false },
+			scope = { enabled = true },
+			scroll = { enabled = true },
+			-- statuscolumn = { enabled = true },
+			words = { enabled = true },
+		},
+		keys = {
+			{
+				"<leader>e",
+				function()
+					Snacks.explorer()
+				end,
+				desc = "File Explorer",
+			},
+		},
+	},
+	{
+		"rest-nvim/rest.nvim",
+		dependencies = {
+			"nvim-treesitter/nvim-treesitter",
+			opts = function(_, opts)
+				opts.ensure_installed = opts.ensure_installed or {}
+				table.insert(opts.ensure_installed, "http")
+			end,
+		},
+		config = function()
+			require("rest-nvim").setup({
+				response = {
+					---Default response hooks
+					---@class rest.Config.Response.Hooks
+					hooks = {
+						---@type boolean Decode the request URL segments on response UI to improve readability
+						decode_url = true,
+						---@type boolean Format the response body using `gq` command
+						format = true,
+						-- formatters = {
+						-- 	json = "jq",
+						-- 	html = function(body)
+						-- 		return vim.fn.system({ "tidy", "-i", "-q", "-" }, body)
+						-- 	end,
+						-- },
+					},
+				},
+			})
+		end,
+	},
+	{
+		"kylechui/nvim-surround",
+		version = "^3.0.0", -- Use for stability; omit to use `main` branch for the latest features
+		event = "VeryLazy",
+		config = function()
+			require("nvim-surround").setup({
+				-- Configuration here, or leave empty to use defaults
+			})
+		end,
+	},
+
+	{
+		"nvim-neotest/neotest",
+		commit = "52fca6717ef972113ddd6ca223e30ad0abb2800c", -- latest as of 2024-06-19
+		settings = {
+			watch = true,
+		},
+		dependencies = {
+			"nvim-neotest/nvim-nio",
+			"nvim-lua/plenary.nvim",
+			"antoinemadec/FixCursorHold.nvim",
+			"nvim-treesitter/nvim-treesitter",
+			"marilari88/neotest-vitest",
+			"nvim-neotest/neotest-jest",
+		},
+		keys = {
+			{ "<leader>tr", "<cmd>Neotest run<cr>" },
+			{ "<leader>ti", "<cmd>Neotest output<cr>" },
+			{ "<leader>ts", "<cmd>Neotest summary<cr>" },
+			{ "<leader>ta", "<cmd>lua require('neotest').run.run({ suite = true })<cr>" },
+		},
+		config = function()
+			require("neotest").setup({
+				settings = {
+					watch = true,
+				},
+				adapters = {
+					require("neotest-vitest"),
+					require("neotest-jest")({
+						jestCommand = "./node_modules/.bin/jest",
+						jestConfigFile = "jest.config.ts",
+						env = { CI = true },
+						cwd = function(path)
+							return vim.fn.getcwd()
+						end,
+						isTestFile = require("neotest-jest.jest-util").defaultIsTestFile,
+					}),
+				},
+				strategies = {
+					["dap"] = {},
+				},
+			})
+		end,
+	},
+	{
+		"rcarriga/nvim-dap-ui",
+		dependencies = { "mfussenegger/nvim-dap", "nvim-neotest/nvim-nio" },
+		config = function()
+			require("dapui").setup()
+		end,
 	},
 }
 

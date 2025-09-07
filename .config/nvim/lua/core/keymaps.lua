@@ -18,7 +18,7 @@ keymap.set("n", "<leader>sv", "<C-w>v") -- split window vertically
 keymap.set("n", "<leader>sh", "<C-w>s") -- split window horizontally
 keymap.set("n", "<leader>se", "<C-w>=") -- make split windows equal width & height
 keymap.set("n", "<leader>sx", ":close<CR>") -- close current split window
-keymap.set("n", "mr", ":lua require('rest-nvim').run()<CR>")
+keymap.set("n", "mr", ":Rest run<CR>")
 keymap.set("n", "mrd", ":lua require('rest-nvim').run(true)<CR>")
 keymap.set("n", "qf", ":lua vim.lsp.buf.format()<CR>")
 
@@ -43,8 +43,8 @@ keymap.set("n", "<S-Tab>", "<<")
 -- vim-maximizer
 keymap.set("n", "<leader>sm", ":MaximizerToggle<CR>") -- toggle split window maximization
 
--- nvim-tree
-keymap.set("n", "<leader>e", ":NvimTreeToggle<CR>") -- toggle file explorer
+-- snacks explorer
+keymap.set("n", "<leader>e", ":Snacks.explorer()<CR>") -- toggle file explorer
 
 -- telescope
 keymap.set("n", "<leader>ff", "<cmd>Telescope find_files<cr>") -- find files within current working directory, respects .gitignore
@@ -61,8 +61,14 @@ vim.keymap.set("n", "<leader>xx", function()
 end)
 
 -- Neotree
-keymap.set("n", "<leader>nt", ":Neotree<CR>")
+-- keymap.set("n", "<leader>nt", ":Neotree<CR>")
 
 -- copilot
 vim.g.copilot_no_tab_map = true
-vim.api.nvim_set_keymap("i", "<leader>aa", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+vim.api.nvim_set_keymap("i", "<leader>cca", 'copilot#Accept("<CR>")', { silent = true, expr = true })
+
+-- bookmarks
+keymap.set("n", "<leader>mm", ":lua require('bookmarks').bookmark_toggle()<CR>")
+keymap.set("n", "<leader>ml", ":Telescope bookmarks list<CR>")
+keymap.set("n", "<leader>mc", ":lua require('bookmarks').bookmark_clean()<CR>")
+keymap.set("n", "<leader>mx", ":lua require('bookmarks').bookmark_clear_all()<CR>")

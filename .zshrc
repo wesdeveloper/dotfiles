@@ -49,6 +49,7 @@ alias nf="neofetch"
 alias lg="lazygit"
 alias rg="ranger"
 alias jd="node --inspect-brk ./node_modules/.bin/jest -t "
+alias jt="./node_modules/.bin/jest -t "
 alias cc="clear"
 
 ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
