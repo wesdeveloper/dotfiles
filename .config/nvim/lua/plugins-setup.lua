@@ -67,6 +67,87 @@ local plugins = {
 			})
 		end,
 	},
+	-- Core Dependencies
+	"nvim-lua/plenary.nvim",
+	"MunifTanjim/nui.nvim",
+	"nvim-tree/nvim-web-devicons",
+
+	-- UI and Theming
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "macchiato",
+				transparent_background = true,
+				term_colors = true,
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					telescope = true,
+					nvimtree = true,
+					notify = true,
+					mini = true,
+				},
+			})
+		end,
+	},
+	-- Core Dependencies
+	"nvim-lua/plenary.nvim",
+	"MunifTanjim/nui.nvim",
+	"nvim-tree/nvim-web-devicons",
+
+	-- UI and Theming
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000,
+		config = function()
+			require("catppuccin").setup({
+				flavour = "macchiato",
+				transparent_background = true,
+				term_colors = true,
+				integrations = {
+					cmp = true,
+					gitsigns = true,
+					telescope = true,
+					nvimtree = true,
+					notify = true,
+					mini = true,
+				},
+			})
+		end,
+	},
+	{
+		"marko-cerovac/material.nvim",
+		config = function()
+			require("material").setup({
+				plugins = {
+					"dap",
+					"gitsigns",
+					"indent-blankline",
+					"lspsaga",
+					"nvim-cmp",
+					"nvim-tree",
+					"nvim-web-devicons",
+					"telescope",
+					"trouble",
+					"which-key",
+					"nvim-notify",
+				},
+				high_visibility = {
+					lighter = true,
+					darker = true,
+				},
+				disable = {
+					background = true,
+				},
+				lualine_style = "default",
+				async_loading = true,
+			})
+		end,
+	},
 	"mhinz/vim-startify",
 	"lukas-reineke/indent-blankline.nvim",
 	"xiyaowong/nvim-transparent",
@@ -270,7 +351,19 @@ local plugins = {
 		cmd = "Copilot",
 		event = "InsertEnter",
 		config = function()
-			require("copilot").setup({})
+			require("copilot").setup({
+				model = "claude-sonnet-4.5",
+				panel = { enabled = true },
+				suggestion = { enabled = false },
+				nes = {
+					enabled = false,
+					keymap = {
+						accept_and_goto = "<leader>p",
+						accept = false,
+						dismiss = "<Esc>",
+					},
+				},
+			})
 		end,
 	},
 	{
@@ -281,7 +374,7 @@ local plugins = {
 		},
 		build = "make tiktoken",
 		opts = {
-			model = "claude-3.5-sonnet",
+			model = "claude-sonnet-4.5",
 		},
 	},
 	{
@@ -482,6 +575,8 @@ local plugins = {
 			{ "<leader>ti", "<cmd>Neotest output<cr>" },
 			{ "<leader>ts", "<cmd>Neotest summary<cr>" },
 			{ "<leader>ta", "<cmd>lua require('neotest').run.run({ suite = true })<cr>" },
+			{ "<leader>tf", "<cmd>lua require('neotest').run.run(vim.fn.expand('%'))<cr>" },
+			{ "<leader>td", "<cmd>lua require('neotest').run.run({strategy = 'dap'})<cr>" },
 		},
 		config = function()
 			require("neotest").setup({
@@ -512,6 +607,82 @@ local plugins = {
 		config = function()
 			require("dapui").setup()
 		end,
+	},
+	{
+		"olimorris/codecompanion.nvim",
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"nvim-treesitter/nvim-treesitter",
+		},
+		opts = {
+			-- prompt_library = {
+			-- 	markdown = {
+			-- 		dirs = {
+			-- 			vim.fn.getcwd() .. "/.prompts", -- Can be relative
+			-- 			-- "~/.dotfiles/.config/prompts", -- Or absolute paths
+			-- 		},
+			-- 	},
+			-- },
+			-- NOTE: The log_level is in `opts.opts`
+			opts = {
+				model = "claude-sonnet-4.5",
+				log_level = "DEBUG", -- or "TRACE"
+			},
+		},
+	},
+
+	{
+		"folke/sidekick.nvim",
+		opts = {},
+	},
+	{
+		"MeanderingProgrammer/render-markdown.nvim",
+		dependencies = { "nvim-treesitter/nvim-treesitter", "nvim-mini/mini.nvim" }, -- if you use the mini.nvim suite
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-mini/mini.icons' },        -- if you use standalone mini plugins
+		-- dependencies = { 'nvim-treesitter/nvim-treesitter', 'nvim-tree/nvim-web-devicons' }, -- if you prefer nvim-web-devicons
+		---@module 'render-markdown'
+		---@type render.md.UserConfig
+		opts = {},
+	},
+	{
+		"GeorgesAlkhouri/nvim-aider",
+		cmd = "Aider",
+		-- Example key mappings for common actions:
+		keys = {
+			{ "<leader>a/", "<cmd>Aider toggle<cr>", desc = "Toggle Aider" },
+			{ "<leader>as", "<cmd>Aider send<cr>", desc = "Send to Aider", mode = { "n", "v" } },
+			{ "<leader>ac", "<cmd>Aider command<cr>", desc = "Aider Commands" },
+			{ "<leader>ab", "<cmd>Aider buffer<cr>", desc = "Send Buffer" },
+			{ "<leader>a+", "<cmd>Aider add<cr>", desc = "Add File" },
+			{ "<leader>a-", "<cmd>Aider drop<cr>", desc = "Drop File" },
+			{ "<leader>ar", "<cmd>Aider add readonly<cr>", desc = "Add Read-Only" },
+			{ "<leader>aR", "<cmd>Aider reset<cr>", desc = "Reset Session" },
+			-- Example nvim-tree.lua integration if needed
+			{ "<leader>a+", "<cmd>AiderTreeAddFile<cr>", desc = "Add File from Tree to Aider", ft = "NvimTree" },
+			{ "<leader>a-", "<cmd>AiderTreeDropFile<cr>", desc = "Drop File from Tree from Aider", ft = "NvimTree" },
+		},
+		dependencies = {
+			{ "folke/snacks.nvim", version = ">=2.24.0" },
+			--- The below dependencies are optional
+			"catppuccin/nvim",
+			"nvim-tree/nvim-tree.lua",
+			--- Neo-tree integration
+			{
+				"nvim-neo-tree/neo-tree.nvim",
+				opts = function(_, opts)
+					-- Example mapping configuration (already set by default)
+					-- opts.window = {
+					--   mappings = {
+					--     ["+"] = { "nvim_aider_add", desc = "add to aider" },
+					--     ["-"] = { "nvim_aider_drop", desc = "drop from aider" }
+					--     ["="] = { "nvim_aider_add_read_only", desc = "add read-only to aider" }
+					--   }
+					-- }
+					require("nvim_aider.neo_tree").setup(opts)
+				end,
+			},
+		},
+		config = true,
 	},
 }
 
