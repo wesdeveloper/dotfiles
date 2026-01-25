@@ -38,10 +38,11 @@ vim.g.material_style = "darker"
 
 -- vim.cmd("colorscheme ayu")
 -- vim.g.ayucolor = "mirage"
-
 -- vim.cmd([[
 -- augroup fmt
 --   autocmd!
 --   autocmd BufWritePre * undojoin | Neoformat
 -- augroup END
 -- ]])
+vim.api.nvim_set_hl(0, "Normal", { bg = "none" })
+vim.api.nvim_set_hl(0, "NormalFloat", { bg = "none" })

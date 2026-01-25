@@ -65,6 +65,12 @@ if command -v tmux &> /dev/null && [ -z "$TMUX" ]; then
     tmux at -t default || tmux new -s default
 fi
 
+fpath+=~/codebase/higg-dotfiles/zshfunctions
+for FILE in $(ls ~/codebase/higg-dotfiles/zshfunctions) ; do
+   autoload -U $FILE && $FILE
+done
+
+
 TranslateWheelToCursor=off
 DisableWheelToCursorByCtrl=off
 
@@ -79,3 +85,4 @@ export PATH="$PATH:$HOME/.rvm/bin"
 
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
+export PATH="$HOME/.local/bin:$PATH"
