@@ -598,25 +598,21 @@ local plugins = {
 	{
 		"olimorris/codecompanion.nvim", -- AI coding companion
 		dependencies = {
+			"github/copilot.vim",
 			"nvim-lua/plenary.nvim",
 			"nvim-treesitter/nvim-treesitter",
 		},
 		opts = {
-			adapters = {
-				anthropic = function()
-					return require("codecompanion.adapters").extend("anthropic", {
-						schema = {
-							model = {
-								default = "claude-sonnet-4-6", -- Use latest Claude model directly via Anthropic API
-							},
-						},
-					})
-				end,
-			},
-			strategies = {
-				chat = { adapter = "anthropic" },
-				inline = { adapter = "anthropic" },
-				agent = { adapter = "anthropic" },
+			interactions = {
+				chat = {
+					adapter = {
+						name = "copilot",
+						model = "gpt-4.1",
+					},
+				},
+				inline = {
+					adapter = "copilot",
+				},
 			},
 			opts = {
 				log_level = "DEBUG",
