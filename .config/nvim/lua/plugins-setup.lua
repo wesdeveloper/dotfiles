@@ -259,6 +259,7 @@ local plugins = {
 	-- ============================================================================
 	-- Syntax parsing and highlighting
 	"nvim-treesitter/nvim-treesitter", -- Treesitter configurations and abstraction layer
+	{ "jparise/vim-graphql", ft = { "graphql", "gql" } }, -- GraphQL filetype detection and indentation
 	"windwp/nvim-autopairs", -- Autopairs for brackets, quotes, etc.
 	{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }, -- Auto close and rename HTML tags
 
@@ -292,7 +293,7 @@ local plugins = {
 		opts = {},
 		config = function()
 			require("jester").setup({
-				cmd = "./node_modules/.bin/jest -t '$result' -- $file", -- Command to run tests
+				cmd = "./node_modules/.bin/jest --maxWorkers=2 -t '$result' -- $file", -- Command to run tests
 				identifiers = { "test", "it" }, -- Test identifiers
 				prepend = { "describe" }, -- Prepend describe blocks
 				expressions = { "call_expression" }, -- Treesitter expression for tests
@@ -322,26 +323,29 @@ local plugins = {
 	-- AI Assistance
 	-- ============================================================================
 	-- AI-powered code completion and chat assistants
-	{
-		"zbirenbaum/copilot.lua", -- GitHub Copilot integration
-		cmd = "Copilot",
-		event = "InsertEnter", -- Load on insert mode
-		config = function()
-			require("copilot").setup({
-				model = "claude-sonnet-4.5", -- AI model to use
-				panel = { enabled = true }, -- Enable copilot panel
-				suggestion = { enabled = false }, -- Disable inline suggestions
-				nes = {
-					enabled = false,
-					keymap = {
-						accept_and_goto = "<leader>p",
-						accept = false,
-						dismiss = "<Esc>",
-					},
-				},
-			})
-		end,
-	},
+	-- {
+	-- 	"zbirenbaum/copilot.lua", -- GitHub Copilot integration
+	-- 	cmd = "Copilot",
+	-- 	event = "InsertEnter", -- Load on insert mode
+	-- 	requires = {
+	-- 		"copilotlsp-nvim/copilot-lsp", -- (optional) for NES functionality
+	-- 	},
+	-- 	config = function()
+	-- 		require("copilot").setup({
+	-- 			model = "claude-sonnet-4.5", -- AI model to use
+	-- 			panel = { enabled = true }, -- Enable copilot panel
+	-- 			suggestion = { enabled = false }, -- Disable inline suggestions
+	-- 			nes = {
+	-- 				enabled = false,
+	-- 				keymap = {
+	-- 					accept_and_goto = "<leader>p",
+	-- 					accept = false,
+	-- 					dismiss = "<Esc>",
+	-- 				},
+	-- 			},
+	-- 		})
+	-- 	end,
+	-- },
 	{
 		"CopilotC-Nvim/CopilotChat.nvim", -- Chat interface for GitHub Copilot
 		dependencies = {
@@ -349,9 +353,9 @@ local plugins = {
 			{ "nvim-lua/plenary.nvim", branch = "master" },
 		},
 		build = "make tiktoken", -- Build tiktoken tokenizer
-		opts = {
-			model = "claude-sonnet-4.5", -- AI model for chat
-		},
+		-- opts = {
+		-- 	model = "claude-sonnet-4-6", -- AI model for chat
+		-- },
 	},
 	{
 		"zbirenbaum/copilot-cmp", -- Copilot source for nvim-cmp
@@ -365,8 +369,33 @@ local plugins = {
 		event = "VeryLazy",
 		version = false, -- Use main branch (important: never use "*")
 		opts = {
-			provider = "copilot", -- Use Copilot as provider
-			-- Additional behavior options are commented out
+			provider = "claude", -- Use Anthropic API directly (requires ANTHROPIC_API_KEY)
+			claude = {
+				endpoint = "https://api.anthropic.com",
+				model = "claude-sonnet-4-6",
+				timeout = 30000,
+				temperature = 0,
+				max_tokens = 8096,
+			},
+			behaviour = {
+				auto_suggestions = true, -- Experimental stage
+				auto_set_highlight_group = true,
+				auto_set_keymaps = true,
+				auto_apply_diff_after_generation = false,
+				support_paste_from_clipboard = false,
+				minimize_diff = false, -- Whether to remove unchanged lines when applying a code block
+				enable_token_counting = true, -- Whether to enable token counting. Default to true.
+				auto_add_current_file = true, -- Whether to automatically add the current file when opening a new chat. Default to true.
+				auto_approve_tool_permissions = false, -- Default: auto-approve all tools (no prompts)
+				-- Examples:
+				-- auto_approve_tool_permissions = false,                -- Show permission prompts for all tools
+				-- auto_approve_tool_permissions = {"bash", "str_replace"}, -- Auto-approve specific tools only
+				---@type "popup" | "inline_buttons"
+				confirmation_ui_style = "popup",
+				--- Whether to automatically open files and navigate to lines when ACP agent makes edits
+				---@type boolean
+				acp_follow_agent_locations = true,
+			},
 		},
 		build = "make", -- Build from source
 		dependencies = {
@@ -573,9 +602,24 @@ local plugins = {
 			"nvim-treesitter/nvim-treesitter",
 		},
 		opts = {
+			adapters = {
+				anthropic = function()
+					return require("codecompanion.adapters").extend("anthropic", {
+						schema = {
+							model = {
+								default = "claude-sonnet-4-6", -- Use latest Claude model directly via Anthropic API
+							},
+						},
+					})
+				end,
+			},
+			strategies = {
+				chat = { adapter = "anthropic" },
+				inline = { adapter = "anthropic" },
+				agent = { adapter = "anthropic" },
+			},
 			opts = {
-				model = "claude-sonnet-4.5", -- AI model to use
-				log_level = "DEBUG", -- Logging level
+				log_level = "DEBUG",
 			},
 		},
 	},
@@ -590,6 +634,56 @@ local plugins = {
 		---@module 'render-markdown'
 		---@type render.md.UserConfig
 		opts = {},
+	},
+	{
+		"coder/claudecode.nvim", -- Claude Code integration for Neovim (AI-powered code assistance)
+		dependencies = { "folke/snacks.nvim" }, -- Required for UI components and notifications
+		config = true, -- Use default configuration
+		keys = {
+			-- Leader key group for Claude Code commands
+			{ "<leader>a", nil, desc = "AI/Claude Code" },
+
+			-- Core Claude Code operations
+			{ "<leader>ac", "<cmd>ClaudeCode<cr>", desc = "Toggle Claude" }, -- Show/hide Claude Code panel
+			{ "<leader>af", "<cmd>ClaudeCodeFocus<cr>", desc = "Focus Claude" }, -- Focus on Claude Code window
+			{ "<leader>ar", "<cmd>ClaudeCode --resume<cr>", desc = "Resume Claude" }, -- Resume previous session
+			{ "<leader>aC", "<cmd>ClaudeCode --continue<cr>", desc = "Continue Claude" }, -- Continue current task
+			{ "<leader>am", "<cmd>ClaudeCodeSelectModel<cr>", desc = "Select Claude model" }, -- Choose AI model
+
+			-- File and context management
+			{ "<leader>ab", "<cmd>ClaudeCodeAdd %<cr>", desc = "Add current buffer" }, -- Add current file to context
+			{ "<leader>as", "<cmd>ClaudeCodeSend<cr>", mode = "v", desc = "Send to Claude" }, -- Send selection to Claude (visual mode)
+			{
+				"<leader>as", -- Same binding for file explorer context
+				function()
+					local ft = vim.bo.filetype
+					if ft == "snacks_picker_list" then
+						-- Snacks explorer: extract path from the item under cursor
+						local ok, picker = pcall(require, "snacks.picker")
+						if ok then
+							local current = picker.current()
+							if current then
+								local item = current:current()
+								local path = item and (item.file or item.path or item.text)
+								if path and path ~= "" then
+									vim.cmd("ClaudeCodeAdd " .. vim.fn.fnameescape(path))
+									return
+								end
+							end
+						end
+						vim.notify("ClaudeCode: could not resolve file from snacks explorer", vim.log.levels.WARN)
+					else
+						vim.cmd("ClaudeCodeTreeAdd")
+					end
+				end,
+				desc = "Add file",
+				ft = { "NvimTree", "neo-tree", "oil", "minifiles", "netrw", "snacks_picker_list" }, -- Works in file explorers
+			},
+
+			-- Diff management (for code suggestions)
+			{ "<leader>aa", "<cmd>ClaudeCodeDiffAccept<cr>", desc = "Accept diff" }, -- Apply suggested changes
+			{ "<leader>ad", "<cmd>ClaudeCodeDiffDeny<cr>", desc = "Deny diff" }, -- Reject suggested changes
+		},
 	},
 }
 
