@@ -138,6 +138,9 @@ local plugins = {
 		},
 		init = function()
 			vim.g.barbar_auto_setup = false
+			if vim.g.bufferline == nil then
+				vim.g.bufferline = vim.empty_dict()
+			end
 		end,
 		opts = {
 			animation = true,
@@ -158,12 +161,10 @@ local plugins = {
 				preset = "default",
 			},
 		},
+		config = function(_, opts)
+			require("barbar").setup(opts)
+		end,
 		version = "^1.0.0",
-	},
-	{
-		"akinsho/bufferline.nvim", -- Alternative bufferline plugin
-		version = "*",
-		dependencies = "nvim-tree/nvim-web-devicons",
 	},
 
 	-- ============================================================================
@@ -177,7 +178,7 @@ local plugins = {
 		"nvim-telescope/telescope.nvim", -- Highly extendable fuzzy finder over lists
 		branch = "0.1.x",
 		dependencies = {
-			{ "nvim-telescope/telescope-fzf-native.nvim", run = "make" }, -- FZF sorter for telescope
+			{ "nvim-telescope/telescope-fzf-native.nvim", build = "make" }, -- FZF sorter for telescope
 		},
 		config = function()
 			require("telescope").load_extension("notify") -- Load notify extension for telescope
@@ -261,7 +262,7 @@ local plugins = {
 	"nvim-treesitter/nvim-treesitter", -- Treesitter configurations and abstraction layer
 	{ "jparise/vim-graphql", ft = { "graphql", "gql" } }, -- GraphQL filetype detection and indentation
 	"windwp/nvim-autopairs", -- Autopairs for brackets, quotes, etc.
-	{ "windwp/nvim-ts-autotag", after = "nvim-treesitter" }, -- Auto close and rename HTML tags
+	{ "windwp/nvim-ts-autotag", dependencies = { "nvim-treesitter/nvim-treesitter" } }, -- Auto close and rename HTML tags
 
 	-- ============================================================================
 	-- Comments and Documentation
@@ -359,7 +360,7 @@ local plugins = {
 	},
 	{
 		"zbirenbaum/copilot-cmp", -- Copilot source for nvim-cmp
-		after = { "copilot.lua" },
+		dependencies = { "zbirenbaum/copilot.lua" },
 		config = function()
 			require("copilot_cmp").setup()
 		end,
@@ -507,6 +508,18 @@ local plugins = {
 					Snacks.explorer()
 				end,
 				desc = "File Explorer",
+			},
+			{
+				"<leader>ag",
+				function()
+					Snacks.terminal.toggle("copilot", {
+						win = {
+							position = "right",
+							width = 0.4,
+						},
+					})
+				end,
+				desc = "Copilot CLI",
 			},
 		},
 	},

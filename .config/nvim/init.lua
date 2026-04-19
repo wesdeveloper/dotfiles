@@ -31,7 +31,6 @@ autocmd BufNewFile,BufRead *.http set syntax=javascript
 ]])
 
 vim.opt.termguicolors = true
-require("bufferline").setup({})
 vim.cmd("colorscheme catppuccin-macchiato")
 vim.g.material_style = "darker"
 -- vim.g.material_style = "deep ocean"
