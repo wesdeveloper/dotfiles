@@ -86,3 +86,11 @@ export PATH="$PATH:$HOME/.rvm/bin"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 export PATH="$HOME/.local/bin:$PATH"
+
+# GitHub Copilot / CopilotChat for Neovim
+if command -v gh >/dev/null 2>&1; then
+  export GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token 2>/dev/null)}"
+fi
+if [ -n "${GITHUB_TOKEN-}" ]; then
+  export GITHUB_API_TOKEN="${GITHUB_API_TOKEN:-$GITHUB_TOKEN}"
+fi
