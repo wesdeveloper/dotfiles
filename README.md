@@ -1,138 +1,207 @@
 # Dotfiles
 
-A simple project to main my personal settings.
+Personal shell, terminal, editor, and window-manager configuration managed with GNU Stow.
 
-## Getting Started
+## What's in this repo
 
-These instructions will get you a copy of the project configured in your local machine.
+This repository currently contains:
 
-### Prerequisites
+| Area | Files |
+| --- | --- |
+| Shell | `.zshrc`, `.gitconfig`, `ide.sh` |
+| Terminal | `.tmux.conf`, `.config/alacritty`, `.config/kitty`, `.config/starship.toml` |
+| Neovim | `.config/nvim` |
+| Linux desktop | `.config/i3`, `.config/i3status-rs`, `.config/regolith`, `.config/rofi`, `.config/neofetch` |
+| macOS tiling | `.config/yabai`, `.config/skhd` |
 
-To have a good experience with this setups is required to install *****stow**
-> `sudo apt install stow`
+## Prerequisites
 
-To see more details... After install run **man stow** to see the documentation.
+The repo is meant to be applied with **GNU Stow**.
 
-### Setup Project
+Examples:
 
-First of all clone this repo to your machine:
-> gh repo clone wesdeveloper/dotfiles
+```bash
+# Ubuntu / Debian
+sudo apt install stow
 
-Then access the project folder:
-> cd dotfiles
+# macOS (Homebrew)
+brew install stow
+```
 
-To apply all settings on your root directory you need to use the **stow**.
+After installing Stow, check the manual with:
 
-Example:
-> stow -vt ~ .
+```bash
+man stow
+```
 
-**Obs:** If you want to test the stow actions without execute it. Experiment to add -n flag.
-> stow -nvt ~ .
+## Setup
 
-### Ubuntu first steps
+Clone the repository and apply the dotfiles to your home directory:
 
-Run the apt update
-> sudo apt update && sudo apt install git curl -y
+```bash
+gh repo clone wesdeveloper/dotfiles
+cd dotfiles
+stow -nvt ~ .   # dry run
+stow -vt ~ .    # apply
+```
 
-#### Browser
+If you already have conflicting files in `~`, move or remove them before running `stow`.
 
-Install the browser of you preference, mine current is Google Chrome.
+## Recommended installs
 
-#### Tilix
+The exact tools you need depend on which parts of the repo you want to use.
 
-Instal the tilix terminal:
-> sudo apt install tilix -y
+### Core tools
 
-Set tilix as your default terminal(after run the following command choose your new default terminal):
-> sudo update-alternatives --config x-terminal-emulator
+These are the most useful packages for the current configuration:
 
-#### colorls
+- `git`
+- `curl`
+- `zsh`
+- `tmux`
+- `neovim`
+- `node`
+- `fzf`
+- `ripgrep`
+- `starship`
+- `gh` (recommended for Copilot auth)
 
-Install colorls(https://github.com/athityakumar/colorls) see the docs, because it's necessary install ruby.
+### Ubuntu / Debian example
 
-#### Tmux
+```bash
+sudo apt update
+sudo apt install -y git curl stow zsh tmux neovim fzf
+```
 
-Install tmux 
-> sudo apt install tmux -y
+Install the remaining tools with their official docs when your distro package is outdated:
 
-Add tmux plugin manager(https://github.com/tmux-plugins/tpm):
-> git clone https://github.com/tmux-plugins/tpm ~/.tmux/plugins/tpm
+- `ripgrep`: https://github.com/BurntSushi/ripgrep
+- `node`: https://nodejs.org/
+- `starship`: https://starship.rs/
+- `gh`: https://cli.github.com/
 
-#### Zsh
+### macOS example
 
-Install zsh:
-> sudo apt install zsh -y
+```bash
+brew install git curl stow zsh tmux neovim fzf ripgrep starship gh
+```
 
-And oh my zsh(https://ohmyz.sh/#install):
-> sh -c "$(curl -fsSL https://raw.github.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
+Optional macOS window-management tools used by this repo:
 
-Install zsh-nvm(https://github.com/lukechilds/zsh-nvm):
-> git clone https://github.com/lukechilds/zsh-nvm ~/.oh-my-zsh/custom/plugins/zsh-nvm
+```bash
+brew install koekeishiya/formulae/yabai koekeishiya/formulae/skhd
+```
 
-Install zsh-autosuggestions(https://github.com/zsh-users/zsh-autosuggestions):
-> git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions
+### Optional tools still referenced by the config
 
-#### fzf
+Depending on which aliases, plugins, or desktop config you use, these may also be worth installing:
 
-Install fzf:
-> https://github.com/junegunn/fzf#installation
+- `colorls`: https://github.com/athityakumar/colorls
+- `neofetch`: https://github.com/dylanaraps/neofetch
+- `docker`: https://docs.docker.com/engine/install/
+- `docker compose`: https://docs.docker.com/compose/
+- `flameshot`: https://flameshot.org/
+- `variety`: https://github.com/varietywalls/variety
+- `ulauncher`: https://ulauncher.io/
 
-#### ripgrep(https://snapcraft.io/install/ripgrep/ubuntu#install)
+### Suggested tools
 
-> sudo snap install ripgrep --classic
+Keeping the broader suggestion list here for convenience:
 
-#### NodeJs
+- `Ulauncher`: https://ulauncher.io/
+- `Tilix`: https://gnunn1.github.io/tilix-web/
+- `Tmux`: https://github.com/tmux/tmux/wiki
+- `Neovim`: https://github.com/neovim/neovim
+- `Oh My Zsh`: https://github.com/ohmyzsh/ohmyzsh
+- `Neofetch`: https://github.com/dylanaraps/neofetch
+- `colorls`: https://github.com/athityakumar/colorls
+- `Flameshot`: https://github.com/flameshot-org/flameshot
+- `Variety`: https://github.com/varietywalls/variety
+- `bpytop`: https://github.com/aristocratos/bpytop
 
-Install nodejs, it will be necessary to correct install of the following tools:
-> https://github.com/nodesource/distributions/blob/master/README.md#debinstall
+## Tool-specific notes
 
-#### Neovim(https://neovim.io/)
+### Zsh
 
-Install neovim:
-> sudo apt install neovim -y
+The shell config expects Oh My Zsh and uses plugins such as:
 
-Install vim plug to manage the vim plugins.
-> https://github.com/junegunn/vim-plug
+- `git`
+- `tmux`
+- `zsh-nvm`
+- `docker`
+- `docker-compose`
+- `zsh-autosuggestions`
+- `kubectl`
+- `zsh-fzf-history-search`
+- `zsh-z`
 
-#### Neofetch(https://github.com/dylanaraps/neofetch)
+Install Oh My Zsh from:
 
-> sudo apt install neofetch -y
+https://ohmyz.sh/#install
 
-#### Flameshot(https://snapcraft.io/flameshot)
+Extra plugins referenced by the config:
 
-> sudo apt install flameshot -y
+- `zsh-nvm`: https://github.com/lukechilds/zsh-nvm
+- `zsh-autosuggestions`: https://github.com/zsh-users/zsh-autosuggestions
+- `zsh-fzf-history-search`: https://github.com/joshskidmore/zsh-fzf-history-search
+- `zsh-z`: https://github.com/agkozak/zsh-z
 
-#### Variety(https://github.com/varietywalls/variety)
+### Tmux
 
-> sudo apt install variety -y
+`~/.tmux.conf` is configured to bootstrap TPM automatically if it is missing, so opening tmux is usually enough to install tmux plugins on a fresh setup.
 
-#### Ulauncher
+TPM:
 
-Install from https://ulauncher.io/
+https://github.com/tmux-plugins/tpm
 
-#### bpytop(https://github.com/aristocratos/bpytop)
+### Neovim
 
-> sudo apt install -y python3-pip
-> pip3 install bpytop --upgrade
+The Neovim config lives in `.config/nvim` and uses **lazy.nvim**, not vim-plug.
 
-#### docker
+On first startup, Neovim bootstraps `lazy.nvim` automatically and then installs the configured plugins.
 
-> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-on-ubuntu-20-04-pt
+Some plugins depend on external tools, especially:
 
-#### docker compose
+- `node`
+- `git`
+- `ripgrep`
+- a Nerd Font
 
-> https://www.digitalocean.com/community/tutorials/how-to-install-and-use-docker-compose-on-ubuntu-20-04
+For GitHub Copilot inside Neovim, this setup exports `GITHUB_TOKEN` and `GITHUB_API_TOKEN` from the shell when available. If you use GitHub CLI, authenticate with:
 
-## Other linux settings and installs
+```bash
+gh auth login
+```
 
-* [Ulauncher](https://ulauncher.io/)
-* [Tilix](https://gnunn1.github.io/tilix-web/)
-* [Tmux](https://github.com/tmux/tmux/wiki)
-* [nvim](https://github.com/neovim/neovim)
-* [oh my zsh](https://github.com/ohmyzsh/ohmyzsh)
-* [neofetch](https://github.com/dylanaraps/neofetch)
-* [colorls](https://github.com/athityakumar/colorls)
-* [Flameshot](https://github.com/flameshot-org/flameshot)
-* [Variety](https://github.com/varietywalls/variety)
-* [bpytop](https://github.com/aristocratos/bpytop)
+### Linux desktop
 
+The Linux-specific configs in this repo are centered around:
+
+- `i3`
+- `regolith`
+- `rofi`
+- `neofetch`
+
+The i3 config also references tools such as:
+
+- `feh`
+- `compton`
+- `xss-lock`
+- `i3lock`
+- `nm-applet`
+- PulseAudio / `pactl`
+
+### macOS tiling
+
+The macOS-specific configs are:
+
+- `.config/yabai/yabairc`
+- `.config/skhd/skhdrc`
+
+These are only relevant on macOS systems using yabai + skhd.
+
+## Notes
+
+- This repo mixes Linux and macOS configs intentionally.
+- You do not need every tool listed above; install only what matches the parts you use.
+- If a package manager ships an older version of a tool, prefer the tool's official installation instructions.

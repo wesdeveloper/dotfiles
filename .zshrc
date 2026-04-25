@@ -90,3 +90,10 @@ export PATH="$HOME/.local/bin:$PATH"
 
 # opencode
 export PATH=/Users/wesleylopes/.opencode/bin:$PATH
+# GitHub Copilot / CopilotChat for Neovim
+if command -v gh >/dev/null 2>&1; then
+  export GITHUB_TOKEN="${GITHUB_TOKEN:-$(gh auth token 2>/dev/null)}"
+fi
+if [ -n "${GITHUB_TOKEN-}" ]; then
+  export GITHUB_API_TOKEN="${GITHUB_API_TOKEN:-$GITHUB_TOKEN}"
+fi
