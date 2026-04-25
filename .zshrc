@@ -57,6 +57,7 @@ ZSH_AUTOSUGGEST_HIGHLIGHT_STYLE="fg=#ff00ff,bold"
 export NVM_DIR="$HOME/.nvm"
 export PATH="$(nvm which default):$PATH"
 export PATH=/usr/local/share/npm/bin:$PATH
+export COPILOT_EDITOR="/opt/homebrew/bin/nvim"
 
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
 
@@ -86,3 +87,6 @@ export PATH="$PATH:$HOME/.rvm/bin"
 test -e "${HOME}/.iterm2_shell_integration.zsh" && source "${HOME}/.iterm2_shell_integration.zsh" || true
 alias python=/Library/Frameworks/Python.framework/Versions/2.7/bin/python
 export PATH="$HOME/.local/bin:$PATH"
+
+# opencode
+export PATH=/Users/wesleylopes/.opencode/bin:$PATH

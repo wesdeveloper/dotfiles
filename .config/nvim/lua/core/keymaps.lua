@@ -65,6 +65,10 @@ end)
 
 -- copilot
 vim.g.copilot_no_tab_map = true
+-- Node 22.x needs --experimental-sqlite to load node:sqlite required by the
+-- copilot language server; run the bundled server instead of the npx fallback.
+vim.g.copilot_npx_command = 0
+vim.g.copilot_node_command = { "node", "--experimental-sqlite" }
 vim.api.nvim_set_keymap("i", "<leader>cca", 'copilot#Accept("<CR>")', { silent = true, expr = true })
 
 -- bookmarks
