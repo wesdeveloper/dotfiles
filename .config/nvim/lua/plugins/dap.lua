@@ -18,17 +18,20 @@ dap.adapters.node2 = {
 
 dap.adapters["pwa-node"] = {
 	type = "server",
-	host = "localhost",
+	host = "127.0.0.1",
 	port = "${port}",
 	executable = {
 		command = "node",
 		cwd = vim.fn.getcwd(),
 		args = {
-			os.getenv("HOME") .. "/codebase/js-debug/src/dapDebugServer.js",
+			-- :MasonInstall js-debug-adapter
+			vim.fn.stdpath("data") .. "/mason/packages/js-debug-adapter/js-debug/src/dapDebugServer.js",
 			"${port}",
+			"127.0.0.1", -- defaults to ::1 otherwise
 			-- os.getenv("HOME") .. "/codebase/vscode-node-debug2/out/src/nodeDebugAdapter.js",
 		},
 	},
+	-- wesleylopes/codebase/vscode-node-debug2/out/src
 }
 
 for _, language in ipairs(js_based_languages) do
@@ -51,6 +54,17 @@ for _, language in ipairs(js_based_languages) do
 			cwd = "${workspaceFolder}",
 			sourceMaps = true,
 			skipFiles = { "<node_internals>/**/*.js" },
+		},
+		{
+			-- ts-node-dev --respawn --inspect ...; reconnects after each restart
+			name = "Attach :9229 (js-debug)",
+			type = "pwa-node",
+			request = "attach",
+			port = 9229,
+			restart = true,
+			cwd = "${workspaceFolder}",
+			sourceMaps = true,
+			skipFiles = { "<node_internals>/**", "**/node_modules/**" },
 		},
 		-- Divider for the launch.json derived configs
 		{
